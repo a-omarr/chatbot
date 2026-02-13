@@ -1,0 +1,11 @@
+[project]
+name = "chatbot-backend"
+version = "0.1.0"
+description = "FastAPI backend for chatbot"
+requires-python = ">=3.10"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
