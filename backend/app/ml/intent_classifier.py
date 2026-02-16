@@ -2,7 +2,7 @@ from __future__ import annotations
 
 """Simple multilingual intent classifier for Toros Yazilim.
 
-This uses classical ML (TF‑IDF + LogisticRegression) so you can:
+This uses classical ML (TFIDF + LogisticRegression) so you can:
 - train on labeled examples
 - evaluate with accuracy / confusion matrix
 - improve iteratively (active learning)

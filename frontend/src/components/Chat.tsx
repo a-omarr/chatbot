@@ -10,6 +10,7 @@ interface ChatApiResponse {
   reply: string;
   language?: string | null;
   suggestions?: string[] | null;
+  language_warning?: string | null;
 }
 
 interface ChatProps {
@@ -33,25 +34,49 @@ const LOCALES: LocaleConfig[] = [
     code: 'en',
     label: 'English',
     flag: '🇬🇧',
-    suggestions: ['Who is Toros Yazilim?'],
+    suggestions: [
+      'Who is Toros Yazilim?',
+      'Tell me about KIYOS',
+      'What services do you offer?',
+      'Does KIYOS support LDAP?',
+      'How can I contact you?',
+    ],
   },
   {
     code: 'tr',
     label: 'Türkçe',
     flag: '🇹🇷',
-    suggestions: ['Toros Yazilim kimdir?'],
+    suggestions: [
+      'Toros Yazilim kimdir?',
+      'KIYOS nedir?',
+      'Hizmetleriniz neler?',
+      'KIYOS LDAP destekliyor mu?',
+      'Size nasıl ulaşabilirim?',
+    ],
   },
   {
     code: 'ar',
     label: 'العربية',
     flag: '🇸🇦',
-    suggestions: ['من هي توروس يازليم؟'],
+    suggestions: [
+      'من هي توروس يازليم؟',
+      'أخبرني عن KIYOS',
+      'ما هي خدماتكم؟',
+      'هل يدعم KIYOS نظام LDAP؟',
+      'كيف يمكنني الاتصال بكم؟',
+    ],
   },
   {
     code: 'ru',
     label: 'Русский',
     flag: '🇷🇺',
-    suggestions: ['Кто такая Toros Yazilim?'],
+    suggestions: [
+      'Кто такая Toros Yazilim?',
+      'Расскажите о KIYOS',
+      'Какие услуги вы предлагаете?',
+      'Поддерживает ли KIYOS LDAP?',
+      'Как с вами связаться?',
+    ],
   },
 ];
 
@@ -65,6 +90,8 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
   const [error, setError] = useState<string | null>(null);
   const [activeLocale, setActiveLocale] = useState<LocaleCode>('en');
   const [suggestions, setSuggestions] = useState<string[]>(findLocale('en').suggestions);
+  const [usedSuggestions, setUsedSuggestions] = useState<string[]>([]);
+  const [languageWarning, setLanguageWarning] = useState<string | null>(null);
 
   const sendMessage = async (text: string) => {
     const trimmed = text.trim();
@@ -104,7 +131,15 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
       setMessages((prev) => [...prev, botMessage]);
 
       if (data.suggestions && Array.isArray(data.suggestions)) {
-        setSuggestions(data.suggestions);
+        // Filter out any suggestions that have already been used based on the new usedSuggestions state
+        const newUsed = [...usedSuggestions, trimmed];
+        setUsedSuggestions(newUsed);
+        setSuggestions(data.suggestions.filter((s) => !newUsed.includes(s)));
+      }
+
+      // Handle language warning
+      if (data.language_warning) {
+        setLanguageWarning(data.language_warning);
       }
     } catch (err) {
       console.error(err);
@@ -148,7 +183,12 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
                 const code = e.target.value as LocaleCode;
                 setActiveLocale(code);
                 const locale = findLocale(code);
+                // Reset used suggestions on language change so the new language list starts fresh (or persistent if preferred, but fresh makes sense for new context)
+                setUsedSuggestions([]);
                 setSuggestions(locale.suggestions);
+                setMessages([]);
+                // Clear language warning when switching languages
+                setLanguageWarning(null);
               }}
               className="bg-slate-900/70 border border-slate-700 rounded-lg text-xs px-2 py-1 text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
             >
@@ -213,6 +253,22 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
             <p className="text-xs text-rose-400 bg-rose-950/50 border border-rose-800/70 rounded-md px-2.5 py-1.5">
               {error}
             </p>
+          )}
+
+          {languageWarning && (
+            <div className="flex items-start gap-2 text-xs bg-amber-950/50 border border-amber-800/70 rounded-md px-2.5 py-1.5 text-amber-300">
+              <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+              <span className="flex-1">{languageWarning}</span>
+              <button
+                onClick={() => setLanguageWarning(null)}
+                className="text-amber-400 hover:text-amber-200 transition-colors"
+                aria-label="Dismiss warning"
+              >
+                ✕
+              </button>
+            </div>
           )}
 
           <div className="flex items-end gap-2">
