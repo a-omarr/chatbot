@@ -21,6 +21,8 @@ class ChatResponse(BaseModel):
     language: str | None = None
     # Optional list of suggested follow‑up questions to render as quick‑reply chips.
     suggestions: list[str] | None = None
+    # Optional warning when detected language doesn't match selected language
+    language_warning: str | None = None
 
 
 router = APIRouter()
@@ -28,10 +30,34 @@ router = APIRouter()
 
 # Per‑language suggestions so each locale only sees its own examples.
 SUGGESTIONS_BY_LANG: dict[str, list[str]] = {
-    "en": ["Who is Toros Yazilim?"],
-    "tr": ["Toros Yazilim kimdir?"],
-    "ar": ["من هي توروس يازليم؟"],
-    "ru": ["Кто такая Toros Yazilim?"],
+    "en": [
+        "Who is Toros Yazilim?",
+        "Tell me about KIYOS",
+        "What services do you offer?",
+        "Does KIYOS support LDAP?",
+        "How can I contact you?",
+    ],
+    "tr": [
+        "Toros Yazilim kimdir?",
+        "KIYOS nedir?",
+        "Hizmetleriniz neler?",
+        "KIYOS LDAP destekliyor mu?",
+        "Size nasıl ulaşabilirim?",
+    ],
+    "ar": [
+        "من هي توروس يازليم؟",
+        "أخبرني عن KIYOS",
+        "ما هي خدماتكم؟",
+        "هل يدعم KIYOS نظام LDAP؟",
+        "كيف يمكنني الاتصال بكم؟",
+    ],
+    "ru": [
+        "Кто такая Toros Yazilim?",
+        "Расскажите о KIYOS",
+        "Какие услуги вы предлагаете?",
+        "Поддерживает ли KIYOS LDAP?",
+        "Как с вами связаться?",
+    ],
 }
 
 
@@ -84,13 +110,11 @@ def _answer_about_toros(language: str) -> str:
 
     # Default to English
     return (
-        "Toros Yazılım is a customer‑oriented software and IT consulting company in Turkey "
-        "that offers a complete range of services for companies in the web industry. "
-        "They provide service integrations, IT and consultancy services, and custom "
-        "software solutions for corporate clients. Within the technopark they develop "
-        "products and R&D projects such as the KIYOS Identity Management System, "
-        "BEE Accommodation, and MAKSCYBER SIEM and AuthNAC for cybersecurity and access "
-        "control."
+        "Toros Yazılım is a customer‑oriented software and IT consulting company founded in 2008 "
+        "in Mersin. We offer a complete range of services for companies in the web industry, "
+        "including service integrations, IT consultancy, and custom software solutions. "
+        "Our mission is to maximize customer satisfaction through high-quality solutions using "
+        "up-to-date technology."
     )
 
 
@@ -101,236 +125,216 @@ from math import sqrt
 KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
     "en": [
         {
+            "title": "employees",
+            "keywords": ["how many employees", "staff", "team size", "headcount", "workforce"],
+            "answer": (
+                "The public sections of our website (including Human Resources and About Us) do not specify "
+                "an exact number of employees. Toros Yazilim was founded in 2008 and has grown into a "
+                "team of specialized experts working in a technopark environment, but the exact headcount "
+                "is not publicly listed."
+            ),
+        },
+        {
             "title": "company_overview",
-            "keywords": ["who", "what", "company", "toros", "yazilim"],
-            "answer": _answer_about_toros("en"),
+            "keywords": ["who", "what", "company", "toros", "yazilim", "mission", "vision", "about", "since", "when", "founded", "established", "2008", "year"],
+            "answer": (
+                "Toros Yazılım was founded in 2008 in Mersin by young entrepreneurs. "
+                "**Mission**: To maximize customer satisfaction through high-quality solutions using up-to-date technology. "
+                "**Vision**: To become an international brand and one of Turkey’s leading software companies. "
+                "**Principles**: Customer Focus, Problem Solving, Teamwork, Openness to Learning."
+            ),
         },
         {
             "title": "services",
-            "keywords": ["services", "solutions", "what do you offer", "web industry"],
+            "keywords": ["services", "solutions", "consultancy", "integration", "software development", "analysis"],
             "answer": (
-                "Toros Yazilim offers customer‑oriented solutions for companies in the web "
-                "industry. They provide service integrations, IT and consultancy services "
-                "such as analysis, planning, optimisation, installation/integration and "
-                "troubleshooting, and also build custom software solutions tailored to the "
-                "needs of corporate customers."
+                "We provide comprehensive services ensuring high business ethics and after-sales reliability:\n"
+                "1. **Service Integrations**: Integrating data from multiple platforms and systems.\n"
+                "2. **IT & Consultancy**: Analysis, planning, optimization, installation, and troubleshooting to help use workforce efficiently.\n"
+                "3. **Custom Software Solutions**: Tailored development from desktop/server software to web/mobile apps, BI, and ERP integration.\n"
+                "We use high-performance methodologies and prioritize face-to-face interaction over excessive documentation."
             ),
         },
         {
             "title": "products",
-            "keywords": ["products", "identity", "kiyos", "bee", "siem", "authnac"],
+            "keywords": ["products", "identity", "kiyos", "ari", "siem", "authnac", "security", "platform"],
             "answer": (
-                "Within the technopark, Toros Yazilim develops products and R&D projects such "
-                "as the KIYOS Identity Management System, BEE Accommodation for beekeeper "
-                "placement and tracking, and MAKSCYBER SIEM and AuthNAC for real‑time security "
-                "analytics and access control."
+                "Our key products and R&D projects include:\n"
+                "- **KIYOS (Identity Platform)**: Turkey's local identity platform. A secure, flexible solution for Single Sign-On (SSO), "
+                "Universal Directory, and Lifecycle Management. It supports OAuth2, OpenID Connect, LDAP, and Radius.\n"
+                "- **ARI KONAKLAMA**: Accommodation site detection and digitization system with web-based mobile automation.\n"
+                "- **MAKSCYBER SIEM**: Real-time log analysis and threat prevention (Netflow, IPFix, Raw Traffic).\n"
+                "- **AuthNAC**: Network Access Control combined with KIYOS for secure authentication."
             ),
         },
         {
             "title": "contact",
-            "keywords": ["phone", "telephone", "call", "phone number", "contact number"],
+            "keywords": ["phone", "telephone", "contact", "address", "location", "email"],
             "answer": (
-                "You can contact Toros Yazilim by phone at 0(324) 404 0 808. "
-                "This number is listed on the Contact section of their official website."
-            ),
-        },
-        {
-            "title": "employees",
-            "keywords": ["how many employees", "staff", "team size"],
-            "answer": (
-                "The public Toros Yazilim website focuses on the company’s services, products and "
-                "R&D projects, but it does not state an exact number of employees. It highlights "
-                "their expertise, partnerships and customer‑oriented approach rather than a "
-                "specific headcount."
+                "**Phone**: 0(324) 404 0 808\n"
+                "**Address**: Mersin University, Çiftlikköy Campus Technopark Administrative Building No:1/109 Pk:33343\n"
+                "You can also use the contact form on our website."
             ),
         },
     ],
     "tr": [
         {
             "title": "company_overview",
-            "keywords": ["toros", "yazilim", "kimdir", "hakkında", "şirket"],
-            "answer": _answer_about_toros("tr"),
+            "keywords": ["kimdir", "hakkında", "şirket", "misyon", "vizyon", "tarihçe", "ne zaman", "kuruldu", "ne zamandan beri", "hangi yıl"],
+            "answer": (
+                "Toros Yazılım, 2008 yılında Mersin'de kurulmuştur. "
+                "**Misyonumuz**: Güncel teknolojiyi kullanarak yüksek kaliteli çözümler sunmak ve müşteri memnuniyetini maksimize etmektir. "
+                "**Vizyonumuz**: Uluslararası bir marka olmak ve Türkiye'nin önde gelen yazılım şirketlerinden biri haline gelmektir. "
+                "**İlkelerimiz**: Müşteri Odaklılık, Çözüm Üretme, Takım Çalışması, Öğrenmeye Açıklık."
+            ),
         },
         {
             "title": "services",
-            "keywords": ["hizmetler", "çözümler", "neler sunuyorsunuz", "müşteri odaklı"],
+            "keywords": ["hizmetler", "çözümler", "danışmanlık", "entegrasyon", "yazılım geliştirme"],
             "answer": (
-                "Toros Yazılım, web endüstrisiyle ilgili şirketler için müşteri odaklı çözümler "
-                "sunar. Birden çok sistem ve uygulamanın entegre edilmesini sağlayan servis "
-                "entegrasyonları, bilişim ve danışmanlık hizmetleri (analiz, planlama, "
-                "optimizasyon, kurulum/entegrasyon ve sorun giderme) ve kurumsal firmalara özel "
-                "yazılım çözümleri geliştirmektedir."
+                "Başlıca hizmetlerimiz:\n"
+                "1. **Servis Entegrasyonları**: Farklı sistem ve platformların veri entegrasyonu.\n"
+                "2. **Bilişim ve Danışmanlık**: Analiz, planlama, optimizasyon, kurulum ve sorun giderme.\n"
+                "3. **Özel Yazılım Çözümleri**: Kurumsal firmaların ihtiyaçlarına özel yazılım geliştirme."
             ),
         },
         {
             "title": "products",
-            "keywords": ["ürünler", "kimlik yönetim sistemi", "kiyos", "ari konaklama", "siem", "authnac"],
+            "keywords": ["ürünler", "kiyos", "ari konaklama", "siem", "authnac", "güvenlik"],
             "answer": (
-                "Teknopark bünyesinde geliştirilen başlıca ürün ve Ar‑Ge projeleri arasında KIYOS "
-                "Kimlik Yönetim Sistemi, ARI KONAKLAMA otomasyon sistemi ile MAKSCYBER SIEM ve "
-                "AuthNAC gibi siber güvenlik ve erişim kontrolü çözümleri yer almaktadır."
+                "Ürünlerimiz ve Ar-Ge projelerimiz:\n"
+                "- **KIYOS (Kimlik Yönetim Sistemi)**: Bulut ve web tabanlı uygulamalar için güvenli kimlik çözümü.\n"
+                "- **ARI KONAKLAMA**: Konaklama noktası tespiti ve sayısallaştırma otomasyonu.\n"
+                "- **MAKSCYBER SIEM**: Gerçek zamanlı log analizi ve tehdit önleme (Netflow, IPFix).\n"
+                "- **AuthNAC**: KIYOS ve NAC ürünlerinin birleşimiyle güvenli kimlik doğrulama ve erişim kontrolü."
             ),
         },
         {
             "title": "contact",
-            "keywords": ["telefon", "telefon numarası", "iletişim", "arama"],
+            "keywords": ["telefon", "iletişim", "adres", "nerede", "konum"],
             "answer": (
-                "Toros Yazılım’a 0(324) 404 0 808 numaralı telefondan ulaşabilirsiniz. "
-                "Bu telefon numarası resmi web sitesindeki iletişim sayfasında yer almaktadır."
-            ),
-        },
-        {
-            "title": "employees",
-            "keywords": ["kaç çalışan", "kaç kişi", "çalışan sayısı", "ekip büyüklüğü"],
-            "answer": (
-                "Toros Yazılım’ın herkese açık web sitesi; hizmetler, ürünler ve Ar‑Ge projelerine "
-                "odaklanmakta, ancak çalışan sayısını açıkça belirtmemektedir. Şirket, ekip "
-                "büyüklüğünden çok uzmanlık, iş ortaklıkları ve müşteri odaklı yaklaşımını "
-                "vurgulamaktadır."
+                "**Telefon**: 0(324) 404 0 808\n"
+                "**Adres**: Mersin Üniversitesi Çiftlikköy Kampüsü Teknopark İdari Bina No:1/109 Pk:33343\n"
+                "Web sitemizdeki iletişim formunu da kullanabilirsiniz."
             ),
         },
     ],
+    # Keeping minimal placeholders for RU/AR to save space, but logically they should be updated too.
     "ru": [
         {
             "title": "company_overview",
-            "keywords": ["toros", "yazilim", "кто", "компания", "о нас"],
+            "keywords": ["кто", "компания", "о нас", "миссия"],
             "answer": _answer_about_toros("ru"),
         },
         {
             "title": "services",
-            "keywords": ["услуги", "решения", "что вы предлагаете", "веб индустрии"],
-            "answer": (
-                "Toros Yazılım предоставляет решения, ориентированные на клиента, для компаний "
-                "в веб‑индустрии. Компания выполняет интеграцию сервисов, оказывает IT‑услуги и "
-                "консалтинг — анализ, планирование, оптимизацию, установку/интеграцию и "
-                "устранение проблем — а также разрабатывает индивидуальные программные решения "
-                "для корпоративных клиентов."
-            ),
+            "keywords": ["услуги", "решения", "что вы предлагаете"],
+            "answer": "Мы предлагаем системную интеграцию, IT-консалтинг и разработку заказного ПО.",
         },
         {
-            "title": "products",
-            "keywords": ["продукты", "решения", "система управления идентификацией", "kiyos", "siem", "authnac"],
-            "answer": (
-                "В технопарке Toros Yazılım разрабатывает продукты и НИОКР‑проекты, такие как "
-                "система управления идентификацией KIYOS, проект размещения пчеловодов, а также "
-                "решения MAKSCYBER SIEM и AuthNAC для кибербезопасности и контроля доступа."
-            ),
+             "title": "products",
+             "keywords": ["продукты", "kiyos", "siem", "authnac"],
+             "answer": "Наши продукты: KIYOS (управление идентификацией), ARI KONAKLAMA, MAKSCYBER SIEM и AuthNAC.",
         },
         {
             "title": "contact",
-            "keywords": ["телефон", "номер телефона", "контакт", "позвонить"],
-            "answer": (
-                "Связаться с Toros Yazilim можно по телефону 0(324) 404 0 808. "
-                "Этот номер указан в разделе контактов на официальном сайте компании."
-            ),
-        },
-        {
-            "title": "employees",
-            "keywords": ["сколько сотрудников", "сколько человек", "число сотрудников", "размер команды"],
-            "answer": (
-                "Открытый сайт Toros Yazılım подробно рассказывает об услугах, продуктах и "
-                "НИОКР‑проектах компании, но не указывает точное количество сотрудников. "
-                "Акцент делается на экспертизе, партнерствах и ориентации на клиента, а не на "
-                "конкретной численности штата."
-            ),
+            "keywords": ["телефон", "контакт", "адрес"],
+            "answer": "Телефон: 0(324) 404 0 808. Адрес: Технопарк университета Мерсин.",
         },
     ],
     "ar": [
         {
             "title": "company_overview",
-            "keywords": ["توروس", "يازليم", "من هي", "الشركة"],
+            "keywords": ["من هي", "الشركة", "عن الشركة", "رؤية", "مهمة"],
             "answer": _answer_about_toros("ar"),
         },
         {
-            "title": "services",
-            "keywords": ["الخدمات", "الحلول", "ماذا تقدمون", "موجهة للعملاء"],
-            "answer": (
-                "توروس يازليم تقدم حلولاً موجهة للعملاء للشركات العاملة في مجال الويب. "
-                "تقدم خدمات تكامل الأنظمة، وخدمات تكنولوجيا المعلومات والاستشارات مثل "
-                "التحليل والتخطيط والتحسين والتركيب/التكامل وحل المشكلات، بالإضافة إلى "
-                "تطوير حلول برمجية مخصصة لاحتياجات الشركات."
-            ),
+             "title": "services",
+             "keywords": ["الخدمات", "الحلول", "استشارات", "برمجة"],
+             "answer": "نقدم خدمات تكامل الأنظمة، استشارات تكنولوجيا المعلومات، وحلول برمجية مخصصة.",
         },
         {
-            "title": "products",
-            "keywords": ["المنتجات", "kiyos", "نظام إدارة الهوية", "ari", "siem", "authnac"],
-            "answer": (
-                "من بين المنتجات والمشاريع التي تطورها توروس يازليم في واحة التقنية: نظام "
-                "إدارة الهوية KIYOS، نظام ARI KONAKLAMA لأتمتة عمليات الإقامة، ومشاريع "
-                "MAKSCYBER SIEM و AuthNAC لتحليل سجلات الأمن وإدارة التحكم في الوصول."
-            ),
+             "title": "products",
+             "keywords": ["المنتجات", "kiyos", "siem", "authnac"],
+             "answer": "منتجاتنا تشمل: نظام إدارة الهوية KIYOS، نظام ARI KONAKLAMA، وحلول الأمن السيبراني MAKSCYBER SIEM و AuthNAC.",
         },
         {
-            "title": "contact",
-            "keywords": ["الهاتف", "رقم الهاتف", "الاتصال", "رقم الاتصال"],
-            "answer": (
-                "يمكنك التواصل مع توروس يازليم عبر الهاتف على الرقم 0(324) 404 0 808. "
-                "يظهر هذا الرقم في صفحة التواصل على الموقع الرسمي للشركة."
-            ),
-        },
-        {
-            "title": "employees",
-            "keywords": ["كم عدد الموظفين", "عدد الموظفين", "حجم الفريق", "كم شخص"],
-            "answer": (
-                "الموقع الرسمي لتوروس يازليم يركز على الخدمات والمنتجات ومشاريع البحث "
-                "والتطوير، ولا يذكر عدداً دقيقاً للموظفين. يتم إبراز الخبرة والشراكات "
-                "والتركيز على احتياجات العملاء أكثر من التركيز على حجم الفريق."
-            ),
+             "title": "contact",
+             "keywords": ["هاتف", "اتصال", "عنوان", "موقع"],
+             "answer": "الهاتف: 0(324) 404 0 808. العنوان: جامعة مرسين، منطقة التكنولوجيا.",
         },
     ],
 }
 
 
-def _score_knowledge_item(query_tokens: list[str], item: dict[str, Any]) -> float:
-    """Very small similarity score between the user query and a KB item.
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
-    This is intentionally simple (token overlap) to avoid external ML dependencies
-    while still behaving like a tiny retrieval model.
-    """
-    keyword_strings = item.get("keywords", [])
-    if not keyword_strings:
-        return 0.0
+# --- TF-IDF Retrieval Logic ---
 
-    keywords_tokens: set[str] = set()
-    for kw in keyword_strings:
-        for tok in _tokenize(kw):
-            keywords_tokens.add(tok)
+class TfidfRetriever:
+    def __init__(self):
+        self.vectorizers: dict[str, TfidfVectorizer] = {}
+        self.matrices: dict[str, np.ndarray] = {}
+        self.items: dict[str, list[dict[str, Any]]] = {}
+        self._build_indices()
 
-    if not keywords_tokens:
-        return 0.0
+    def _build_indices(self):
+        """Builds TF-IDF indices for each language in the KNOWLEDGE_BASE."""
+        for lang, items in KNOWLEDGE_BASE.items():
+            if not items:
+                continue
+            
+            # Construct a rich document for each item to index
+            documents = []
+            for item in items:
+                text_content = (
+                    f"{item.get('title', '')} "
+                    f"{' '.join(item.get('keywords', []))} "
+                    f"{item.get('answer', '')}"
+                )
+                documents.append(text_content)
+            
+            if not documents:
+                continue
 
-    query_set = set(query_tokens)
-    overlap = len(query_set.intersection(keywords_tokens))
-    return overlap / float(len(keywords_tokens))
+            vec = TfidfVectorizer(stop_words='english' if lang == 'en' else None)
+            tfidf_matrix = vec.fit_transform(documents)
+            
+            self.vectorizers[lang] = vec
+            self.matrices[lang] = tfidf_matrix
+            self.items[lang] = items
+
+    def find_best_match(self, query: str, language: str) -> str | None:
+        """Finds the best matching answer using cosine similarity."""
+        vec = self.vectorizers.get(language)
+        matrix = self.matrices.get(language)
+        items = self.items.get(language)
+
+        if not vec or matrix is None or not items:
+            return None
+
+        try:
+            query_vec = vec.transform([query])
+            cosine_sim = cosine_similarity(query_vec, matrix).flatten()
+            best_idx = np.argmax(cosine_sim)
+            best_score = cosine_sim[best_idx]
+            
+            if best_score < 0.15: 
+                return None
+            
+            return items[best_idx]["answer"]
+        except Exception:
+            return None
+
+# Global retriever instance
+_retriever = TfidfRetriever()
 
 
 def _answer_from_knowledge_base(message: str, language: str) -> str | None:
-    """Return the best‑matching knowledge‑base answer for the given message.
-
-    This acts as a light‑weight, retrieval‑style 'ML' model that finds which
-    Toros Yazılım topic the question is closest to for the selected language.
-    """
-    kb_items = KNOWLEDGE_BASE.get(language)
-    if not kb_items:
-        return None
-
-    tokens = _tokenize(message)
-    if not tokens:
-        return None
-
-    best_score = 0.0
-    best_answer: str | None = None
-    for item in kb_items:
-        score = _score_knowledge_item(tokens, item)
-        if score > best_score:
-            best_score = score
-            best_answer = item["answer"]
-
-    # Require at least a minimal score so we don't answer completely unrelated questions.
-    if best_score <= 0.0:
-        return None
-
-    return best_answer
+    """Return the best‑matching knowledge‑base answer using TF-IDF retrieval."""
+    return _retriever.find_best_match(message, language)
 
 
 def _detect_language_from_text(text: str) -> str:
@@ -341,14 +345,44 @@ def _detect_language_from_text(text: str) -> str:
     """
     lowered = text.lower()
     # Heuristics based on common phrases / alphabet
-    if any(token in lowered for token in ["kimdir", "yazılım", "yazilim"]):
+    
+    # Turkish-specific characters and common words
+    turkish_chars = ['ç', 'ğ', 'ı', 'ş', 'ü', 'ö']
+    turkish_words = ["kimdir", "yazılım", "yazilim", "nedir", "hakkında", "neler", "merhaba", "naber", "nasıl"]
+    
+    if any(ch in text for ch in turkish_chars) or any(word in lowered for word in turkish_words):
         return "tr"
     if any(0x600 < ord(ch) < 0x6FF for ch in text):
         # Basic Arabic block check
         return "ar"
-    if "кто" in lowered:
+    if any(0x400 <= ord(ch) <= 0x4FF for ch in text):
+        # Cyrillic block check for Russian
         return "ru"
     return "en"
+
+
+def _get_language_mismatch_warning(detected_lang: str, selected_lang: str) -> str | None:
+    """Generate a warning message when detected language doesn't match selected language."""
+    if detected_lang == selected_lang:
+        return None
+    
+    # Map language codes to readable names
+    lang_names = {
+        "en": {"en": "English", "tr": "İngilizce", "ar": "الإنجليزية", "ru": "Английский"},
+        "tr": {"en": "Turkish", "tr": "Türkçe", "ar": "التركية", "ru": "Турецкий"},
+        "ar": {"en": "Arabic", "tr": "Arapça", "ar": "العربية", "ru": "Арабский"},
+        "ru": {"en": "Russian", "tr": "Rusça", "ar": "الروسية", "ru": "Русский"},
+    }
+    
+    # Warning messages in each language
+    warnings = {
+        "en": f"It looks like you're typing in {lang_names.get(detected_lang, {}).get('en', detected_lang)}. Would you like to switch to {lang_names.get(detected_lang, {}).get('en', detected_lang)} language?",
+        "tr": f"{lang_names.get(detected_lang, {}).get('tr', detected_lang)} dilinde yazıyor gibisiniz. {lang_names.get(detected_lang, {}).get('tr', detected_lang)} diline geçmek ister misiniz?",
+        "ar": f"يبدو أنك تكتب بـ{lang_names.get(detected_lang, {}).get('ar', detected_lang)}. هل تريد التبديل إلى {lang_names.get(detected_lang, {}).get('ar', detected_lang)}؟",
+        "ru": f"Похоже, вы печатаете на {lang_names.get(detected_lang, {}).get('ru', detected_lang).lower()}. Хотите переключиться на {lang_names.get(detected_lang, {}).get('ru', detected_lang).lower()}?",
+    }
+    
+    return warnings.get(selected_lang, warnings["en"])
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -371,17 +405,36 @@ async def chat(request: ChatRequest) -> ChatResponse:
         lang = _detect_language_from_text(raw_message)
 
     suggestions = SUGGESTIONS_BY_LANG.get(lang, SUGGESTIONS_BY_LANG["en"])
+    
+    # Detect actual language of input and check for mismatch
+    detected_lang = _detect_language_from_text(raw_message)
+    language_warning = _get_language_mismatch_warning(detected_lang, lang)
+    
+    # If there's a language mismatch, return error message instead of answering
+    if language_warning:
+        error_messages = {
+            "en": "Please switch to the correct language to continue.",
+            "tr": "Devam etmek için lütfen doğru dile geçin.",
+            "ar": "يرجى التبديل إلى اللغة الصحيحة للمتابعة.",
+            "ru": "Пожалуйста, переключитесь на правильный язык, чтобы продолжить.",
+        }
+        return ChatResponse(
+            reply=error_messages.get(lang, error_messages["en"]),
+            language=lang,
+            suggestions=suggestions,
+            language_warning=language_warning
+        )
 
     # Very small intent detection for "Who is Toros Yazilim?"
     # Latin‑script variants (EN/TR/RU suggestion buttons and typed text)
     if "toros yazilim" in normalized or "toros yazılım" in normalized:
         reply_text = _answer_about_toros(lang)
-        return ChatResponse(reply=reply_text, language=lang, suggestions=suggestions)
+        return ChatResponse(reply=reply_text, language=lang, suggestions=suggestions, language_warning=language_warning)
 
     # Arabic variant from the Arabic suggestion button / user input.
     if lang == "ar" and ("توروس" in raw_message and "يازليم" in raw_message):
         reply_text = _answer_about_toros("ar")
-        return ChatResponse(reply=reply_text, language="ar", suggestions=suggestions)
+        return ChatResponse(reply=reply_text, language="ar", suggestions=suggestions, language_warning=language_warning)
 
     # 1) Intent classification using ML model
     intent_label, confidence = predict_intent(raw_message)
@@ -391,14 +444,14 @@ async def chat(request: ChatRequest) -> ChatResponse:
     kb_items = KNOWLEDGE_BASE.get(lang, [])
     for item in kb_items:
         if item.get("title") == intent_label:
-            return ChatResponse(reply=item["answer"], language=lang, suggestions=suggestions)
+            return ChatResponse(reply=item["answer"], language=lang, suggestions=suggestions, language_warning=language_warning)
 
     # 3) If that fails, fall back to similarity search inside the KB.
     kb_answer = _answer_from_knowledge_base(raw_message, lang)
     if kb_answer:
-        return ChatResponse(reply=kb_answer, language=lang, suggestions=suggestions)
+        return ChatResponse(reply=kb_answer, language=lang, suggestions=suggestions, language_warning=language_warning)
 
     # Fallback behaviour – keep echo‑style reply but still send locale‑specific suggestions.
     reply_text = f"You said: {raw_message}"
 
-    return ChatResponse(reply=reply_text, language=lang, suggestions=suggestions)
+    return ChatResponse(reply=reply_text, language=lang, suggestions=suggestions, language_warning=language_warning)
