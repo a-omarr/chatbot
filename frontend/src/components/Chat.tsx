@@ -33,25 +33,45 @@ const LOCALES: LocaleConfig[] = [
     code: 'en',
     label: 'English',
     flag: '🇬🇧',
-    suggestions: ['Who is Toros Yazilim?'],
+    suggestions: [
+      'Who is Toros Yazilim?',
+      'What services do you offer?',
+      'What products do you have?',
+      'How can I contact you?',
+    ],
   },
   {
     code: 'tr',
     label: 'Türkçe',
     flag: '🇹🇷',
-    suggestions: ['Toros Yazilim kimdir?'],
+    suggestions: [
+      'Toros Yazilim kimdir?',
+      'Hangi hizmetleri sunuyorsunuz?',
+      'Ürünleriniz neler?',
+      'Sizi nasıl iletişime geçebilirim?',
+    ],
   },
   {
     code: 'ar',
     label: 'العربية',
     flag: '🇸🇦',
-    suggestions: ['من هي توروس يازليم؟'],
+    suggestions: [
+      'من هي توروس يازليم؟',
+      'ما هي الخدمات التي تقدمها؟',
+      'ما هي منتجاتك؟',
+      'كيف يمكنني الاتصال بك؟',
+    ],
   },
   {
     code: 'ru',
     label: 'Русский',
     flag: '🇷🇺',
-    suggestions: ['Кто такая Toros Yazilim?'],
+    suggestions: [
+      'Кто такая Toros Yazilim?',
+      'Какие услуги вы предоставляете?',
+      'Какие у вас продукты?',
+      'Как с вами связаться?',
+    ],
   },
 ];
 
