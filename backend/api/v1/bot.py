@@ -70,6 +70,15 @@ SUGGESTIONS_BY_LANG: dict[str, list[str]] = {
 }
 
 
+# Localized messages for when the bot doesn't recognize the input.
+FALLBACK_MESSAGES: dict[str, str] = {
+    "en": "You entered an unmeaningful message, please enter a valid message.",
+    "tr": "Anlamsız bir mesaj girdiniz, lütfen geçerli bir mesaj giriniz.",
+    "ar": "لقد أدخلت رسالة غير مفهومة، يرجى إدخال رسالة صحيحة.",
+    "ru": "Вы ввели бессмысленное сообщение, пожалуйста, введите корректное сообщение.",
+}
+
+
 def _normalize(text: str) -> str:
     """Very small helper to normalise user input for rule‑based matching."""
     return "".join(ch.lower() for ch in text.strip() if ch.isalnum() or ch.isspace())
@@ -619,10 +628,10 @@ async def chat(request: ChatRequest) -> ChatResponse:
     if kb_answer:
         return mismatch_response(kb_answer)
 
-    # 5) Echo fallback
-    # If there's a mismatch and no specific answer found, we suppress the echo
-    # to avoid "You said: hello" when the user likely made a language mistake.
-    reply_text = "" if is_mismatch else f"You said: {raw_message}"
+    # 5) Fallback for unrecognized messages
+    # If there's a mismatch and no specific answer found, we suppress the response.
+    # Otherwise, we return a localized "I didn't understand" message.
+    reply_text = "" if is_mismatch else FALLBACK_MESSAGES.get(lang, FALLBACK_MESSAGES["en"])
 
     # Log as failed example for active learning if we resort to echo
     if not is_mismatch:
