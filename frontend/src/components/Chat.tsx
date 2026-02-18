@@ -34,49 +34,198 @@ const LOCALES: LocaleConfig[] = [
     code: 'en',
     label: 'English',
     flag: '🇬🇧',
-    suggestions: [
-      'Who is Toros Yazilim?',
-      'Tell me about KIYOS',
-      'What services do you offer?',
-      'Does KIYOS support LDAP?',
-      'How can I contact you?',
-    ],
+    suggestions: [], // Replaced by CATEGORIES
   },
   {
     code: 'tr',
     label: 'Türkçe',
     flag: '🇹🇷',
-    suggestions: [
-      'Toros Yazilim kimdir?',
-      'KIYOS nedir?',
-      'Hizmetleriniz neler?',
-      'KIYOS LDAP destekliyor mu?',
-      'Size nasıl ulaşabilirim?',
-    ],
+    suggestions: [],
   },
   {
     code: 'ar',
     label: 'العربية',
     flag: '🇸🇦',
-    suggestions: [
-      'من هي توروس يازليم؟',
-      'أخبرني عن KIYOS',
-      'ما هي خدماتكم؟',
-      'هل يدعم KIYOS نظام LDAP؟',
-      'كيف يمكنني الاتصال بكم؟',
-    ],
+    suggestions: [],
   },
   {
     code: 'ru',
     label: 'Русский',
     flag: '🇷🇺',
-    suggestions: [
-      'Кто такая Toros Yazilim?',
-      'Расскажите о KIYOS',
-      'Какие услуги вы предлагаете?',
-      'Поддерживает ли KIYOS LDAP?',
-      'Как с вами связаться?',
-    ],
+    suggestions: [],
+  },
+];
+
+interface Category {
+  id: string;
+  labels: Record<LocaleCode, string>;
+  icon: string;
+  questions: Record<LocaleCode, string[]>;
+}
+
+const CATEGORIES: Category[] = [
+  {
+    id: 'cybersecurity',
+    icon: '🛡️',
+    labels: { en: 'Cybersecurity Solutions', tr: 'Siber Güvenlik Çözümleri', ar: 'حلول الأمن السيبراني', ru: 'Решения кибербезопасности' },
+    questions: {
+      en: [
+        'What is Makscyber SIEM?',
+        'What does AuthNAC do?',
+        'Do you offer identity management solutions?',
+        'How can I improve my company’s cybersecurity?',
+        'Can I request a demo for your security products?',
+      ],
+      tr: [
+        'Makscyber SIEM nedir?',
+        'AuthNAC ne işe yarar?',
+        'Kimlik yönetimi çözümleri sunuyor musunuz?',
+        'Şirketimin siber güvenliğini nasıl artırabilirim?',
+        'Güvenlik ürünleriniz için demo talep edebilir miyim?',
+      ],
+      ar: [
+        'ما هو Makscyber SIEM؟',
+        'ماذا يفعل AuthNAC؟',
+        'هل تقدمون حلول إدارة الهوية؟',
+        'كيف يمكنني تحسين الأمن السيبراني لشركتي؟',
+        'هل يمكنني طلب عرض تجريبي لمنتجاتكم؟',
+      ],
+      ru: [
+        'Что такое Makscyber SIEM?',
+        'Как работает AuthNAC?',
+        'Предлагаете ли вы решения для управления идентификацией?',
+        'Как улучшить кибербезопасность компании?',
+        'Можно ли заказать демо-версию ваших продуктов?',
+      ],
+    },
+  },
+  {
+    id: 'business',
+    icon: '💼',
+    labels: { en: 'Software Development', tr: 'Yazılım Geliştirme', ar: 'تطوير البرمجيات', ru: 'Разработка ПО' },
+    questions: {
+      en: [
+        'Do you build custom software?',
+        'Do you develop enterprise software?',
+        'Can you integrate with our existing systems?',
+        'Do you provide IT consultancy services?',
+        'Can I get a project quote?',
+      ],
+      tr: [
+        'Özel yazılım geliştiriyor musunuz?',
+        'Kurumsal yazılım geliştiriyor musunuz?',
+        'Mevcut sistemlerimizle entegre olabilir misiniz?',
+        'BT danışmanlık hizmeti veriyor musunuz?',
+        'Proje teklifi alabilir miyim?',
+      ],
+      ar: [
+        'هل تقومون ببناء برمجيات مخصصة؟',
+        'هل تطورون برمجيات للمؤسسات؟',
+        'هل يمكنكم التكامل مع أنظمتنا الحالية؟',
+        'هل تقدمون خدمات استشارات تكنولوجيا المعلومات؟',
+        'هل يمكنني الحصول على عرض سعر لمشروع؟',
+      ],
+      ru: [
+        'Вы занимаетесь разработкой заказного ПО?',
+        'Вы разрабатываете корпоративное ПО?',
+        'Можете ли вы интегрироваться с нашими системами?',
+        'Предоставляете ли вы IT-консалтинговые услуги?',
+        'Можно ли получить предварительную стоимость проекта?',
+      ],
+    },
+  },
+  {
+    id: 'corporate',
+    icon: '🏛️',
+    labels: { en: 'Corporate Services', tr: 'Kurumsal Hizmetler', ar: 'الخدمات المؤسسية', ru: 'Корпоративные услуги' },
+    questions: {
+      en: [
+        'Who is Toros Yazilim?',
+        'What services do you offer?',
+        'Where is Toros Yazilim located?',
+        'Do you work with government institutions?',
+        'Are your systems compliant with security standards?',
+      ],
+      tr: [
+        'Toros Yazılım kimdir?',
+        'Hangi hizmetleri sunuyorsunuz?',
+        'Toros Yazılım nerede?',
+        'Kamu kurumları ile çalışıyor musunuz?',
+        'Sistemleriniz güvenlik standartlarına uygun mu?',
+      ],
+      ar: [
+        'من هي توروس يازليم؟',
+        'ما هي الخدمات التي تقدمونها؟',
+        'أين تقع شركة توروس يازليم؟',
+        'هل تعملون مع المؤسسات الحكومية؟',
+        'هل أنظمتكم متوافقة مع المعايير الأمنية؟',
+      ],
+      ru: [
+        'Кто такая Toros Yazilim?',
+        'Какие услуги вы предлагаете?',
+        'Где находится Toros Yazilim?',
+        'Работаете ли вы с государственными учреждениями?',
+        'Соответствуют ли ваши системы стандартам безопасности?',
+      ],
+    },
+  },
+  {
+    id: 'contact',
+    icon: '📞',
+    labels: { en: 'Contact & Demo', tr: 'İletişim ve Demo', ar: 'الاتصال والعرض التجريبي', ru: 'Контакт и демо' },
+    questions: {
+      en: [
+        'How can I contact you?',
+        'How can I contact your sales team?',
+        'What is your phone number?',
+        'Can I request a demo?',
+      ],
+      tr: [
+        'Size nasıl ulaşabilirim?',
+        'Satış ekibinize nasıl ulaşabilirim?',
+        'Telefon numaranız nedir?',
+        'Demo talep edebilir miyim?',
+      ],
+      ar: [
+        'كيف يمكنني الاتصال بكم؟',
+        'كيف يمكنني الاتصال بفريق المبيعات؟',
+        'ما هو رقم هاتفكم؟',
+        'هل يمكنني طلب عرض تجريبي؟',
+      ],
+      ru: [
+        'Как с вами связаться?',
+        'Как связаться с отделом продаж?',
+        'Какой у вас номер телефона?',
+        'Можно ли заказать демо?',
+      ],
+    },
+  },
+  {
+    id: 'careers',
+    icon: '👨‍💻',
+    labels: { en: 'Careers', tr: 'Kariyer', ar: 'الوظائف', ru: 'Карьера' },
+    questions: {
+      en: [
+        'Are you hiring?',
+        'Do you offer internships?',
+        'How can I apply for a job?',
+      ],
+      tr: [
+        'İşe alım yapıyor musunuz?',
+        'Staj imkanı sunuyor musunuz?',
+        'İş başvurusu nasıl yapabilirim?',
+      ],
+      ar: [
+        'هل لديكم وظائف شاغرة؟',
+        'هل تقدمون فرص تدريب؟',
+        'كيف يمكنني التقدم لوظيفة؟',
+      ],
+      ru: [
+        'У вас есть вакансии?',
+        'Предлагаете ли вы стажировки?',
+        'Как я могу подать заявку на работу?',
+      ],
+    },
   },
 ];
 
@@ -89,9 +238,15 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [activeLocale, setActiveLocale] = useState<LocaleCode>('en');
-  const [suggestions, setSuggestions] = useState<string[]>(findLocale('en').suggestions);
-  const [usedSuggestions, setUsedSuggestions] = useState<string[]>([]);
+  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [languageWarning, setLanguageWarning] = useState<string | null>(null);
+
+  const welcomeMessages: Record<LocaleCode, string> = {
+    en: '👋 Welcome to Toros Yazılım.\nHow can we assist you today?\nYou can choose one of the options below or type your question.',
+    tr: '👋 Toros Yazılım\'a hoş geldiniz.\nSize bugün nasıl yardımcı olabiliriz?\nAşağıdaki seçeneklerden birini seçebilir veya sorunuzu yazabilirsiniz.',
+    ar: '👋 مرحبًا بكم في توروس يازليم.\nكيف يمكننا مساعدتكم اليوم؟\nيمكنكم اختيار أحد الخيارات أدناه أو كتابة سؤالكم.',
+    ru: '👋 Добро пожаловать в Toros Yazılım.\nЧем мы можем вам помочь сегодня?\nВы можете выбрать один из вариантов ниже или написать свой вопрос.',
+  };
 
   const sendMessage = async (text: string) => {
     const trimmed = text.trim();
@@ -129,13 +284,6 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
       };
 
       setMessages((prev) => [...prev, botMessage]);
-
-      if (data.suggestions && Array.isArray(data.suggestions)) {
-        // Filter out any suggestions that have already been used based on the new usedSuggestions state
-        const newUsed = [...usedSuggestions, trimmed];
-        setUsedSuggestions(newUsed);
-        setSuggestions(data.suggestions.filter((s) => !newUsed.includes(s)));
-      }
 
       // Handle language warning
       if (data.language_warning) {
@@ -182,12 +330,8 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
               onChange={(e) => {
                 const code = e.target.value as LocaleCode;
                 setActiveLocale(code);
-                const locale = findLocale(code);
-                // Reset used suggestions on language change so the new language list starts fresh (or persistent if preferred, but fresh makes sense for new context)
-                setUsedSuggestions([]);
-                setSuggestions(locale.suggestions);
+                setActiveCategoryId(null);
                 setMessages([]);
-                // Clear language warning when switching languages
                 setLanguageWarning(null);
               }}
               className="bg-slate-900/70 border border-slate-700 rounded-lg text-xs px-2 py-1 text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
@@ -207,8 +351,9 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
           {messages.length === 0 && (
             <div className="h-full flex items-center justify-center text-sm text-slate-500 text-center">
               <div>
-                <p className="font-medium mb-1">Start the conversation</p>
-                <p>Ask the bot anything to see a reply here.</p>
+                <p className="font-medium mb-2 text-slate-300 whitespace-pre-line">
+                  {welcomeMessages[activeLocale]}
+                </p>
               </div>
             </div>
           )}
@@ -231,23 +376,44 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
           ))}
         </section>
 
-        <section className="space-y-2">
-          {suggestions.length > 0 && (
-            <div className="flex flex-wrap gap-2 text-xs">
-              {suggestions.map((s, idx) => (
+        <section className="space-y-4">
+          <div className="flex flex-wrap gap-2 text-xs">
+            {!activeCategoryId ? (
+              CATEGORIES.map((cat) => (
                 <button
-                  key={`${s}-${idx}`}
+                  key={cat.id}
                   type="button"
-                  onClick={() => {
-                    void sendMessage(s);
-                  }}
-                  className="px-3 py-1 rounded-full border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800 hover:border-sky-500 hover:text-sky-100 transition-colors"
+                  onClick={() => setActiveCategoryId(cat.id)}
+                  className="px-4 py-2 rounded-xl border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800 hover:border-sky-500 hover:text-sky-100 transition-all flex items-center gap-2 shadow-sm"
                 >
-                  {s}
+                  <span className="text-base">{cat.icon}</span>
+                  <span className="font-medium">{cat.labels[activeLocale]}</span>
                 </button>
-              ))}
-            </div>
-          )}
+              ))
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setActiveCategoryId(null)}
+                  className="px-3 py-2 rounded-xl border border-slate-700 bg-slate-800/40 text-slate-400 hover:text-slate-200 transition-colors flex items-center gap-1"
+                >
+                  ← {activeLocale === 'tr' ? 'Geri' : activeLocale === 'ar' ? 'رجوع' : activeLocale === 'ru' ? 'Назад' : 'Back'}
+                </button>
+                {CATEGORIES.find((c) => c.id === activeCategoryId)?.questions[activeLocale].map((q, idx) => (
+                  <button
+                    key={`${activeCategoryId}-${idx}`}
+                    type="button"
+                    onClick={() => {
+                      void sendMessage(q);
+                    }}
+                    className="px-4 py-2 rounded-xl border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800 hover:border-sky-500 hover:text-sky-100 transition-all shadow-sm"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </>
+            )}
+          </div>
 
           {error && (
             <p className="text-xs text-rose-400 bg-rose-950/50 border border-rose-800/70 rounded-md px-2.5 py-1.5">
