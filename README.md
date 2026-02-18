@@ -1,131 +1,146 @@
 # Chatbot Project
 
-Full-stack chatbot starter with **FastAPI** backend and **React + TypeScript + Tailwind CSS** frontend.
-
-## 🚀 Demo
-
-See the chatbot in action with its new categorical suggestions and multilingual support:
-
-![verify_chatbot_enhancements](/home/molham27/.gemini/antigravity/brain/b8a7f510-5b9e-4147-8a53-595b649e47fd/verify_chatbot_enhancements_1771399499036.webp)
-
-## Project structure
-
-- `backend/` – FastAPI application (API and business logic)
-- `frontend/` – React + TypeScript + Tailwind UI (Vite)
+Full-stack chatbot with **FastAPI** backend and **React + TypeScript + Tailwind CSS** frontend.  
+Supports **English**, **Turkish**, **Arabic**, and **Russian** out of the box.
 
 ---
 
-## Prerequisites
+## 📋 Prerequisites
 
-- **Python** 3.10+
-- **Node.js** 18+ and **npm** (or pnpm/yarn if you prefer and adjust commands)
-
-On Windows, run commands in **PowerShell** or **cmd**.
+| Tool       | Version |
+|------------|---------|
+| Python     | 3.10+   |
+| Node.js    | 18+     |
+| npm        | 9+      |
 
 ---
 
-## Backend (FastAPI)
+## ⚡ Quick Start (both services)
 
-Located in `backend/`.
+The easiest way to run everything at once:
 
-### Install & run (development)
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+This starts both the backend (`:8000`) and frontend (`:5173`) and shuts them down together with `Ctrl+C`.
+
+---
+
+## 🔧 Manual Setup
+
+### Backend
 
 ```bash
 cd backend
 
-# create and activate virtual environment (Windows)
-python -m venv .venv
-.venv\Scripts\activate
+# 1. Create & activate virtual environment
+python3 -m venv .venv
+source .venv/bin/activate        # Linux/macOS
+# .venv\Scripts\activate         # Windows
 
-# install dependencies
+# 2. Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# run dev server
+# 3. Set up environment
+cp .env.example .env             # edit if needed
+
+# 4. Run dev server
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-The API will be available at:
+| Endpoint       | URL                                       |
+|----------------|--------------------------------------------|
+| API Docs       | http://localhost:8000/docs                 |
+| Health Check   | `GET`  http://localhost:8000/health        |
+| Chat           | `POST` http://localhost:8000/api/v1/bot/chat |
 
-- Docs: `http://localhost:8000/docs`
-- Health check: `GET http://localhost:8000/health`
-- Chat endpoint: `POST http://localhost:8000/api/v1/bot/chat`
-
-Example chat request body:
+**Example request:**
 
 ```json
-{
-  "message": "Hello!"
-}
+{ "message": "Hello!", "language": "en" }
 ```
-
-### Environment variables
-
-Copy `.env.example` to `.env` in the `backend/` folder and customize as needed:
-
-```bash
-cd backend
-copy .env.example .env
-```
-
-Update CORS origins there when you deploy to production.
 
 ---
 
-## Frontend (React + TypeScript + Tailwind)
-
-Located in `frontend/`.
-
-### Install & run (development)
+### Frontend
 
 ```bash
 cd frontend
 
-# install dependencies
+# 1. Install dependencies
 npm install
 
-# start dev server
+# 2. Run dev server
 npm run dev
 ```
 
-The app will be available at: `http://localhost:5173`
+Open http://localhost:5173 in your browser.
 
-During development, `/api/...` requests are proxied to `http://localhost:8000` (configured in `vite.config.ts`). That means if both servers are running, the chat UI will talk to your FastAPI backend automatically.
-
----
-
-## Typical dev workflow
-
-1. **Start backend**
-   - In one terminal:
-     ```bash
-     cd backend
-     .venv\Scripts\activate  # if not already
-     uvicorn main:app --reload --host 0.0.0.0 --port 8000
-     ```
-
-2. **Start frontend**
-   - In another terminal:
-     ```bash
-     cd frontend
-     npm install   # first time only
-     npm run dev
-     ```
-
-3. Open `http://localhost:5173` in your browser and start chatting.
+> API calls are automatically proxied to `http://localhost:8000` via `vite.config.ts`.
 
 ---
 
-## Production readiness notes
+## 🧪 Running Tests
 
-- **Backend**
-  - Versioned routes under `api/v1/` for easier evolution.
-  - CORS middleware configured; tighten `origins` for production.
-  - Ready to plug in real chatbot logic inside `api/v1/bot.py`.
+```bash
+# From the project root:
+export PYTHONPATH=$(pwd):$(pwd)/backend
+source backend/.venv/bin/activate
 
-- **Frontend**
-  - Vite + React + TypeScript with Tailwind configured via PostCSS.
-  - Basic but modern chat UI layout, easily extendable.
-  - ESLint configured for TypeScript + React.
+# Run all tests
+python3 -m pytest backend/tests/
 
-You can now extend the bot logic, add authentication, persistence, or integrate with external LLM APIs as needed.
+# Run with verbose output
+python3 -m pytest backend/tests/ -v
+```
+
+### What's tested
+
+| Test                              | Description                                              |
+|-----------------------------------|----------------------------------------------------------|
+| `test_intent_prediction_scenarios`| All 9 intents classified correctly in EN, TR, AR, RU     |
+| `test_chat_endpoint_responses`    | Correct answers returned for cybersecurity, careers, etc. |
+| `test_language_mismatch_logic`    | Language mismatch warning triggered properly             |
+| `test_fallback_behavior`          | Nonsense input handled gracefully                        |
+
+---
+
+## 📁 Project Structure
+
+```
+chatbot/
+├── backend/
+│   ├── api/v1/bot.py           # Chat endpoint & knowledge base
+│   ├── app/ml/
+│   │   ├── intent_classifier.py # TF-IDF + LogisticRegression model
+│   │   ├── active_learning.py   # Active learning utilities
+│   │   └── evaluate_intents.py  # Model evaluation tools
+│   ├── tests/
+│   │   └── test_bot_scenarios.py # Automated test suite
+│   ├── main.py                  # FastAPI app entry point
+│   └── requirements.txt
+├── frontend/
+│   └── src/components/Chat.tsx  # Main chat UI component
+├── start.sh                     # One-command launcher
+├── documentation.md             # Detailed architecture docs
+└── README.md
+```
+
+---
+
+## 🤖 Supported Intents
+
+| Intent             | Description                                |
+|--------------------|--------------------------------------------|
+| `company_overview` | About Toros Yazılım, history, mission      |
+| `services`         | Software development, consulting           |
+| `products`         | KIYOS, AuthNAC, ARI KONAKLAMA             |
+| `cybersecurity`    | MAKSCYBER SIEM, network security           |
+| `business_clients` | Enterprise solutions, project quotes       |
+| `public_sector`    | Government, on-premise, compliance         |
+| `careers`          | Job applications, internships              |
+| `contact`          | Phone, email, office location              |
+| `employees`        | Team size, workforce info                  |
