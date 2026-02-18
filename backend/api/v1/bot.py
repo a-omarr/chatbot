@@ -169,11 +169,51 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         },
         {
             "title": "contact",
-            "keywords": ["phone", "telephone", "contact", "address", "location", "email"],
+            "keywords": ["phone", "telephone", "contact", "address", "location", "email", "sales team", "hire us"],
             "answer": (
                 "**Phone**: 0(324) 404 0 808\n"
                 "**Address**: Mersin University, Çiftlikköy Campus Technopark Administrative Building No:1/109 Pk:33343\n"
-                "You can also use the contact form on our website."
+                "You can also reach our sales team through the contact form on our website."
+            ),
+        },
+        {
+            "title": "cybersecurity",
+            "keywords": ["makscyber", "siem", "authnac", "security", "threat", "log analysis", "improve cybersecurity", "demo"],
+            "answer": (
+                "Toros Yazılım provides advanced cybersecurity solutions:\n"
+                "- **MAKSCYBER SIEM**: Real-time log analysis and threat prevention (Netflow, IPFix).\n"
+                "- **AuthNAC**: Combined with KIYOS for secure authentication and network access control.\n"
+                "- **Identity Management**: KIYOS platform for SSO, MFA, and Lifecycle Management.\n"
+                "You can improve your company’s security by implementing these localized and high-performance solutions. **Contact us for a demo!**"
+            ),
+        },
+        {
+            "title": "business_clients",
+            "keywords": ["enterprise software", "integrate", "existing systems", "it consultancy", "quote", "how long", "project"],
+            "answer": (
+                "We offer tailored solutions for business clients:\n"
+                "- **Enterprise Software**: We develop custom scalable software (Web, Mobile, Desktop).\n"
+                "- **System Integration**: We can integrate new solutions with your existing infrastructure.\n"
+                "- **IT Consultancy**: Analysis, planning, and optimization services.\n"
+                "- **Process**: Project duration and quotes depend on the scope. Contact us for a detailed project evaluation."
+            ),
+        },
+        {
+            "title": "public_sector",
+            "keywords": ["government", "institutions", "on-premise", "compliance", "security standards"],
+            "answer": (
+                "Yes, we work with government institutions and offer:\n"
+                "- **On-premise Solutions**: For high-security requirements.\n"
+                "- **Compliance**: Our systems are developed according to national and international security standards."
+            ),
+        },
+        {
+            "title": "careers",
+            "keywords": ["hiring", "jobs", "internship", "apply", "career", "human resources"],
+            "answer": (
+                "We are always looking for talented individuals!\n"
+                "- **Apply**: Send your CV through our website's career portal or via email.\n"
+                "- **Internships**: We offer internship opportunities for students throughout the year."
             ),
         },
     ],
@@ -211,15 +251,54 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         },
         {
             "title": "contact",
-            "keywords": ["telefon", "iletişim", "adres", "nerede", "konum"],
+            "keywords": ["telefon", "iletişim", "adres", "nerede", "konum", "satış ekibi", "teklif"],
             "answer": (
                 "**Telefon**: 0(324) 404 0 808\n"
                 "**Adres**: Mersin Üniversitesi Çiftlikköy Kampüsü Teknopark İdari Bina No:1/109 Pk:33343\n"
-                "Web sitemizdeki iletişim formunu da kullanabilirsiniz."
+                "Web sitemizdeki iletişim formunu kullanarak satış ekibimize de ulaşabilirsiniz."
+            ),
+        },
+        {
+            "title": "cybersecurity",
+            "keywords": ["makscyber", "siem", "authnac", "siber güvenlik", "tehdit", "günlük analizi", "demo"],
+            "answer": (
+                "Toros Yazılım gelişmiş siber güvenlik çözümleri sunar:\n"
+                "- **MAKSCYBER SIEM**: Gerçek zamanlı log analizi ve tehdit önleme (Netflow, IPFix).\n"
+                "- **AuthNAC**: Güvenli kimlik doğrulama ve ağ erişim kontrolü için KIYOS ile entegre çözüm.\n"
+                "- **Kimlik Yönetimi**: SSO, MFA ve Yaşam Döngüsü Yönetimi için KIYOS platformu.\n"
+                "Yerli ve yüksek performanslı çözümlerimizle şirketinizin güvenliğini artırabilirsiniz. **Demo için bizimle iletişime geçin!**"
+            ),
+        },
+        {
+            "title": "business_clients",
+            "keywords": ["kurumsal yazılım", "entegrasyon", "mevcut sistemler", "bt danışmanlık", "teklif", "ne kadar sürer", "proje"],
+            "answer": (
+                "Kurumsal müşterilerimiz için özel çözümler sunuyoruz:\n"
+                "- **Kurumsal Yazılım**: Ölçeklenebilir web, mobil ve masaüstü yazılım geliştirme.\n"
+                "- **Sistem Entegrasyonu**: Yeni çözümlerin mevcut altyapınıza entegrasyonu.\n"
+                "- **BT Danışmanlığı**: Analiz, planlama ve optimizasyon hizmetleri.\n"
+                "- **Süreç**: Proje süreleri ve teklifler kapsamına göre değişir. Detaylı değerlendirme için bizimle iletişime geçebilirsiniz."
+            ),
+        },
+        {
+            "title": "public_sector",
+            "keywords": ["kamu", "kurumlar", "yerinde", "on-premise", "uyumluluk", "güvenlik standartları"],
+            "answer": (
+                "Evet, kamu kurumları ile çalışıyoruz ve şunları sunuyoruz:\n"
+                "- **On-premise Çözümler**: Yüksek güvenlik gereksinimleri için yerinde kurulum.\n"
+                "- **Uyumluluk**: Sistemlerimiz ulusal ve uluslararası güvenlik standartlarına uygun olarak geliştirilmektedir."
+            ),
+        },
+        {
+            "title": "careers",
+            "keywords": ["işe alım", "iş ilanları", "staj", "başvuru", "kariyer", "insan kaynakları"],
+            "answer": (
+                "Her zaman yetenekli çalışma arkadaşları arıyoruz!\n"
+                "- **Başvuru**: CV'nizi web sitemizdeki kariyer portalı üzerinden veya e-posta ile gönderebilirsiniz.\n"
+                "- **Staj**: Öğrenciler için yıl boyunca staj imkanları sunuyoruz."
             ),
         },
     ],
-    # Keeping minimal placeholders for RU/AR to save space, but logically they should be updated too.
     "ru": [
         {
             "title": "company_overview",
@@ -237,9 +316,19 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
              "answer": "Наши продукты: KIYOS (управление идентификацией), ARI KONAKLAMA, MAKSCYBER SIEM и AuthNAC.",
         },
         {
-            "title": "contact",
-            "keywords": ["телефон", "контакт", "адрес"],
-            "answer": "Телефон: 0(324) 404 0 808. Адрес: Технопарк университета Мерсин.",
+            "title": "cybersecurity",
+            "keywords": ["siem", "authnac", "безопасность"],
+            "answer": "Мы предлагаем решения для кибербезопасности, такие как MAKSCYBER SIEM и AuthNAC.",
+        },
+        {
+            "title": "business_clients",
+            "keywords": ["корпоративное по", "бизнес"],
+            "answer": "Мы разрабатываем индивидуальное программное обеспечение для корпоративных клиентов.",
+        },
+        {
+            "title": "careers",
+            "keywords": ["работа", "вакансии"],
+            "answer": "Мы всегда ищем талантливых специалистов. Свяжитесь с нами через наш сайт.",
         },
     ],
     "ar": [
@@ -262,6 +351,21 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
              "title": "contact",
              "keywords": ["هاتف", "اتصال", "عنوان", "موقع"],
              "answer": "الهاتف: 0(324) 404 0 808. العنوان: جامعة مرسين، منطقة التكنولوجيا.",
+        },
+        {
+            "title": "cybersecurity",
+            "keywords": ["الأمن السيبراني", "siem", "authnac"],
+            "answer": "نحن نقدم حلول الأمن السيبراني المتقدمة مثل MAKSCYBER SIEM و AuthNAC.",
+        },
+        {
+            "title": "business_clients",
+            "keywords": ["حلول الشركات", "برمجيات المؤسسات"],
+            "answer": "نحن نطور برمجيات مخصصة للشركات والمؤسسات الكبيرة.",
+        },
+        {
+            "title": "careers",
+            "keywords": ["وظائف", "توظيف"],
+            "answer": "نحن نبحث دائما عن المواهب. تواصل معنا عبر موقعنا الإلكتروني.",
         },
     ],
 }
@@ -440,11 +544,12 @@ async def chat(request: ChatRequest) -> ChatResponse:
     intent_label, confidence = predict_intent(raw_message)
 
     # 2) Try to answer from the structured knowledge base using the intent.
-    #    We look for the KB item whose `title` matches the predicted intent.
-    kb_items = KNOWLEDGE_BASE.get(lang, [])
-    for item in kb_items:
-        if item.get("title") == intent_label:
-            return ChatResponse(reply=item["answer"], language=lang, suggestions=suggestions, language_warning=language_warning)
+    #    We ONLY use the intent if confidence is high enough (e.g. >= 0.3)
+    if confidence >= 0.3:
+        kb_items = KNOWLEDGE_BASE.get(lang, [])
+        for item in kb_items:
+            if item.get("title") == intent_label:
+                return ChatResponse(reply=item["answer"], language=lang, suggestions=suggestions, language_warning=language_warning)
 
     # 3) If that fails, fall back to similarity search inside the KB.
     kb_answer = _answer_from_knowledge_base(raw_message, lang)
