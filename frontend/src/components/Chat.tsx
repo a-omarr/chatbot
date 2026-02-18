@@ -11,6 +11,8 @@ interface ChatApiResponse {
   language?: string | null;
   suggestions?: string[] | null;
   language_warning?: string | null;
+  is_mismatch?: boolean;
+  suggested_language?: LocaleCode | null;
 }
 
 interface ChatProps {
@@ -240,6 +242,7 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
   const [activeLocale, setActiveLocale] = useState<LocaleCode>('en');
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [languageWarning, setLanguageWarning] = useState<string | null>(null);
+  const [suggestedLanguage, setSuggestedLanguage] = useState<LocaleCode | null>(null);
 
   const welcomeMessages: Record<LocaleCode, string> = {
     en: '👋 Welcome to Toros Yazılım.\nHow can we assist you today?\nYou can choose one of the options below or type your question.',
@@ -276,18 +279,25 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
       }
 
       const data: ChatApiResponse = await res.json();
+      const isMismatch = data.is_mismatch || false;
 
-      const botMessage: Message = {
-        id: Date.now() + 1,
-        role: 'bot',
-        text: data.reply,
-      };
-
-      setMessages((prev) => [...prev, botMessage]);
+      // Only add bot message if there's a reply (suppress empty replies on mismatch)
+      if (data.reply) {
+        const botMessage: Message = {
+          id: Date.now() + 1,
+          role: 'bot',
+          text: data.reply,
+        };
+        setMessages((prev) => [...prev, botMessage]);
+      }
 
       // Handle language warning
       if (data.language_warning) {
         setLanguageWarning(data.language_warning);
+        setSuggestedLanguage(data.suggested_language || null);
+      } else {
+        setLanguageWarning(null);
+        setSuggestedLanguage(null);
       }
     } catch (err) {
       console.error(err);
@@ -333,6 +343,7 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
                 setActiveCategoryId(null);
                 setMessages([]);
                 setLanguageWarning(null);
+                setSuggestedLanguage(null);
               }}
               className="bg-slate-900/70 border border-slate-700 rounded-lg text-xs px-2 py-1 text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
             >
@@ -422,14 +433,35 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
           )}
 
           {languageWarning && (
-            <div className="flex items-start gap-2 text-xs bg-amber-950/50 border border-amber-800/70 rounded-md px-2.5 py-1.5 text-amber-300">
-              <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              <span className="flex-1">{languageWarning}</span>
+            <div className="flex items-center gap-3 text-xs bg-rose-950/40 border border-rose-800/60 rounded-xl px-4 py-3 text-rose-200 animate-in fade-in slide-in-from-bottom-2 duration-300">
+              <div className="bg-rose-900/40 p-1.5 rounded-lg border border-rose-700/50">
+                <svg className="w-4 h-4 text-rose-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <span className="flex-1 font-medium">{languageWarning}</span>
+              {suggestedLanguage && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveLocale(suggestedLanguage);
+                    setMessages([]);
+                    setActiveCategoryId(null);
+                    setLanguageWarning(null);
+                    setSuggestedLanguage(null);
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold transition-all shadow-sm flex items-center gap-1.5 whitespace-nowrap"
+                >
+                  <span className="text-sm">{findLocale(suggestedLanguage).flag}</span>
+                  {findLocale(suggestedLanguage).label}
+                </button>
+              )}
               <button
-                onClick={() => setLanguageWarning(null)}
-                className="text-amber-400 hover:text-amber-200 transition-colors"
+                onClick={() => {
+                  setLanguageWarning(null);
+                  setSuggestedLanguage(null);
+                }}
+                className="p-1 px-2 text-rose-400 hover:text-rose-200 transition-colors rounded-lg hover:bg-rose-900/30"
                 aria-label="Dismiss warning"
               >
                 ✕
