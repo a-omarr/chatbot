@@ -257,7 +257,6 @@ def _training_data() -> List[IntentExample]:
         IntentExample("Merhabalar", "greeting"),
         IntentExample("Selamlar", "greeting"),
         IntentExample("Günaydın", "greeting"),
-        IntentExample("merhaba", "other"),
         IntentExample("kaç kişi çalışıyor", "employees"),
         IntentExample("çalışan sayısı", "employees"),
         IntentExample("Kaç çalışanınız var?", "employees"),
@@ -295,7 +294,6 @@ def _training_data() -> List[IntentExample]:
         IntentExample("Здравствуйте", "greeting"),
         IntentExample("Добрый день", "greeting"),
         IntentExample("Приветствую", "greeting"),
-        IntentExample("привет", "other"),
     ]
 
     # --- Arabic ---
@@ -343,7 +341,6 @@ def _training_data() -> List[IntentExample]:
         IntentExample("السلام عليكم", "greeting"),
         IntentExample("مرحباً", "greeting"),
         IntentExample("أهلاً", "greeting"),
-        IntentExample("مرحبا", "other"),
     ]
 
     return examples

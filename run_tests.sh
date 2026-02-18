@@ -18,7 +18,7 @@ fi
 
 # 2. Run Unit/Integration Tests (Pytest)
 echo -e "\n\033[1m[1/2] Running Unit & Intent Prediction Tests (Pytest)...\033[0m"
-PYTHONPATH=$PROJECT_ROOT $VENV_PATH/bin/pytest $BACKEND_DIR/tests/test_bot_scenarios.py -v
+PYTHONPATH=$PROJECT_ROOT:$BACKEND_DIR $VENV_PATH/bin/pytest $BACKEND_DIR/tests/test_bot_scenarios.py -v
 
 PYTEST_STATUS=$?
 
