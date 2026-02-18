@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Among Us Crewmate cursor -->
+  <!-- Body -->
+  <ellipse cx="16" cy="20" rx="9" ry="11" fill="#c51111"/>
+  <!-- Visor -->
+  <ellipse cx="20" cy="15" rx="6" ry="4" fill="#39d2e2"/>
+  <ellipse cx="20" cy="15" rx="6" ry="4" fill="url(#visorShine)" opacity="0.4"/>
+  <!-- Backpack -->
+  <rect x="5" y="14" width="4" height="10" rx="2" fill="#8b0000"/>
+  <!-- Legs -->
+  <rect x="10" y="28" width="4" height="4" rx="1" fill="#c51111"/>
+  <rect x="18" y="28" width="4" height="4" rx="1" fill="#c51111"/>
+  <!-- Visor shine gradient -->
+  <defs>
+    <linearGradient id="visorShine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="white"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+</svg>

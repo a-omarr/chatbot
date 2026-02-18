@@ -4,6 +4,20 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+  cursor: url('/among-us-cursor.svg') 16 4, auto;
+}
+
+/* Among Us pointer cursor for clickable elements */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+select,
+label,
+summary,
+.cursor-pointer {
+  cursor: url('/among-us-pointer.svg') 16 4, pointer;
 }
 
 *::-webkit-scrollbar {
