@@ -57,10 +57,10 @@ class KnowledgeIndex:
                     "answer": item.get("answer", ""),
                 }
                 self._entries.append(entry)
-                # Combine title + keywords + answer for richer indexing
+                # Boost title and keywords by repeating them in the index text
                 embed_text = (
-                    f"{entry['title']} "
-                    f"{' '.join(entry['keywords'])} "
+                    f"{entry['title']} {entry['title']} "
+                    f"{' '.join(entry['keywords'])} {' '.join(entry['keywords'])} "
                     f"{entry['answer'][:500]}"
                 )
                 texts_to_embed.append(embed_text)

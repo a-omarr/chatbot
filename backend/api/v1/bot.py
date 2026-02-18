@@ -96,13 +96,13 @@ def _answer_about_toros(language: str) -> str:
     """
     if language == "tr":
         return (
-            "Toros Yazılım, web endüstrisiyle ilgili hemen hemen tüm şirketler için "
-            "eksiksiz bir hizmet yelpazesi sunan, müşteri odaklı bir yazılım ve "
-            "bilişim danışmanlığı şirketidir. Servis entegrasyonları, bilişim ve "
-            "danışmanlık hizmetleri, kurumsal firmalara özel yazılım çözümleri sunar. "
-            "Teknopark bünyesinde geliştirilen Kimlik Yönetim Sistemi (KIYOS), "
-            "ARI Konaklama, MAKSCYBER SIEM ve AuthNAC gibi Ar‑Ge projeleri ile "
-            "güvenlik, kimlik yönetimi ve kurumsal ihtiyaçlara yönelik çözümler üretir."
+            "Toros Yazılım, 2008 yılında Mersin'de kurulan, web endüstrisiyle ilgili "
+            "hemen hemen tüm şirketler için eksiksiz bir hizmet yelpazesi sunan, "
+            "müşteri odaklı bir yazılım ve bilişim danışmanlığı şirketidir. "
+            "Servis entegrasyonları, bilişim ve danışmanlık hizmetleri, kurumsal "
+            "firmalara özel yazılım çözümleri sunar. Teknopark bünyesinde geliştirilen "
+            "Kimlik Yönetim Sistemi (KIYOS), ARI Konaklama, MAKSCYBER SIEM ve AuthNAC "
+            "gibi Ar‑Ge projeleri ile güvenlik ve kimlik yönetimi çözümleri üretir."
         )
     if language == "ar":
         return (
@@ -143,10 +143,19 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "title": "employees",
             "keywords": ["how many employees", "staff", "team size", "headcount", "workforce"],
             "answer": (
-                "The public sections of our website (including Human Resources and About Us) do not specify "
-                "an exact number of employees. Toros Yazilim was founded in 2008 and has grown into a "
-                "team of specialized experts working in a technopark environment, but the exact headcount "
-                "is not publicly listed."
+                "Our website does not specify an exact number of employees. Toros Yazilim "
+                "was founded in 2008 and is composed of a growing team of specialized experts "
+                "working in the Mersin Technopark."
+            ),
+        },
+        {
+            "title": "services",
+            "keywords": ["services", "solutions", "what do you do", "offerings"],
+            "answer": (
+                "Our main services include:\n"
+                "1. **Service Integrations**: Data integration across different systems.\n"
+                "2. **IT Consultancy**: Analysis, planning, and optimization.\n"
+                "3. **Custom Software**: Tailored solutions for corporate clients."
             ),
         },
         {
@@ -328,11 +337,11 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         {
             "title": "identity_management",
             "keywords": ["kimlik yönetimi", "sso", "mfa", "kiyos", "tek oturum açma"],
-            "answer": "👤 **KIYOS**, Türkiye'nin yerli kimlik platformudur. SSO, MFA ve yaşam döngüsü yönetimi gibi çözümler sunar.",
+            "answer": "👤 **KIYOS** (Kimlik Yönetim Sistemi), Türkiye'nin yerli kimlik platformudur. SSO, MFA ve yaşam döngüsü yönetimi gibi çözümler sunar.",
         },
         {
             "title": "career_info",
-            "keywords": ["işe alım", "başvuru", "kariyer", "cv", "insan kaynakları", "staj", "stajyer", "öğrenci"],
+            "keywords": ["işe alım", "başvuru", "başvurusu", "kariyer", "cv", "insan kaynakları", "staj", "stajyer", "öğrenci"],
             "answer": (
                 "Her zaman yetenekli bireyler arıyoruz!\n"
                 "- **Başvuru**: CV'nizi web sitemizin kariyer portalı üzerinden veya e-posta yoluyla gönderin.\n"
@@ -351,8 +360,13 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         },
         {
             "title": "greeting",
-            "keywords": ["merhaba", "selam", "günaydın", "iyi günler", "hoш geldiniz"],
+            "keywords": ["merhaba", "selam", "günaydın", "iyi günler", "hoş geldiniz"],
             "answer": "👋 Merhaba! Toros Yazılım'a hoş geldiniz. Size bugün nasıl yardımcı olabilirim?",
+        },
+        {
+            "title": "employees",
+            "keywords": ["kaç çalışan", "ekip sayısı", "kadro", "çalışan sayısı"],
+            "answer": "Web sitemizde kesin bir çalışan sayısı belirtilmemiştir. Toros Yazılım, 2008 yılından bu yana büyüyen uzman bir kadroya sahiptir.",
         },
     ],
     "ru": [
@@ -450,6 +464,11 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             ),
         },
         {
+            "title": "employees",
+            "keywords": ["كم عدد الموظفين", "حجم الفريق", "عدد الموظفين"],
+            "answer": "لا يذكر موقعنا عددًا دقيقًا للموظفين. تأسست توروس يازليم في عام 2008 وتضم فريقًا متناميًا من الخبراء في واحة التقنية بمرسين.",
+        },
+        {
             "title": "greeting",
             "keywords": ["مرحبا", "سلام", "أهلا"],
             "answer": "👋 مرحبًا! أهلاً بكم في توروس يازليم. كيف يمكنني مساعدتكم اليوم؟",
@@ -520,11 +539,13 @@ def _detect_language_from_text(text: str) -> str:
     tr_words = {
         "merhaba", "merahaba", "merhablar", "selam", "selamlar", "nasıl", 
         "kimdir", "nedir", "hakkında", "neler", "sunuyorsunuz", "hizmetleri", 
-        "projesi", "evet", "hayır", "günaydın", "iyi", "günler"
+        "projesi", "evet", "hayır", "günaydın", "iyi", "günler", "teklif", "fiyat",
+        "neresi", "nerede", "ulaşım", "iletişim", "başvuru", "çalışan"
     }
     en_words = {
         "hello", "hi", "hey", "how", "who", "what", "about", "which", 
-        "services", "offer", "provide", "thanks", "thank", "good", "morning"
+        "services", "offer", "provide", "thanks", "thank", "good", "morning",
+        "price", "quote", "cost", "hiring", "apply", "contact"
     }
     
     words = set(re.findall(r"\w+", clean_text))
@@ -594,9 +615,9 @@ async def chat(request: ChatRequest) -> ChatResponse:
     
     # helper for mismatch responses
     def mismatch_response(reply: str = "") -> ChatResponse:
-        # Strictly enforce: no reply if there's a language mismatch
-        # This prevents the bot from answering in a different language than the UI context.
-        final_reply = "" if is_mismatch else reply
+        # Allow the reply even if there's a language mismatch, 
+        # as the answer itself will be in the 'lang' (UI) language.
+        final_reply = reply
         
         return ChatResponse(
             reply=final_reply,
@@ -617,7 +638,8 @@ async def chat(request: ChatRequest) -> ChatResponse:
     intent_label, confidence = predict_intent(raw_message)
 
     # 3) High-confidence direct lookup
-    if confidence >= 0.3:
+    # Threshold 0.10 is better for a 16-intent classifier with cross-lingual data.
+    if confidence >= 0.10:
         kb_items = KNOWLEDGE_BASE.get(lang, [])
         for item in kb_items:
             if item.get("title") == intent_label:

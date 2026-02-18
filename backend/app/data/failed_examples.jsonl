@@ -17,3 +17,10 @@
 {"text": "zzz zzz zzz", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08730615241145274}
 {"text": "999 888 777", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
 {"text": ":) :( :D", "predicted_intent": "career_info", "language": "en", "model_confidence": 0.0809514800895271}
+{"text": "zzzz z z z z z z z", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08730615241145274}
+{"text": "im hungry", "predicted_intent": "career_info", "language": "en", "model_confidence": 0.09468107517476437}
+{"text": "im hungry", "predicted_intent": "career_info", "language": "en", "model_confidence": 0.09468107517476437}
+{"text": "Merhaba", "predicted_intent": "other", "language": "tr", "model_confidence": 0.3274001471728308}
+{"text": "مرحبا", "predicted_intent": "other", "language": "ar", "model_confidence": 0.28070131846848434}
+{"text": "Merhaba", "predicted_intent": "other", "language": "tr", "model_confidence": 0.3668598486041783}
+{"text": "مرحبا", "predicted_intent": "other", "language": "ar", "model_confidence": 0.36681187209970345}
