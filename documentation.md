@@ -59,15 +59,20 @@ chatbot/
         -   `POST /api/v1/bot/chat`: The main endpoint receiving user messages.
 
 2.  **Machine Learning Layer (`backend/app/ml/intent_classifier.py`)**:
-    -   Uses a **Pipeline** of `TfidfVectorizer` (character n-grams) and `LogisticRegression`.
-    -   **Intents**: `company_overview`, `services`, `products`, `contact`, `employees`, `cybersecurity`, `business_clients`, `public_sector`, `careers`, `other`.
-    -   **Data**: Contains hardcoded training example sentences in all 4 languages (EN, TR, AR, RU).
+    -   Uses a **Pipeline** of `TfidfVectorizer` (character n-grams, `ngram_range=(2, 5)`) and `LogisticRegression` (with `class_weight="balanced"` and `multi_class="ovr"`).
+    -   **Consolidated and Granular Intents**:
+        -   `company_overview`, `services`, `products`, `contact_info`
+        -   `employees`, `greeting`, `cybersecurity`, `makscyber_siem`
+        -   `authnac_info`, `identity_management`, `business_clients`, `public_sector`
+        -   `it_consultancy`, `career_info`, `custom_software`, `other`
+    -   **Data**: Enhanced training set with more categorized examples in 4 languages, specifically refined for `public_sector` and `authnac_info` distinction.
     -   **`predict_intent(text)`**: Returns the predicted intent and confidence score.
 
 3.  **Knowledge Base**:
     -   Located in `backend/api/v1/bot.py`.
-    -   A dictionary structure `KNOWLEDGE_BASE` mapping languages to lists of topics (Title, Keywords, Answer).
-    -   Used for fallback keyword matching if the ML confidence is low or for specific structured lookups.
+    -   A dictionary structure `KNOWLEDGE_BASE` mapping languages to lists of topics.
+    -   **Optimized Answers**: Consolidated contact details into `contact_info` and jobs/internships into `career_info` with rich formatting and multi-line responses.
+    -   Used for fallback keyword matching and cross-lingual RAG search.
 
 ---
 
