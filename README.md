@@ -85,26 +85,22 @@ Open http://localhost:5173 in your browser.
 
 ## 🧪 Running Tests
 
+The project includes a unified test runner that executes both automated unit tests and exhaustive system sanity checks.
+
 ```bash
-# From the project root:
-export PYTHONPATH=$(pwd):$(pwd)/backend
-source backend/.venv/bin/activate
-
-# Run all tests
-python3 -m pytest backend/tests/
-
-# Run with verbose output
-python3 -m pytest backend/tests/ -v
+chmod +x run_tests.sh
+./run_tests.sh
 ```
 
 ### What's tested
 
-| Test                              | Description                                              |
-|-----------------------------------|----------------------------------------------------------|
-| `test_intent_prediction_scenarios`| All 9 intents classified correctly in EN, TR, AR, RU     |
-| `test_chat_endpoint_responses`    | Correct answers returned for cybersecurity, careers, etc. |
-| `test_language_mismatch_logic`    | Language mismatch warning triggered properly             |
-| `test_fallback_behavior`          | Nonsense input handled gracefully                        |
+| Test Level | Description | Tool |
+|------------|-------------|------|
+| **Unit** | Intent prediction accuracy & ML logic | `pytest` |
+| **Integration**| API endpoint flow & Language detection | `pytest` |
+| **System** | Exhaustive check of all topics in 4 languages | `system_test.py` |
+
+For detailed testing documentation, see [TESTING_WORKFLOW.md](./TESTING_WORKFLOW.md).
 
 ---
 
@@ -131,8 +127,6 @@ chatbot/
 
 ---
 
-## 🤖 Supported Intents
-
 | Intent             | Description                                |
 |--------------------|--------------------------------------------|
 | `company_overview` | About Toros Yazılım, history, mission      |
@@ -141,6 +135,13 @@ chatbot/
 | `cybersecurity`    | MAKSCYBER SIEM, network security           |
 | `business_clients` | Enterprise solutions, project quotes       |
 | `public_sector`    | Government, on-premise, compliance         |
-| `careers`          | Job applications, internships              |
-| `contact`          | Phone, email, office location              |
+| `career_info`      | Job applications, internships              |
+| `contact_info`     | Phone, email, office location              |
 | `employees`        | Team size, workforce info                  |
+| `greeting`         | Welcome messages and greetings             |
+| `makscyber_siem`   | Specific SIEM product details              |
+| `authnac_info`     | Specific Network Access Control details    |
+| `identity_management`| Specific KIYOS/Identity solutions        |
+| `custom_software`  | Bespoke development inquiries              |
+| `it_consultancy`   | Technical advising and strategy            |
+| `other`            | Fallback for unclassified messages         |

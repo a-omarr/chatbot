@@ -197,3 +197,20 @@ sequenceDiagram
     API-->>Frontend: ChatResponse {reply, suggestions}
     Frontend-->>User: Displays Reply
 ```
+---
++
++## 6. Testing and Quality Assurance
++
++The project maintains high reliability through a tiered testing structure:
++
++1.  **Unit Tests (`pytest`)**: Located in `backend/tests/test_bot_scenarios.py`. These verify the intent classifier's ability to map text to the correct label across all languages.
++2.  **System Tests (`system_test.py`)**: A comprehensive scan that hits the live chat logic with 30+ multilingual queries, ensuring the knowledge base answers are correctly retrieved and formatted.
++3.  **Active Learning**: An automated loop where unrecognized queries are logged for manual review and model refinement.
++
++### Execution
++Tests can be run using the root runner:
++```bash
++./run_tests.sh
++```
++
++For more details, see the [TESTING_WORKFLOW.md](./TESTING_WORKFLOW.md).
