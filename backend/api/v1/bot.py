@@ -7,6 +7,7 @@ import re
 
 from app.ml.intent_classifier import predict_intent
 from app.ml.rag_engine import KnowledgeIndex
+from app.ml.active_learning import log_failed_example, FailedExample
 
 
 class ChatRequest(BaseModel):
@@ -622,5 +623,14 @@ async def chat(request: ChatRequest) -> ChatResponse:
     # If there's a mismatch and no specific answer found, we suppress the echo
     # to avoid "You said: hello" when the user likely made a language mistake.
     reply_text = "" if is_mismatch else f"You said: {raw_message}"
+
+    # Log as failed example for active learning if we resort to echo
+    if not is_mismatch:
+        log_failed_example(FailedExample(
+            text=raw_message,
+            predicted_intent=str(intent_label),
+            language=lang,
+            model_confidence=float(confidence)
+        ))
 
     return mismatch_response(reply_text)
