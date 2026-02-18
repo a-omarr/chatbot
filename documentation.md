@@ -60,8 +60,8 @@ chatbot/
 
 2.  **Machine Learning Layer (`backend/app/ml/intent_classifier.py`)**:
     -   Uses a **Pipeline** of `TfidfVectorizer` (character n-grams) and `LogisticRegression`.
-    -   **Intents**: `company_overview`, `services`, `products`, `contact`, `employees`, `other`.
-    -   **Data**: Contains hardcoded training example sentences in all 4 languages.
+    -   **Intents**: `company_overview`, `services`, `products`, `contact`, `employees`, `cybersecurity`, `business_clients`, `public_sector`, `careers`, `other`.
+    -   **Data**: Contains hardcoded training example sentences in all 4 languages (EN, TR, AR, RU).
     -   **`predict_intent(text)`**: Returns the predicted intent and confidence score.
 
 3.  **Knowledge Base**:
@@ -81,10 +81,13 @@ chatbot/
 ### Key Components
 
 1.  **`Chat.tsx`**:
-    -   Manages the chat state (`messages`, `input`, `loading`, `activeLocale`).
+    -   Manages the chat state (`messages`, `input`, `loading`, `activeLocale`, `activeCategoryId`).
     -   Handles API communication via `fetch` to `/api/v1/bot/chat`.
-    -   Displays a list of messages (User vs Bot).
-    -   Provides quick-reply suggestions based on the selected language.
+    -   Displays a list of messages with a **Welcome Message** on start.
+    -   Provides **Categorical Quick-Reply Suggestions**:
+        - Users see 5 main categories initially.
+        - Clicking a category reveals its related questions.
+        - Includes a "Back" button to return to the category view.
 
 2.  **State Management**:
     -   Uses local React `useState` for simplicity.

@@ -2,6 +2,12 @@
 
 Full-stack chatbot starter with **FastAPI** backend and **React + TypeScript + Tailwind CSS** frontend.
 
+## 🚀 Demo
+
+See the chatbot in action with its new categorical suggestions and multilingual support:
+
+![verify_chatbot_enhancements](/home/molham27/.gemini/antigravity/brain/b8a7f510-5b9e-4147-8a53-595b649e47fd/verify_chatbot_enhancements_1771399499036.webp)
+
 ## Project structure
 
 - `backend/` – FastAPI application (API and business logic)
