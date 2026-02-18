@@ -584,7 +584,7 @@ def _detect_language_from_text(text: str) -> str:
 
     # 1. Strip domain brand names that appear in all languages to avoid bias
     # (e.g. "Toros Yazilim" is Turkish but used in English questions)
-    brand_regex = r"\b(toros|yazilim|kiyos|authnac|makscyber|ari konaklama)\b"
+    brand_regex = r"\b(toros|yazilim|kiyos|authnac|makscyber|ari konaklama|siem|demo|api|sso|mfa|edugain|openldap|azure|active directory|google workspace|zimbra)\b"
     clean_text = re.sub(brand_regex, "", text, flags=re.IGNORECASE).lower()
 
     # 2. Scoring system
@@ -608,7 +608,11 @@ def _detect_language_from_text(text: str) -> str:
         "merhaba", "merahaba", "merhablar", "selam", "selamlar", "nasıl", 
         "kimdir", "nedir", "hakkında", "neler", "sunuyorsunuz", "hizmetleri", 
         "projesi", "evet", "hayır", "günaydın", "iyi", "günler", "teklif", "fiyat",
-        "neresi", "nerede", "ulaşım", "iletişim", "başvuru", "çalışan"
+        "neresi", "nerede", "ulaşım", "iletişim", "başvuru", "çalışan",
+        "talep", "edebilir", "miyim", "misiniz", "musunuz", "yapabilir",
+        "istiyorum", "yapıyor", "bilgi", "lütfen", "teşekkür", "ederim",
+        "var", "yok", "için", "veya", "nasıl", "hangi", "kaç",
+        "özellikleri", "çözüm", "çözümleri", "hizmet", "ürün",
     }
     en_words = {
         "hello", "hi", "hey", "how", "who", "what", "about", "which", 
