@@ -1,8 +1,12 @@
+from __future__ import annotations
 from fastapi import APIRouter
 from pydantic import BaseModel
-from typing import Any
+from typing import Any, Final
+import logging
+import re
 
 from app.ml.intent_classifier import predict_intent
+from app.ml.rag_engine import KnowledgeIndex
 
 
 class ChatRequest(BaseModel):
@@ -23,6 +27,10 @@ class ChatResponse(BaseModel):
     suggestions: list[str] | None = None
     # Optional warning when detected language doesn't match selected language
     language_warning: str | None = None
+    # Flag to indicate language detection mismatch
+    is_mismatch: bool = False
+    # The language code that was actually detected (e.g. "tr")
+    suggested_language: str | None = None
 
 
 router = APIRouter()
@@ -118,9 +126,6 @@ def _answer_about_toros(language: str) -> str:
     )
 
 
-from math import sqrt
-
-
 # Minimal multilingual knowledge base about Toros Yazılım.
 KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
     "en": [
@@ -145,36 +150,51 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             ),
         },
         {
-            "title": "services",
-            "keywords": ["services", "solutions", "consultancy", "integration", "software development", "analysis"],
-            "answer": (
-                "We provide comprehensive services ensuring high business ethics and after-sales reliability:\n"
-                "1. **Service Integrations**: Integrating data from multiple platforms and systems.\n"
-                "2. **IT & Consultancy**: Analysis, planning, optimization, installation, and troubleshooting to help use workforce efficiently.\n"
-                "3. **Custom Software Solutions**: Tailored development from desktop/server software to web/mobile apps, BI, and ERP integration.\n"
-                "We use high-performance methodologies and prioritize face-to-face interaction over excessive documentation."
-            ),
-        },
-        {
-            "title": "products",
-            "keywords": ["products", "identity", "kiyos", "ari", "siem", "authnac", "security", "platform"],
-            "answer": (
-                "Our key products and R&D projects include:\n"
-                "- **KIYOS (Identity Platform)**: Turkey's local identity platform. A secure, flexible solution for Single Sign-On (SSO), "
-                "Universal Directory, and Lifecycle Management. It supports OAuth2, OpenID Connect, LDAP, and Radius.\n"
-                "- **ARI KONAKLAMA**: Accommodation site detection and digitization system with web-based mobile automation.\n"
-                "- **MAKSCYBER SIEM**: Real-time log analysis and threat prevention (Netflow, IPFix, Raw Traffic).\n"
-                "- **AuthNAC**: Network Access Control combined with KIYOS for secure authentication."
-            ),
-        },
-        {
-            "title": "contact",
-            "keywords": ["phone", "telephone", "contact", "address", "location", "email", "sales team", "hire us"],
+            "title": "contact_info",
+            "keywords": [
+                "phone", "telephone", "call you", "contact number", "address", "location", 
+                "where are you", "office", "technopark", "sales team", "hire us", "quote", 
+                "demo", "buy", "request a demo", "get started", "contact"
+            ],
             "answer": (
                 "**Phone**: 0(324) 404 0 808\n"
                 "**Address**: Mersin University, Çiftlikköy Campus Technopark Administrative Building No:1/109 Pk:33343\n"
-                "You can also reach our sales team through the contact form on our website."
+                "To reach our sales team or request a demo, please use the contact form on our website or call us directly."
             ),
+        },
+        {
+            "title": "makscyber_siem",
+            "keywords": ["makscyber", "siem", "log analysis", "threat prevention"],
+            "answer": "🛡️ **MAKSCYBER SIEM** is our real-time log analysis and threat prevention solution. It monitors Netflow, IPFix, and Raw Traffic to secure your infrastructure.",
+        },
+        {
+            "title": "authnac_info",
+            "keywords": ["authnac", "network access control", "secure authentication"],
+            "answer": "🔐 **AuthNAC** is our Network Access Control solution. When combined with KIYOS, it provides robust secure authentication for your entire network.",
+        },
+        {
+            "title": "identity_management",
+            "keywords": ["identity management", "sso", "mfa", "kiyos", "universal directory"],
+            "answer": "👤 **KIYOS** is our flagship Identity Platform, offering Single Sign-On (SSO), MFA, and Lifecycle Management. It's Turkey's leading local identity solution.",
+        },
+        {
+            "title": "career_info",
+            "keywords": ["hiring", "jobs", "apply", "career", "human resources", "cv", "internship", "student", "intern", "program"],
+            "answer": (
+                "We are always looking for talented individuals!\n"
+                "- **Apply**: Send your CV through our website's career portal or via email.\n"
+                "- **Internships**: We offer internship opportunities for students throughout the year."
+            ),
+        },
+        {
+            "title": "custom_software",
+            "keywords": ["custom software", "build app", "develop", "software development"],
+            "answer": "💻 We develop custom, scalable software solutions (Web, Mobile, Desktop) tailored to your specific business needs and high-performance requirements.",
+        },
+        {
+            "title": "it_consultancy",
+            "keywords": ["it consultancy", "analysis", "planning", "optimization"],
+            "answer": "📊 Our IT consultancy services include analysis, planning, and optimization to help your company use its workforce and technology efficiently.",
         },
         {
             "title": "cybersecurity",
@@ -202,19 +222,15 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "title": "public_sector",
             "keywords": ["government", "institutions", "on-premise", "compliance", "security standards"],
             "answer": (
-                "Yes, we work with government institutions and offer:\n"
-                "- **On-premise Solutions**: For high-security requirements.\n"
-                "- **Compliance**: Our systems are developed according to national and international security standards."
+                "Yes, we work with government institutions and municipalities, offering:\n"
+                "- **On-premise Solutions**: For high-security requirements and data sovereignty.\n"
+                "- **Compliance**: Our systems are developed and audited according to national and international security standards."
             ),
         },
         {
-            "title": "careers",
-            "keywords": ["hiring", "jobs", "internship", "apply", "career", "human resources"],
-            "answer": (
-                "We are always looking for talented individuals!\n"
-                "- **Apply**: Send your CV through our website's career portal or via email.\n"
-                "- **Internships**: We offer internship opportunities for students throughout the year."
-            ),
+            "title": "greeting",
+            "keywords": ["hello", "hi", "hey", "good morning", "good afternoon", "welcome"],
+            "answer": "👋 Hello! Welcome to Toros Yazılım. How can I assist you today?",
         },
     ],
     "tr": [
@@ -250,12 +266,12 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             ),
         },
         {
-            "title": "contact",
-            "keywords": ["telefon", "iletişim", "adres", "nerede", "konum", "satış ekibi", "teklif"],
+            "title": "contact_info",
+            "keywords": ["telefon", "iletişim", "adres", "nerede", "konum", "satış ekibi", "teklif", "fiyat", "demo", "satın al"],
             "answer": (
                 "**Telefon**: 0(324) 404 0 808\n"
                 "**Adres**: Mersin Üniversitesi Çiftlikköy Kampüsü Teknopark İdari Bina No:1/109 Pk:33343\n"
-                "Web sitemizdeki iletişim formunu kullanarak satış ekibimize de ulaşabilirsiniz."
+                "Satış ekibimize ulaşmak veya demo talebinde bulunmak için lütfen web sitemizdeki iletişim formunu kullanın veya bizi doğrudan arayın."
             ),
         },
         {
@@ -290,13 +306,43 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             ),
         },
         {
-            "title": "careers",
-            "keywords": ["işe alım", "iş ilanları", "staj", "başvuru", "kariyer", "insan kaynakları"],
+            "title": "makscyber_siem",
+            "keywords": ["makscyber", "siem", "log analizi", "tehdit önleme"],
+            "answer": "🛡️ **MAKSCYBER SIEM**, gerçek zamanlı log analizi ve tehdit önleme çözümümüzdür. Altyapınızı güvence altına almak için trafik verilerini izler.",
+        },
+        {
+            "title": "authnac_info",
+            "keywords": ["authnac", "ağ erişim kontrolü", "güvenli kimlik doğrulama"],
+            "answer": "🔐 **AuthNAC**, Ağ Erişim Kontrolü çözümümüzdür. KIYOS ile birlikte kullanıldığında ağınız için tam güvenlik sağlar.",
+        },
+        {
+            "title": "identity_management",
+            "keywords": ["kimlik yönetimi", "sso", "mfa", "kiyos", "tek oturum açma"],
+            "answer": "👤 **KIYOS**, Türkiye'nin yerli kimlik platformudur. SSO, MFA ve yaşam döngüsü yönetimi gibi çözümler sunar.",
+        },
+        {
+            "title": "career_info",
+            "keywords": ["işe alım", "başvuru", "kariyer", "cv", "insan kaynakları", "staj", "stajyer", "öğrenci"],
             "answer": (
-                "Her zaman yetenekli çalışma arkadaşları arıyoruz!\n"
-                "- **Başvuru**: CV'nizi web sitemizdeki kariyer portalı üzerinden veya e-posta ile gönderebilirsiniz.\n"
+                "Her zaman yetenekli bireyler arıyoruz!\n"
+                "- **Başvuru**: CV'nizi web sitemizin kariyer portalı üzerinden veya e-posta yoluyla gönderin.\n"
                 "- **Staj**: Öğrenciler için yıl boyunca staj imkanları sunuyoruz."
             ),
+        },
+        {
+            "title": "custom_software",
+            "keywords": ["özel yazılım", "uygulama geliştirme", "kodlama"],
+            "answer": "💻 İş ihtiyaçlarınıza özel, ölçeklenebilir yazılım çözümleri (Web, Mobil, Masaüstü) geliştiriyoruz.",
+        },
+        {
+            "title": "it_consultancy",
+            "keywords": ["bt danışmanlık", "analiz", "planlama", "optimizasyon"],
+            "answer": "📊 BT danışmanlık hizmetlerimizle, iş gücünüzü ve teknolojinizi en verimli şekilde kullanmanıza yardımcı oluyoruz.",
+        },
+        {
+            "title": "greeting",
+            "keywords": ["merhaba", "selam", "günaydın", "iyi günler", "hoш geldiniz"],
+            "answer": "👋 Merhaba! Toros Yazılım'a hoş geldiniz. Size bugün nasıl yardımcı olabilirim?",
         },
     ],
     "ru": [
@@ -311,9 +357,9 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "answer": "Мы предлагаем системную интеграцию, IT-консалтинг и разработку заказного ПО.",
         },
         {
-             "title": "products",
-             "keywords": ["продукты", "kiyos", "siem", "authnac"],
-             "answer": "Наши продукты: KIYOS (управление идентификацией), ARI KONAKLAMA, MAKSCYBER SIEM и AuthNAC.",
+            "title": "products",
+            "keywords": ["продукты", "kiyos", "siem", "authnac"],
+            "answer": "Наши продукты: KIYOS (управление идентификацией), ARI KONAKLAMA, MAKSCYBER SIEM и AuthNAC.",
         },
         {
             "title": "cybersecurity",
@@ -326,9 +372,27 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "answer": "Мы разрабатываем индивидуальное программное обеспечение для корпоративных клиентов.",
         },
         {
-            "title": "careers",
-            "keywords": ["работа", "вакансии"],
-            "answer": "Мы всегда ищем талантливых специалистов. Свяжитесь с нами через наш сайт.",
+            "title": "contact_info",
+            "keywords": ["телефон", "адрес", "связаться", "контакты", "демо"],
+            "answer": (
+                "**Телефон**: 0(324) 404 0 808\n"
+                "**Адрес**: Университет Мерсина, Административное здание Технопарка кампуса Чифтликкёй №1/109 Pk:33343\n"
+                "Чтобы связаться с нашим отделом продаж или запросить демо-версию, пожалуйста, используйте форму обратной связи на нашем сайте или позвоните нам напрямую."
+            ),
+        },
+        {
+            "title": "career_info",
+            "keywords": ["работа", "вакансии", "стажировка"],
+            "answer": (
+                "Мы всегда ищем талантливых специалистов!\n"
+                "- **Подать заявку**: Отправьте свое резюме через карьерный портал нашего сайта или по электронной почте.\n"
+                "- **Стажировки**: Мы предлагаем возможности стажировки для студентов в течение всего года."
+            ),
+        },
+        {
+            "title": "greeting",
+            "keywords": ["привет", "здравствуйте", "добрый день"],
+            "answer": "👋 Привет! Добро пожаловать в Toros Yazılım. Чем я могу вам помочь сегодня?",
         },
     ],
     "ar": [
@@ -338,19 +402,23 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "answer": _answer_about_toros("ar"),
         },
         {
-             "title": "services",
-             "keywords": ["الخدمات", "الحلول", "استشارات", "برمجة"],
-             "answer": "نقدم خدمات تكامل الأنظمة، استشارات تكنولوجيا المعلومات، وحلول برمجية مخصصة.",
+            "title": "services",
+            "keywords": ["الخدمات", "الحلول", "استشارات", "برمجة"],
+            "answer": "نقدم خدمات تكامل الأنظمة، استشارات تكنولوجيا المعلومات، وحلول برمجية مخصصة.",
         },
         {
-             "title": "products",
-             "keywords": ["المنتجات", "kiyos", "siem", "authnac"],
-             "answer": "منتجاتنا تشمل: نظام إدارة الهوية KIYOS، نظام ARI KONAKLAMA، وحلول الأمن السيبراني MAKSCYBER SIEM و AuthNAC.",
+            "title": "products",
+            "keywords": ["المنتجات", "kiyos", "siem", "authnac"],
+            "answer": "منتجاتنا تشمل: نظام إدارة الهوية KIYOS، نظام ARI KONAKLAMA، وحلول الأمن السيبراني MAKSCYBER SIEM و AuthNAC.",
         },
         {
-             "title": "contact",
-             "keywords": ["هاتف", "اتصال", "عنوان", "موقع"],
-             "answer": "الهاتف: 0(324) 404 0 808. العنوان: جامعة مرسين، منطقة التكنولوجيا.",
+            "title": "contact_info",
+            "keywords": ["هاتف", "اتصال", "عنوان", "موقع", "تجريبي", "مبيعات"],
+            "answer": (
+                "**الهاتف**: 0(324) 404 0 808\n"
+                "**العنوان**: جامعة مرسين، مبنى إدارة التكنوبارك في حرم تشيفتليك كوي رقم 1/109 Pk:33343\n"
+                "للتواصل مع فريق المبيعات لدينا أو طلب عرض تجريبي، يرجى استخدام نموذج الاتصال على موقعنا الإلكتروني أو الاتصال بنا مباشرة."
+            ),
         },
         {
             "title": "cybersecurity",
@@ -363,106 +431,105 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "answer": "نحن نطور برمجيات مخصصة للشركات والمؤسسات الكبيرة.",
         },
         {
-            "title": "careers",
-            "keywords": ["وظائف", "توظيف"],
-            "answer": "نحن نبحث دائما عن المواهب. تواصل معنا عبر موقعنا الإلكتروني.",
+            "title": "career_info",
+            "keywords": ["وظائف", "توظيف", "تدريب", "سيرة ذاتية"],
+            "answer": (
+                "نحن نبحث دائمًا عن المواهب!\n"
+                "- **تقديم**: أرسل سيرتك الذاتية عبر بوابة التوظيف في موقعنا الإلكتروني أو عبر البريد الإلكتروني.\n"
+                "- **التدريب**: نقدم فرص تدريب للطلاب على مدار العام."
+            ),
+        },
+        {
+            "title": "greeting",
+            "keywords": ["مرحبا", "سلام", "أهلا"],
+            "answer": "👋 مرحبًا! أهلاً بكم في توروس يازليم. كيف يمكنني مساعدتكم اليوم؟",
         },
     ],
 }
 
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
-
-# --- TF-IDF Retrieval Logic ---
-
-class TfidfRetriever:
-    def __init__(self):
-        self.vectorizers: dict[str, TfidfVectorizer] = {}
-        self.matrices: dict[str, np.ndarray] = {}
-        self.items: dict[str, list[dict[str, Any]]] = {}
-        self._build_indices()
-
-    def _build_indices(self):
-        """Builds TF-IDF indices for each language in the KNOWLEDGE_BASE."""
-        for lang, items in KNOWLEDGE_BASE.items():
-            if not items:
-                continue
-            
-            # Construct a rich document for each item to index
-            documents = []
-            for item in items:
-                text_content = (
-                    f"{item.get('title', '')} "
-                    f"{' '.join(item.get('keywords', []))} "
-                    f"{item.get('answer', '')}"
-                )
-                documents.append(text_content)
-            
-            if not documents:
-                continue
-
-            vec = TfidfVectorizer(stop_words='english' if lang == 'en' else None)
-            tfidf_matrix = vec.fit_transform(documents)
-            
-            self.vectorizers[lang] = vec
-            self.matrices[lang] = tfidf_matrix
-            self.items[lang] = items
-
-    def find_best_match(self, query: str, language: str) -> str | None:
-        """Finds the best matching answer using cosine similarity."""
-        vec = self.vectorizers.get(language)
-        matrix = self.matrices.get(language)
-        items = self.items.get(language)
-
-        if not vec or matrix is None or not items:
-            return None
-
-        try:
-            query_vec = vec.transform([query])
-            cosine_sim = cosine_similarity(query_vec, matrix).flatten()
-            best_idx = np.argmax(cosine_sim)
-            best_score = cosine_sim[best_idx]
-            
-            if best_score < 0.15: 
-                return None
-            
-            return items[best_idx]["answer"]
-        except Exception:
-            return None
-
-# Global retriever instance
-_retriever = TfidfRetriever()
+# Global cross-lingual retriever (lazy-built on first call)
+_kb_index: KnowledgeIndex | None = None
 
 
 def _answer_from_knowledge_base(message: str, language: str) -> str | None:
-    """Return the best‑matching knowledge‑base answer using TF-IDF retrieval."""
-    return _retriever.find_best_match(message, language)
+    """Return the best‑matching knowledge‑base answer using cross-lingual TF-IDF."""
+    global _kb_index
+    if _kb_index is None:
+        _kb_index = KnowledgeIndex(KNOWLEDGE_BASE)
+        _kb_index.build()
+
+    results = _kb_index.retrieve(message, lang=language, top_k=1)
+    if not results:
+        return None
+
+    best = results[0]
+    # Similarity threshold: avoid low-quality matches
+    if best["score"] < 0.08:
+        return None
+
+    # Strict language enforcement: Ensure the RAG answer matches the requested session language.
+    # This prevents Turkish KB results from showing up in English sessions if detection fails.
+    if best.get("lang") != language:
+        return None
+
+    return best["answer"]
 
 
 def _detect_language_from_text(text: str) -> str:
-    """Naive language detection for the Toros Yazılım intent only.
+    """Robust language detection for Toros Yazılım using scoring-based approach.
 
-    For real production use you would replace this with an ML model or external
-    language‑detection service.
+    Strips domain-specific brand names first, then counts script-based evidence
+    and language-specific keywords to determine the dominant language.
     """
-    lowered = text.lower()
-    # Heuristics based on common phrases / alphabet
+    if not text.strip():
+        return "en"
+
+    # 1. Strip domain brand names that appear in all languages to avoid bias
+    # (e.g. "Toros Yazilim" is Turkish but used in English questions)
+    brand_regex = r"\b(toros|yazilim|kiyos|authnac|makscyber|ari konaklama)\b"
+    clean_text = re.sub(brand_regex, "", text, flags=re.IGNORECASE).lower()
+
+    # 2. Scoring system
+    scores = {"en": 0, "tr": 0, "ar": 0, "ru": 0}
+
+    # --- Script Evidence (Higher weight) ---
+    # Arabic block
+    if any("\u0600" <= ch <= "\u06FF" for ch in text):
+        scores["ar"] += 5
+    # Cyrillic block
+    if any("\u0400" <= ch <= "\u04FF" for ch in text):
+        scores["ru"] += 5
+    # Turkish-specific characters
+    turkish_specific_chars = ["ç", "ğ", "ı", "ş", "ö", "ü"]
+    if any(ch in clean_text for ch in turkish_specific_chars):
+        scores["tr"] += 4
+
+    # --- Word Evidence (Lower weight) ---
+    # Expanded list including common typos and greeting variants
+    tr_words = {
+        "merhaba", "merahaba", "merhablar", "selam", "selamlar", "nasıl", 
+        "kimdir", "nedir", "hakkında", "neler", "sunuyorsunuz", "hizmetleri", 
+        "projesi", "evet", "hayır", "günaydın", "iyi", "günler"
+    }
+    en_words = {
+        "hello", "hi", "hey", "how", "who", "what", "about", "which", 
+        "services", "offer", "provide", "thanks", "thank", "good", "morning"
+    }
     
-    # Turkish-specific characters and common words
-    turkish_chars = ['ç', 'ğ', 'ı', 'ş', 'ü', 'ö']
-    turkish_words = ["kimdir", "yazılım", "yazilim", "nedir", "hakkında", "neler", "merhaba", "naber", "nasıl"]
-    
-    if any(ch in text for ch in turkish_chars) or any(word in lowered for word in turkish_words):
-        return "tr"
-    if any(0x600 < ord(ch) < 0x6FF for ch in text):
-        # Basic Arabic block check
-        return "ar"
-    if any(0x400 <= ord(ch) <= 0x4FF for ch in text):
-        # Cyrillic block check for Russian
-        return "ru"
-    return "en"
+    words = set(re.findall(r"\w+", clean_text))
+    for word in words:
+        if word in tr_words:
+            scores["tr"] += 2
+        if word in en_words:
+            scores["en"] += 2
+
+    # If no strong signal, and text uses Latin script, default based on word count
+    # Most general technical/company questions in the absence of TR markers are likely EN
+    if max(scores.values()) == 0:
+        return "en"
+
+    return max(scores, key=lambda l: scores[l])
 
 
 def _get_language_mismatch_warning(detected_lang: str, selected_lang: str) -> str | None:
@@ -512,51 +579,48 @@ async def chat(request: ChatRequest) -> ChatResponse:
     
     # Detect actual language of input and check for mismatch
     detected_lang = _detect_language_from_text(raw_message)
-    language_warning = _get_language_mismatch_warning(detected_lang, lang)
+    is_mismatch = (detected_lang != lang)
+    language_warning = _get_language_mismatch_warning(detected_lang, lang) if is_mismatch else None
     
-    # If there's a language mismatch, return error message instead of answering
-    if language_warning:
-        error_messages = {
-            "en": "Please switch to the correct language to continue.",
-            "tr": "Devam etmek için lütfen doğru dile geçin.",
-            "ar": "يرجى التبديل إلى اللغة الصحيحة للمتابعة.",
-            "ru": "Пожалуйста, переключитесь на правильный язык, чтобы продолжить.",
-        }
+    # helper for mismatch responses
+    def mismatch_response(reply: str = "") -> ChatResponse:
+        # Strictly enforce: no reply if there's a language mismatch
+        # This prevents the bot from answering in a different language than the UI context.
+        final_reply = "" if is_mismatch else reply
+        
         return ChatResponse(
-            reply=error_messages.get(lang, error_messages["en"]),
+            reply=final_reply,
             language=lang,
             suggestions=suggestions,
-            language_warning=language_warning
+            language_warning=language_warning,
+            is_mismatch=is_mismatch,
+            suggested_language=detected_lang
         )
 
-    # Very small intent detection for "Who is Toros Yazilim?"
-    # Latin‑script variants (EN/TR/RU suggestion buttons and typed text)
-    if "toros yazilim" in normalized or "toros yazılım" in normalized:
-        reply_text = _answer_about_toros(lang)
-        return ChatResponse(reply=reply_text, language=lang, suggestions=suggestions, language_warning=language_warning)
+    # 1) Specialized check for basic "Who is Toros Yazilim?" variations
+    # (Checking normalized versions and Arabic script)
+    if "toros yazilim" in normalized or "toros yazılım" in normalized or \
+       (lang == "ar" and "توروس" in raw_message and "يازليم" in raw_message):
+        return mismatch_response(_answer_about_toros(lang))
 
-    # Arabic variant from the Arabic suggestion button / user input.
-    if lang == "ar" and ("توروس" in raw_message and "يازليم" in raw_message):
-        reply_text = _answer_about_toros("ar")
-        return ChatResponse(reply=reply_text, language="ar", suggestions=suggestions, language_warning=language_warning)
-
-    # 1) Intent classification using ML model
+    # 2) Intent classification using ML model
     intent_label, confidence = predict_intent(raw_message)
 
-    # 2) Try to answer from the structured knowledge base using the intent.
-    #    We ONLY use the intent if confidence is high enough (e.g. >= 0.3)
+    # 3) High-confidence direct lookup
     if confidence >= 0.3:
         kb_items = KNOWLEDGE_BASE.get(lang, [])
         for item in kb_items:
             if item.get("title") == intent_label:
-                return ChatResponse(reply=item["answer"], language=lang, suggestions=suggestions, language_warning=language_warning)
+                return mismatch_response(item["answer"])
 
-    # 3) If that fails, fall back to similarity search inside the KB.
+    # 4) Cross-lingual RAG search (fallback)
     kb_answer = _answer_from_knowledge_base(raw_message, lang)
     if kb_answer:
-        return ChatResponse(reply=kb_answer, language=lang, suggestions=suggestions, language_warning=language_warning)
+        return mismatch_response(kb_answer)
 
-    # Fallback behaviour – keep echo‑style reply but still send locale‑specific suggestions.
-    reply_text = f"You said: {raw_message}"
+    # 5) Echo fallback
+    # If there's a mismatch and no specific answer found, we suppress the echo
+    # to avoid "You said: hello" when the user likely made a language mistake.
+    reply_text = "" if is_mismatch else f"You said: {raw_message}"
 
-    return ChatResponse(reply=reply_text, language=lang, suggestions=suggestions, language_warning=language_warning)
+    return mismatch_response(reply_text)
