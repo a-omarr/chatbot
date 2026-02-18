@@ -28,30 +28,10 @@ router = APIRouter()
 
 # Per‑language suggestions so each locale only sees its own examples.
 SUGGESTIONS_BY_LANG: dict[str, list[str]] = {
-    "en": [
-        "Who is Toros Yazilim?",
-        "What services do you offer?",
-        "What products do you have?",
-        "How can I contact you?",
-    ],
-    "tr": [
-        "Toros Yazilim kimdir?",
-        "Hangi hizmetleri sunuyorsunuz?",
-        "Ürünleriniz neler?",
-        "Sizi nasıl iletişime geçebilirim?",
-    ],
-    "ar": [
-        "من هي توروس يازليم؟",
-        "ما هي الخدمات التي تقدمها؟",
-        "ما هي منتجاتك؟",
-        "كيف يمكنني الاتصال بك؟",
-    ],
-    "ru": [
-        "Кто такая Toros Yazilim?",
-        "Какие услуги вы предоставляете?",
-        "Какие у вас продукты?",
-        "Как с вами связаться?",
-    ],
+    "en": ["Who is Toros Yazilim?"],
+    "tr": ["Toros Yazilim kimdir?"],
+    "ar": ["من هي توروس يازليم؟"],
+    "ru": ["Кто такая Toros Yazilim?"],
 }
 
 
