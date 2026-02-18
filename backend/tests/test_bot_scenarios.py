@@ -8,6 +8,8 @@ from app.ml.intent_classifier import predict_intent
     ("İş başvurusu nasıl yapılır?", "career_info"),
     ("Size nasıl ulaşabilirim?", "contact_info"),
     ("Merhaba", "greeting"),
+    ("What are KIYOS features?", "kiyos_features"),
+    ("KIYOS özellikleri nelerdir?", "kiyos_features"),
     ("كيف يمكنني الاتصال بكم؟", "contact_info"),
     ("Кто такая Toros Yazilim?", "company_overview"),
 ])

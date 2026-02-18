@@ -197,6 +197,25 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "answer": "👤 **KIYOS** is our flagship Identity Platform, offering Single Sign-On (SSO), MFA, and Lifecycle Management. It's Turkey's leading local identity solution.",
         },
         {
+            "title": "kiyos_features",
+            "keywords": ["kiyos features", "identity platform features", "kiyos capabilities", "kiyos functionalities"],
+            "answer": (
+                "🔑 **KIYOS Features** (Turkey's Local Identity Platform):\n"
+                "1. **Yetkim & EduGain Integration**: Ready-made inter-university and inter-institutional integration.\n"
+                "2. **Single Sign-On (SSO)**: Access hundreds of apps from a single login point.\n"
+                "3. **User Management**: Automated account creation and management from external sources.\n"
+                "4. **Lifecycle Management**: Automate access from creation to deletion.\n"
+                "5. **Universal Directory Integration**: Active Directory, Azure AD, OpenLDAP sync.\n"
+                "6. **Advanced API Management**: API authorization policies based on app, user context, and group membership.\n"
+                "7. **Multi-Factor Authentication (MFA)**: Secure employees and users with various MFA factors.\n"
+                "8. **Advanced Authentication**: Adaptive, multi-factor identity verification.\n"
+                "9. **Identity Management**: Ensure the right people access the right resources.\n"
+                "10. **Workflows**: Automate identity processes at scale without code.\n"
+                "11. **User Deduplication**: Merge multiple accounts into a single user.\n"
+                "12. **Group Management**: Unified mail group control for Google Workspace, Zimbra, etc."
+            ),
+        },
+        {
             "title": "career_info",
             "keywords": ["hiring", "jobs", "apply", "career", "human resources", "cv", "internship", "student", "intern", "program"],
             "answer": (
@@ -340,6 +359,25 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "answer": "👤 **KIYOS** (Kimlik Yönetim Sistemi), Türkiye'nin yerli kimlik platformudur. SSO, MFA ve yaşam döngüsü yönetimi gibi çözümler sunar.",
         },
         {
+            "title": "kiyos_features",
+            "keywords": ["kiyos özellikleri", "kimlik sunucusu özellikleri", "kiyos ne yapabilir", "kiyos fonksiyonları"],
+            "answer": (
+                "🔑 **KIYOS Özellikleri** (Türkiye'nin Yerli Kimlik Platformu):\n"
+                "1. **Yetkim & EduGain Entegrasyonu**: Üniversiteler ve kurumlar arası hazır entegrasyon altyapısı.\n"
+                "2. **Tek Oturum Açma (SSO)**: Tek giriş noktasından yüzlerce uygulamaya erişim.\n"
+                "3. **Kullanıcı Yönetimi**: Dış kaynaklardan otomatik hesap oluşturma ve yönetim.\n"
+                "4. **Yaşam Döngüsü Yönetimi**: Oluşturmadan silmeye kadar erişimi otomatikleştirin.\n"
+                "5. **Universal Dizin Entegrasyonu**: Active Directory, Azure AD, OpenLDAP senkronizasyonu.\n"
+                "6. **Gelişmiş API Yönetimi**: Uygulama ve kullanıcı bağlamına dayalı API yetkilendirme ilkeleri.\n"
+                "7. **Çok Faktörlü Kimlik Doğrulama (MFA)**: Çeşitli MFA faktörleriyle güvenlik.\n"
+                "8. **Gelişmiş Doğrulama**: Uyarlamalı, çok faktörlü kimlik doğrulama.\n"
+                "9. **Kimlik Yönetimi**: Doğru kişilerin doğru kaynaklara erişimini sağlayın.\n"
+                "10. **İş Akışları**: Kimlik süreçlerini kod yazmadan otomatikleştirin.\n"
+                "11. **Kullanıcı Tekilleştirme**: Birden fazla hesabı tek hesapta birleştirin.\n"
+                "12. **Grup Yönetimi**: Google Workspace, Zimbra için birleşik grup kontrolü."
+            ),
+        },
+        {
             "title": "career_info",
             "keywords": ["işe alım", "başvuru", "başvurusu", "kariyer", "cv", "insan kaynakları", "staj", "stajyer", "öğrenci"],
             "answer": (
@@ -418,6 +456,21 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "keywords": ["привет", "здравствуйте", "добрый день"],
             "answer": "👋 Привет! Добро пожаловать в Toros Yazılım. Чем я могу вам помочь сегодня?",
         },
+        {
+            "title": "kiyos_features",
+            "keywords": ["функции kiyos", "возможности платформы", "функционал kiyos"],
+            "answer": (
+                "🔑 **Функции KIYOS** (Местная платформа идентификации Турции):\n"
+                "1. **Интеграция Yetkim & EduGain**: Готовая интеграция между университетами и учреждениями.\n"
+                "2. **Единый вход (SSO)**: Доступ к сотням приложений через одну точку входа.\n"
+                "3. **Управление пользователями**: Автоматическое создание учётных записей.\n"
+                "4. **Управление жизненным циклом**: Автоматизация доступа от создания до удаления.\n"
+                "5. **Универсальная интеграция каталогов**: Active Directory, Azure AD, OpenLDAP.\n"
+                "6. **Расширенное управление API**: Политики авторизации API на основе контекста.\n"
+                "7. **Многофакторная аутентификация (MFA)**: Защита с помощью различных факторов MFA.\n"
+                "8. **Управление идентификацией**: Обеспечение доступа нужных людей к нужным ресурсам."
+            ),
+        },
     ],
     "ar": [
         {
@@ -472,6 +525,21 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "title": "greeting",
             "keywords": ["مرحبا", "سلام", "أهلا"],
             "answer": "👋 مرحبًا! أهلاً بكم في توروس يازليم. كيف يمكنني مساعدتكم اليوم؟",
+        },
+        {
+            "title": "kiyos_features",
+            "keywords": ["ميزات kiyos", "خصائص منصة الهوية", "وظائف kiyos"],
+            "answer": (
+                "🔑 **ميزات KIYOS** (منصة الهوية المحلية في تركيا):\n"
+                "1. **تكامل Yetkim & EduGain**: بنية تحتية جاهزة للتكامل بين الجامعات والمؤسسات.\n"
+                "2. **تسجيل الدخول الموحد (SSO)**: الوصول إلى مئات التطبيقات من نقطة دخول واحدة.\n"
+                "3. **إدارة المستخدمين**: إنشاء وإدارة الحسابات تلقائيًا من مصادر خارجية.\n"
+                "4. **إدارة دورة الحياة**: أتمتة الوصول من الإنشاء إلى الحذف.\n"
+                "5. **تكامل الدليل الشامل**: Active Directory، Azure AD، OpenLDAP.\n"
+                "6. **إدارة API المتقدمة**: سياسات تفويض API بناءً على السياق.\n"
+                "7. **المصادقة متعددة العوامل (MFA)**: حماية بعوامل MFA متنوعة.\n"
+                "8. **إدارة الهوية**: ضمان وصول الأشخاص المناسبين إلى الموارد المناسبة."
+            ),
         },
     ],
 }

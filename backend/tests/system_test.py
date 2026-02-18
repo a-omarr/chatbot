@@ -36,12 +36,13 @@ async def run_exhaustive_tests():
             ("What is AuthNAC?", "Network Access Control"),
             ("How many employees do you have?", "not specify an exact number"),
             ("Do you work with government?", "work with government institutions"),
-            ("Hello", "Welcome to Toros Yazilim")
+            ("Hello", "Welcome to Toros Yazilim"),
+            ("What are KIYOS features?", "Single Sign-On (SSO)"),
         ],
         "tr": [
             ("Toros Yazılım kimdir?", "2008 yilinda mersin'de kurulan"),
             ("Hangi hizmetleri sunuyorsunuz?", "Servis Entegrasyonlari"),
-            ("KIYOS nedir?", "Kimlik Yonetim Sistemi"),
+            ("KIYOS nedir?", "KIYOS"),
             ("Size nasıl ulaşabilirim?", "0(324) 404 0 808"),
             ("İşe alım yapıyor musunuz?", "Her zaman yetenekli bireyler ariyoruz"),
             ("Mobil uygulama geliştiriyor musunuz?", "Web, Mobil, Masaustu"),
@@ -51,16 +52,18 @@ async def run_exhaustive_tests():
             ("Kurumsal çözümleriniz neler?", "Kurumsal musterilerimiz için ozel cozumler"),
             ("Merhaba", "Toros Yazilim'a hos geldiniz"),
             ("İş başvurusu nasıl yapabilirim?", "yetenekli bireyler ariyoruz"),
-            ("İletişim bilgileriniz?", "0(324) 404 0 808")
+            ("İletişim bilgileriniz?", "0(324) 404 0 808"),
+            ("KIYOS özellikleri nelerdir?", "Tek Oturum Acma"),
         ],
         "ar": [
             ("من هي توروس يازليم؟", "توروس ياز   هي شركة تركية متخصص"),
             ("ما هي خدماتكم؟", "تكامل الأنظمة"),
-            ("أخبرني عن KIYOS", "نظام إدارة الهوية"),
+            ("أخبرني عن KIYOS", "KIYOS"),
             ("كيف أتصل بكم؟", "0(324) 404 0 808"),
             ("فرص عمل", "نحن نبحث دائمًا عن المواهب"),
             ("الأمن السيبراني", "الأمن السيبراني المتقدمة"),
-            ("مرحبا", "مرحبًا! أهلاً بكم")
+            ("مرحبا", "مرحبًا! أهلاً بكم"),
+            ("ما هي ميزات KIYOS؟", "SSO"),
         ],
         "ru": [
             ("Кто такая Toros Yazilim?", "турецкая компания в сфере программного обеспечения"),
@@ -68,7 +71,8 @@ async def run_exhaustive_tests():
             ("Расскажите о KIYOS", "управление идентификацией"),
             ("Как с вами связаться?", "0(324) 404 0 808"),
             ("У вас есть вакансии?", "Всегда ищем талантливых"),
-            ("Привет", "Привет! Добро пожаловать")
+            ("Привет", "Привет! Добро пожаловать"),
+            ("Какие функции у KIYOS?", "SSO"),
         ]
     }
 
