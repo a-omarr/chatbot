@@ -1,0 +1,19 @@
+{"text": "test query", "predicted_intent": "other", "language": "en", "model_confidence": 0.0}
+{"text": "1234567890", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": "!!!!!!!!!!", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": "xyz abc 987", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.0757493424788836}
+{"text": "asdfghjkl", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08097541343838376}
+{"text": "qwert yuiop", "predicted_intent": "custom_software", "language": "en", "model_confidence": 0.08227697893119362}
+{"text": "--- --- ---", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": "zzz zzz zzz", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08730615241145274}
+{"text": "999 888 777", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": ":) :( :D", "predicted_intent": "career_info", "language": "en", "model_confidence": 0.0809514800895271}
+{"text": "poly morph ism", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08734300453082257}
+{"text": "1234567890", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": "1234567890", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": "!!!!!!!!!!", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": "xyz abc 987", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.0757493424788836}
+{"text": "--- --- ---", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": "zzz zzz zzz", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08730615241145274}
+{"text": "999 888 777", "predicted_intent": "contact_info", "language": "en", "model_confidence": 0.08093645203791021}
+{"text": ":) :( :D", "predicted_intent": "career_info", "language": "en", "model_confidence": 0.0809514800895271}
