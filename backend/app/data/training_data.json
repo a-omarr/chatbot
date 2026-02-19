@@ -1,0 +1,1438 @@
+[
+    {
+        "text": "Who is Toros Yazilim?",
+        "label": "company_overview"
+    },
+    {
+        "text": "What is Toros Yazilim?",
+        "label": "company_overview"
+    },
+    {
+        "text": "Tell me about Toros Yazilim",
+        "label": "company_overview"
+    },
+    {
+        "text": "since when",
+        "label": "company_overview"
+    },
+    {
+        "text": "when was it founded",
+        "label": "company_overview"
+    },
+    {
+        "text": "when did you start",
+        "label": "company_overview"
+    },
+    {
+        "text": "what year was the company established",
+        "label": "company_overview"
+    },
+    {
+        "text": "history of the company",
+        "label": "company_overview"
+    },
+    {
+        "text": "about us",
+        "label": "company_overview"
+    },
+    {
+        "text": "What does Toros do?",
+        "label": "services"
+    },
+    {
+        "text": "Which services do you offer?",
+        "label": "services"
+    },
+    {
+        "text": "What services do you offer?",
+        "label": "services"
+    },
+    {
+        "text": "What solutions do you provide for web companies?",
+        "label": "services"
+    },
+    {
+        "text": "Do you build custom software?",
+        "label": "services"
+    },
+    {
+        "text": "I need a specific software solution",
+        "label": "services"
+    },
+    {
+        "text": "Can you develop an app for me?",
+        "label": "services"
+    },
+    {
+        "text": "software development services",
+        "label": "services"
+    },
+    {
+        "text": "application development",
+        "label": "services"
+    },
+    {
+        "text": "what services do you offer",
+        "label": "services"
+    },
+    {
+        "text": "list your services",
+        "label": "services"
+    },
+    {
+        "text": "What products does Toros have?",
+        "label": "products"
+    },
+    {
+        "text": "Tell me about KIYOS",
+        "label": "products"
+    },
+    {
+        "text": "What is ARI KONAKLAMA?",
+        "label": "ari_konaklama"
+    },
+    {
+        "text": "Tell me about bee accommodation",
+        "label": "ari_konaklama"
+    },
+    {
+        "text": "Tell me about ARI KONAKLAMA and other products",
+        "label": "products"
+    },
+    {
+        "text": "What R&D projects do you have?",
+        "label": "products"
+    },
+    {
+        "text": "list of your software solutions",
+        "label": "products"
+    },
+    {
+        "text": "identity solution",
+        "label": "products"
+    },
+    {
+        "text": "How can I contact you?",
+        "label": "contact_info"
+    },
+    {
+        "text": "contact details",
+        "label": "contact_info"
+    },
+    {
+        "text": "Where is Toros Yazilim located?",
+        "label": "contact_info"
+    },
+    {
+        "text": "office location",
+        "label": "contact_info"
+    },
+    {
+        "text": "address",
+        "label": "contact_info"
+    },
+    {
+        "text": "where are you",
+        "label": "contact_info"
+    },
+    {
+        "text": "How can I contact you?",
+        "label": "contact_info"
+    },
+    {
+        "text": "contact form",
+        "label": "contact_info"
+    },
+    {
+        "text": "reach out to you",
+        "label": "contact_info"
+    },
+    {
+        "text": "how can I contact your sales team?",
+        "label": "sales_team"
+    },
+    {
+        "text": "sales department",
+        "label": "sales_team"
+    },
+    {
+        "text": "talk to sales",
+        "label": "sales_team"
+    },
+    {
+        "text": "sales contact",
+        "label": "sales_team"
+    },
+    {
+        "text": "request a demo",
+        "label": "request_demo"
+    },
+    {
+        "text": "can I request a demo?",
+        "label": "request_demo"
+    },
+    {
+        "text": "demo version",
+        "label": "request_demo"
+    },
+    {
+        "text": "How can I get a demo?",
+        "label": "request_demo"
+    },
+    {
+        "text": "What is your phone number?",
+        "label": "phone_number"
+    },
+    {
+        "text": "phone",
+        "label": "phone_number"
+    },
+    {
+        "text": "telephone",
+        "label": "phone_number"
+    },
+    {
+        "text": "call you",
+        "label": "phone_number"
+    },
+    {
+        "text": "contact number",
+        "label": "phone_number"
+    },
+    {
+        "text": "Give me your contact number",
+        "label": "phone_number"
+    },
+    {
+        "text": "I need a project quote for enterprise software",
+        "label": "contact_info"
+    },
+    {
+        "text": "Can I get a project quote?",
+        "label": "contact_info"
+    },
+    {
+        "text": "pricing for enterprise solutions",
+        "label": "contact_info"
+    },
+    {
+        "text": "cost of software development",
+        "label": "contact_info"
+    },
+    {
+        "text": "pricing information",
+        "label": "contact_info"
+    },
+    {
+        "text": "contact form",
+        "label": "contact_info"
+    },
+    {
+        "text": "reach out to you",
+        "label": "contact_info"
+    },
+    {
+        "text": "how much does it cost",
+        "label": "contact_info"
+    },
+    {
+        "text": "request a price list",
+        "label": "contact_info"
+    },
+    {
+        "text": "start a project",
+        "label": "contact_info"
+    },
+    {
+        "text": "book a meeting",
+        "label": "contact_info"
+    },
+    {
+        "text": "quote for software development",
+        "label": "contact_info"
+    },
+    {
+        "text": "pricing for custom apps",
+        "label": "contact_info"
+    },
+    {
+        "text": "how to buy your products",
+        "label": "contact_info"
+    },
+    {
+        "text": "I want to buy your products",
+        "label": "contact_info"
+    },
+    {
+        "text": "purchasing your solutions",
+        "label": "contact_info"
+    },
+    {
+        "text": "buy software",
+        "label": "contact_info"
+    },
+    {
+        "text": "where can I buy your products",
+        "label": "contact_info"
+    },
+    {
+        "text": "how do I purchase",
+        "label": "contact_info"
+    },
+    {
+        "text": "buy now",
+        "label": "contact_info"
+    },
+    {
+        "text": "I want to buy",
+        "label": "contact_info"
+    },
+    {
+        "text": "can I buy these products",
+        "label": "contact_info"
+    },
+    {
+        "text": "What is Makscyber SIEM?",
+        "label": "makscyber_siem"
+    },
+    {
+        "text": "tell me about SIEM",
+        "label": "makscyber_siem"
+    },
+    {
+        "text": "log analysis tool",
+        "label": "makscyber_siem"
+    },
+    {
+        "text": "What is AuthNAC?",
+        "label": "authnac_info"
+    },
+    {
+        "text": "What does AuthNAC do?",
+        "label": "authnac_info"
+    },
+    {
+        "text": "secure authentication",
+        "label": "authnac_info"
+    },
+    {
+        "text": "network access control",
+        "label": "authnac_info"
+    },
+    {
+        "text": "Tell me about your siber security solutions",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "cybersecurity",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "network security",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "Do you offer identity management solutions?",
+        "label": "identity_management"
+    },
+    {
+        "text": "SSO and MFA",
+        "label": "identity_management"
+    },
+    {
+        "text": "Tell me about KIYOS",
+        "label": "identity_management"
+    },
+    {
+        "text": "What is KIYOS?",
+        "label": "identity_management"
+    },
+    {
+        "text": "What are KIYOS features?",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "KIYOS capabilities",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "identity platform features",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "KIYOS functionalities",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "What can KIYOS do?",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "features of the identity server",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "KIYOS SSO MFA features",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "Are you hiring?",
+        "label": "career_info"
+    },
+    {
+        "text": "how to apply for a job",
+        "label": "career_info"
+    },
+    {
+        "text": "career opportunities",
+        "label": "career_info"
+    },
+    {
+        "text": "Do you offer internships?",
+        "label": "career_info"
+    },
+    {
+        "text": "internship program",
+        "label": "career_info"
+    },
+    {
+        "text": "student intern",
+        "label": "career_info"
+    },
+    {
+        "text": "human resources",
+        "label": "career_info"
+    },
+    {
+        "text": "recruitment",
+        "label": "career_info"
+    },
+    {
+        "text": "jobs at Toros",
+        "label": "career_info"
+    },
+    {
+        "text": "send CV",
+        "label": "career_info"
+    },
+    {
+        "text": "join the team",
+        "label": "career_info"
+    },
+    {
+        "text": "Do you build custom software?",
+        "label": "custom_software"
+    },
+    {
+        "text": "develop an app",
+        "label": "custom_software"
+    },
+    {
+        "text": "IT advice",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "technology advisor",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "professional IT consultant",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "business technology planning",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "IT audit and planning",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "Do you work with government institutions?",
+        "label": "public_sector"
+    },
+    {
+        "text": "Do you work with the public sector?",
+        "label": "public_sector"
+    },
+    {
+        "text": "government clients",
+        "label": "public_sector"
+    },
+    {
+        "text": "Are your systems compliant with security standards?",
+        "label": "public_sector"
+    },
+    {
+        "text": "government work",
+        "label": "public_sector"
+    },
+    {
+        "text": "municipalities",
+        "label": "public_sector"
+    },
+    {
+        "text": "national security standards",
+        "label": "public_sector"
+    },
+    {
+        "text": "state owned companies",
+        "label": "public_sector"
+    },
+    {
+        "text": "goverment tenders",
+        "label": "public_sector"
+    },
+    {
+        "text": "public administration",
+        "label": "public_sector"
+    },
+    {
+        "text": "ministry and government",
+        "label": "public_sector"
+    },
+    {
+        "text": "Do you develop enterprise software?",
+        "label": "business_clients"
+    },
+    {
+        "text": "Can you integrate with our existing systems?",
+        "label": "business_clients"
+    },
+    {
+        "text": "corporate solutions",
+        "label": "business_clients"
+    },
+    {
+        "text": "bespoke software for companies",
+        "label": "business_clients"
+    },
+    {
+        "text": "enterprise application",
+        "label": "business_clients"
+    },
+    {
+        "text": "system integration",
+        "label": "business_clients"
+    },
+    {
+        "text": "How many employees do you have?",
+        "label": "employees"
+    },
+    {
+        "text": "how many people work there",
+        "label": "employees"
+    },
+    {
+        "text": "team size",
+        "label": "employees"
+    },
+    {
+        "text": "staff count",
+        "label": "employees"
+    },
+    {
+        "text": "Hello",
+        "label": "greeting"
+    },
+    {
+        "text": "Hi",
+        "label": "greeting"
+    },
+    {
+        "text": "Hey",
+        "label": "greeting"
+    },
+    {
+        "text": "Good morning",
+        "label": "greeting"
+    },
+    {
+        "text": "Good afternoon",
+        "label": "greeting"
+    },
+    {
+        "text": "Greetings",
+        "label": "greeting"
+    },
+    {
+        "text": "personal data protection",
+        "label": "personal_data_protection"
+    },
+    {
+        "text": "KVKK",
+        "label": "personal_data_protection"
+    },
+    {
+        "text": "GDPR",
+        "label": "personal_data_protection"
+    },
+    {
+        "text": "what is personal data protection",
+        "label": "personal_data_protection"
+    },
+    {
+        "text": "privacy policy",
+        "label": "privacy_policy"
+    },
+    {
+        "text": "how do you handle my data",
+        "label": "privacy_policy"
+    },
+    {
+        "text": "user agreement",
+        "label": "user_agreement"
+    },
+    {
+        "text": "terms of use",
+        "label": "user_agreement"
+    },
+    {
+        "text": "terms and conditions",
+        "label": "user_agreement"
+    },
+    {
+        "text": "information security policy",
+        "label": "info_security_policy"
+    },
+    {
+        "text": "ISO 27001",
+        "label": "info_security_policy"
+    },
+    {
+        "text": "security standards",
+        "label": "info_security_policy"
+    },
+    {
+        "text": "who are your references",
+        "label": "references"
+    },
+    {
+        "text": "which companies do you work with",
+        "label": "references"
+    },
+    {
+        "text": "list of customers",
+        "label": "references"
+    },
+    {
+        "text": "partners",
+        "label": "references"
+    },
+    {
+        "text": "what are you researching",
+        "label": "research_development"
+    },
+    {
+        "text": "R&D projects",
+        "label": "research_development"
+    },
+    {
+        "text": "research and development",
+        "label": "research_development"
+    },
+    {
+        "text": "future projects",
+        "label": "research_development"
+    },
+    {
+        "text": "Thanks",
+        "label": "other"
+    },
+    {
+        "text": "Toros Yazilim kimdir?",
+        "label": "company_overview"
+    },
+    {
+        "text": "Hangi hizmetleri sunuyorsunuz?",
+        "label": "services"
+    },
+    {
+        "text": "neler yapıyorsunuz",
+        "label": "services"
+    },
+    {
+        "text": "yazılım hizmetleri",
+        "label": "services"
+    },
+    {
+        "text": "çözümleriniz neler",
+        "label": "services"
+    },
+    {
+        "text": "hizmetleriniz hakkında bilgi",
+        "label": "services"
+    },
+    {
+        "text": "size nasıl ulaşabilirim",
+        "label": "contact_info"
+    },
+    {
+        "text": "adresiniz neresi",
+        "label": "contact_info"
+    },
+    {
+        "text": "konum bilgisi",
+        "label": "contact_info"
+    },
+    {
+        "text": "neredesiniz",
+        "label": "contact_info"
+    },
+    {
+        "text": "ofisiniz nerede",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim kanalları",
+        "label": "contact_info"
+    },
+    {
+        "text": "nasıl ulaşırım",
+        "label": "contact_info"
+    },
+    {
+        "text": "konumunuz neresi",
+        "label": "contact_info"
+    },
+    {
+        "text": "ofis adresi",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim bilgileri",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim bilgisi",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim kanalları",
+        "label": "contact_info"
+    },
+    {
+        "text": "nasıl ulaşırım",
+        "label": "contact_info"
+    },
+    {
+        "text": "bana iletişim bilgisini ver",
+        "label": "contact_info"
+    },
+    {
+        "text": "neredesiniz",
+        "label": "contact_info"
+    },
+    {
+        "text": "ofis neresi",
+        "label": "contact_info"
+    },
+    {
+        "text": "adres neresi",
+        "label": "contact_info"
+    },
+    {
+        "text": "size nasıl ulaşabilirim",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim bilgileriniz",
+        "label": "contact_info"
+    },
+    {
+        "text": "iletişim bilgileriniz neler",
+        "label": "contact_info"
+    },
+    {
+        "text": "satış ekibiyle görüşmek istiyorum",
+        "label": "sales_team"
+    },
+    {
+        "text": "satış departmanı",
+        "label": "sales_team"
+    },
+    {
+        "text": "satış temsilcisi",
+        "label": "sales_team"
+    },
+    {
+        "text": "demo talep et",
+        "label": "request_demo"
+    },
+    {
+        "text": "demo istiyorum",
+        "label": "request_demo"
+    },
+    {
+        "text": "ürünü denemek istiyorum",
+        "label": "request_demo"
+    },
+    {
+        "text": "telefon numaranız nedir",
+        "label": "phone_number"
+    },
+    {
+        "text": "numaranız var mı",
+        "label": "phone_number"
+    },
+    {
+        "text": "bizi arayın",
+        "label": "phone_number"
+    },
+    {
+        "text": "fiyat teklifi",
+        "label": "contact_info"
+    },
+    {
+        "text": "Fiyat teklifi alabilir miyim?",
+        "label": "contact_info"
+    },
+    {
+        "text": "Makscyber SIEM nedir?",
+        "label": "makscyber_siem"
+    },
+    {
+        "text": "log analizi",
+        "label": "makscyber_siem"
+    },
+    {
+        "text": "AuthNAC ne işe yarar?",
+        "label": "authnac_info"
+    },
+    {
+        "text": "ağ erişim kontrolü",
+        "label": "authnac_info"
+    },
+    {
+        "text": "Siber güvenlik çözümleriniz neler?",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "siber güvenlik",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "Kamu kurumlarına hizmet veriyor musunuz?",
+        "label": "public_sector"
+    },
+    {
+        "text": "kamu kurumları",
+        "label": "public_sector"
+    },
+    {
+        "text": "devlet kurumları",
+        "label": "public_sector"
+    },
+    {
+        "text": "belediyelerle çalışıyor musunuz",
+        "label": "public_sector"
+    },
+    {
+        "text": "kamu sektörü",
+        "label": "public_sector"
+    },
+    {
+        "text": "KIYOS kimlik yönetimi",
+        "label": "identity_management"
+    },
+    {
+        "text": "SSO ve MFA çözümleri",
+        "label": "identity_management"
+    },
+    {
+        "text": "KIYOS özellikleri nelerdir?",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "KIYOS özellikleri",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "kimlik sunucusu özellikleri",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "KIYOS ne yapabilir?",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "KIYOS fonksiyonları",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "özellikleri nelerdir",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "İşe alım yapıyor musunuz?",
+        "label": "career_info"
+    },
+    {
+        "text": "iş başvurusu nasıl yapılır",
+        "label": "career_info"
+    },
+    {
+        "text": "nasıl iş başvurusu yaparım",
+        "label": "career_info"
+    },
+    {
+        "text": "İş başvurusu nasıl yapabilirim?",
+        "label": "career_info"
+    },
+    {
+        "text": "çalışmak istiyorum",
+        "label": "career_info"
+    },
+    {
+        "text": "iş ilanlarınız",
+        "label": "career_info"
+    },
+    {
+        "text": "güncel iş ilanları",
+        "label": "career_info"
+    },
+    {
+        "text": "kariyer fırsatları",
+        "label": "career_info"
+    },
+    {
+        "text": "açık pozisyonlar",
+        "label": "career_info"
+    },
+    {
+        "text": "ekibinize katılmak istiyorum",
+        "label": "career_info"
+    },
+    {
+        "text": "başvuru süreci",
+        "label": "career_info"
+    },
+    {
+        "text": "işe alım",
+        "label": "career_info"
+    },
+    {
+        "text": "işe alımları",
+        "label": "career_info"
+    },
+    {
+        "text": "işe alım var mı",
+        "label": "career_info"
+    },
+    {
+        "text": "eleman alıyor musunuz",
+        "label": "career_info"
+    },
+    {
+        "text": "personel alımı",
+        "label": "career_info"
+    },
+    {
+        "text": "iş başvurusu",
+        "label": "career_info"
+    },
+    {
+        "text": "kariyer",
+        "label": "career_info"
+    },
+    {
+        "text": "staj",
+        "label": "career_info"
+    },
+    {
+        "text": "Staj imkanı sunuyor musunuz?",
+        "label": "career_info"
+    },
+    {
+        "text": "staj başvurusu",
+        "label": "career_info"
+    },
+    {
+        "text": "iş ilanları",
+        "label": "career_info"
+    },
+    {
+        "text": "CV gönder",
+        "label": "career_info"
+    },
+    {
+        "text": "özgeçmiş göndermek istiyorum",
+        "label": "career_info"
+    },
+    {
+        "text": "özel yazılım geliştirme",
+        "label": "custom_software"
+    },
+    {
+        "text": "kurumsal yazılım desteği",
+        "label": "business_clients"
+    },
+    {
+        "text": "Kurumsal yazılım desteği alabilir miyim?",
+        "label": "business_clients"
+    },
+    {
+        "text": "sistem entegrasyonu",
+        "label": "business_clients"
+    },
+    {
+        "text": "kurumsal çözümler",
+        "label": "business_clients"
+    },
+    {
+        "text": "BT danışmanlık",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "BT danışmanlık hizmeti veriyor musunuz?",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "Merhaba",
+        "label": "greeting"
+    },
+    {
+        "text": "Selam",
+        "label": "greeting"
+    },
+    {
+        "text": "Merhabalar",
+        "label": "greeting"
+    },
+    {
+        "text": "Selamlar",
+        "label": "greeting"
+    },
+    {
+        "text": "Günaydın",
+        "label": "greeting"
+    },
+    {
+        "text": "kaç kişi çalışıyor",
+        "label": "employees"
+    },
+    {
+        "text": "çalışan sayısı",
+        "label": "employees"
+    },
+    {
+        "text": "Kaç çalışanınız var?",
+        "label": "employees"
+    },
+    {
+        "text": "ekip büyüklüğü",
+        "label": "employees"
+    },
+    {
+        "text": "Arı konaklama nedir",
+        "label": "ari_konaklama"
+    },
+    {
+        "text": "arı konaklama projesi",
+        "label": "ari_konaklama"
+    },
+    {
+        "text": "konaklama noktası tespiti",
+        "label": "ari_konaklama"
+    },
+    {
+        "text": "kişisel verilerin korunması",
+        "label": "personal_data_protection"
+    },
+    {
+        "text": "KVKK politikası",
+        "label": "personal_data_protection"
+    },
+    {
+        "text": "verilerim nasıl korunuyor",
+        "label": "personal_data_protection"
+    },
+    {
+        "text": "gizlilik politikası",
+        "label": "privacy_policy"
+    },
+    {
+        "text": "gizlilik sözleşmesi",
+        "label": "privacy_policy"
+    },
+    {
+        "text": "kullanıcı sözleşmesi",
+        "label": "user_agreement"
+    },
+    {
+        "text": "kullanım koşulları",
+        "label": "user_agreement"
+    },
+    {
+        "text": "bilgi güvenliği politikası",
+        "label": "info_security_policy"
+    },
+    {
+        "text": "ISO 27001 sertifikası",
+        "label": "info_security_policy"
+    },
+    {
+        "text": "güvenlik politikalarınız",
+        "label": "info_security_policy"
+    },
+    {
+        "text": "referanslarınız kimler",
+        "label": "references"
+    },
+    {
+        "text": "kimlerle çalışıyorsunuz",
+        "label": "references"
+    },
+    {
+        "text": "müşteri listesi",
+        "label": "references"
+    },
+    {
+        "text": "referanslar",
+        "label": "references"
+    },
+    {
+        "text": "ar-ge projeleriniz",
+        "label": "research_development"
+    },
+    {
+        "text": "araştırma ve geliştirme",
+        "label": "research_development"
+    },
+    {
+        "text": "gelecek projeler",
+        "label": "research_development"
+    },
+    {
+        "text": "Кто такая Toros Yazilim?",
+        "label": "company_overview"
+    },
+    {
+        "text": "Расскажите о компании Toros Yazilim",
+        "label": "company_overview"
+    },
+    {
+        "text": "Чем занимается Toros Yazilim?",
+        "label": "services"
+    },
+    {
+        "text": "Какие услуги вы предоставляете?",
+        "label": "services"
+    },
+    {
+        "text": "Какие услуги вы предлагаете?",
+        "label": "services"
+    },
+    {
+        "text": "услуги компании",
+        "label": "services"
+    },
+    {
+        "text": "чем вы занимаетесь",
+        "label": "services"
+    },
+    {
+        "text": "Какие у вас продукты и проекты R&D?",
+        "label": "products"
+    },
+    {
+        "text": "где вы находитесь",
+        "label": "contact_info"
+    },
+    {
+        "text": "адрес офиса",
+        "label": "contact_info"
+    },
+    {
+        "text": "как с вами связаться",
+        "label": "contact_info"
+    },
+    {
+        "text": "связаться с отделом продаж",
+        "label": "sales_team"
+    },
+    {
+        "text": "команда продаж",
+        "label": "sales_team"
+    },
+    {
+        "text": "запросить демо",
+        "label": "request_demo"
+    },
+    {
+        "text": "запрос демо-версии",
+        "label": "request_demo"
+    },
+    {
+        "text": "номер телефона",
+        "label": "phone_number"
+    },
+    {
+        "text": "как позвонить",
+        "label": "phone_number"
+    },
+    {
+        "text": "телефон",
+        "label": "phone_number"
+    },
+    {
+        "text": "цена и стоимость",
+        "label": "contact_info"
+    },
+    {
+        "text": "Сколько у вас сотрудников?",
+        "label": "employees"
+    },
+    {
+        "text": "Какой размер вашей команды?",
+        "label": "employees"
+    },
+    {
+        "text": "Что такое Makscyber SIEM?",
+        "label": "makscyber_siem"
+    },
+    {
+        "text": "Как работает AuthNAC?",
+        "label": "authnac_info"
+    },
+    {
+        "text": "У вас есть решения для управления идентификацией?",
+        "label": "identity_management"
+    },
+    {
+        "text": "Какие функции у KIYOS?",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "возможности платформы идентификации",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "функционал KIYOS",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "Как улучшить кибербезопасность компании?",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "Вы разрабатываете корпоративное ПО?",
+        "label": "business_clients"
+    },
+    {
+        "text": "У вас есть вакансии?",
+        "label": "career_info"
+    },
+    {
+        "text": "стажировка",
+        "label": "career_info"
+    },
+    {
+        "text": "работа у вас",
+        "label": "career_info"
+    },
+    {
+        "text": "Привет",
+        "label": "greeting"
+    },
+    {
+        "text": "Здравствуйте",
+        "label": "greeting"
+    },
+    {
+        "text": "Добрый день",
+        "label": "greeting"
+    },
+    {
+        "text": "Приветствую",
+        "label": "greeting"
+    },
+    {
+        "text": "من هي توروس يازليم؟",
+        "label": "company_overview"
+    },
+    {
+        "text": "أخبرني عن شركة توروس يازليم",
+        "label": "company_overview"
+    },
+    {
+        "text": "ما هي الخدمات التي تقدمها توروس يازليم؟",
+        "label": "services"
+    },
+    {
+        "text": "ما هي الحلول التي توفرونها؟",
+        "label": "services"
+    },
+    {
+        "text": "ما هي منتجات توروس يازليم؟",
+        "label": "products"
+    },
+    {
+        "text": "أين يقع مكتبكم؟",
+        "label": "contact_info"
+    },
+    {
+        "text": "عنوان الشركة",
+        "label": "contact_info"
+    },
+    {
+        "text": "كيف أتصل بكم؟",
+        "label": "contact_info"
+    },
+    {
+        "text": "أريد التواصل معكم",
+        "label": "contact_info"
+    },
+    {
+        "text": "اتصال بنا",
+        "label": "contact_info"
+    },
+    {
+        "text": "طريقة التواصل",
+        "label": "contact_info"
+    },
+    {
+        "text": "أريد التواصل مع المبيعات",
+        "label": "sales_team"
+    },
+    {
+        "text": "فريق المبيعات",
+        "label": "sales_team"
+    },
+    {
+        "text": "رقم الهاتف",
+        "label": "phone_number"
+    },
+    {
+        "text": "ما هو رقم تليفونكم؟",
+        "label": "phone_number"
+    },
+    {
+        "text": "طلب عرض تجريبي",
+        "label": "request_demo"
+    },
+    {
+        "text": "تجربة المنتج",
+        "label": "request_demo"
+    },
+    {
+        "text": "التواصل معكم",
+        "label": "contact_info"
+    },
+    {
+        "text": "التسعير والأسعار",
+        "label": "contact_info"
+    },
+    {
+        "text": "كم عدد الموظفين لديكم؟",
+        "label": "employees"
+    },
+    {
+        "text": "ما هو حجم فريقكم؟",
+        "label": "employees"
+    },
+    {
+        "text": "ما هو Makscyber SIEM؟",
+        "label": "makscyber_siem"
+    },
+    {
+        "text": "ماذا يفعل AuthNAC؟",
+        "label": "authnac_info"
+    },
+    {
+        "text": "هل تقدمون حلول إدارة الهوية؟",
+        "label": "identity_management"
+    },
+    {
+        "text": "ما هي ميزات KIYOS؟",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "خصائص منصة الهوية",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "ماذا يقدم KIYOS؟",
+        "label": "kiyos_features"
+    },
+    {
+        "text": "كيف يمكنني تحسين الأمن السيبراني لشركتي؟",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "أريد معرفة المزيد عن الأمن السيبراني",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "حلول الأمن السيبراني",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "أمن الشبكات",
+        "label": "cybersecurity"
+    },
+    {
+        "text": "هل تقدمون حلول للأعمال؟",
+        "label": "business_clients"
+    },
+    {
+        "text": "هل تقدمون حلولاً للشركات؟",
+        "label": "business_clients"
+    },
+    {
+        "text": "حلول للشركات والمؤسسات",
+        "label": "business_clients"
+    },
+    {
+        "text": "تطوير برمجيات للمؤسسات",
+        "label": "business_clients"
+    },
+    {
+        "text": "تكامل الأنظمة البرمجية",
+        "label": "business_clients"
+    },
+    {
+        "text": "وظائف شاغرة",
+        "label": "career_info"
+    },
+    {
+        "text": "فرص تدريب",
+        "label": "career_info"
+    },
+    {
+        "text": "كيف يمكنني التقدم لوظيفة؟",
+        "label": "career_info"
+    },
+    {
+        "text": "مرحبا",
+        "label": "greeting"
+    },
+    {
+        "text": "سلام",
+        "label": "greeting"
+    },
+    {
+        "text": "أهلا",
+        "label": "greeting"
+    },
+    {
+        "text": "السلام عليكم",
+        "label": "greeting"
+    },
+    {
+        "text": "مرحباً",
+        "label": "greeting"
+    },
+    {
+        "text": "أهلاً",
+        "label": "greeting"
+    }
+]

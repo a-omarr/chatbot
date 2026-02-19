@@ -7,7 +7,7 @@ import re
 sys.path.append(os.getcwd())
 sys.path.append(os.path.join(os.getcwd(), "backend"))
 
-from backend.api.v1.bot import chat, ChatRequest
+from backend.api.v1.chat_router import chat, ChatRequest
 
 def normalize_for_test(text: str) -> str:
     """Normalize text for comparison: lowercase and replace Turkish/special chars."""

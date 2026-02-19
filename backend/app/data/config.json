@@ -1,0 +1,99 @@
+{
+    "suggestions": {
+        "en": [
+            "Who is Toros Yazilim?",
+            "Tell me about KIYOS",
+            "What services do you offer?",
+            "Does KIYOS support LDAP?",
+            "How can I contact you?"
+        ],
+        "tr": [
+            "Toros Yazilim kimdir?",
+            "KIYOS nedir?",
+            "Hizmetleriniz neler?",
+            "KIYOS LDAP destekliyor mu?",
+            "Size nasıl ulaşabilirim?"
+        ],
+        "ar": [
+            "من هي توروس يازليم؟",
+            "أخبرني عن KIYOS",
+            "ما هي خدماتكم؟",
+            "هل يدعم KIYOS نظام LDAP؟",
+            "كيف يمكنني الاتصال بكم؟"
+        ],
+        "ru": [
+            "Кто такая Toros Yazilim?",
+            "Расскажите о KIYOS",
+            "Какие услуги вы предлагаете?",
+            "Поддерживает ли KIYOS LDAP?",
+            "Как с вами связаться?"
+        ]
+    },
+    "base_url": "https://www.torosyazilim.com.tr",
+    "intent_resource_paths": {
+        "tr": {
+            "services": "hizmetlerimiz",
+            "company_overview": "hakkimizda",
+            "contact_info": "contact",
+            "makscyber_siem": "urunlerimiz",
+            "authnac_info": "urunlerimiz",
+            "identity_management": "urunler-kimlik-sunucusu",
+            "kiyos_features": "urunler-kimlik-sunucusu",
+            "ari_konaklama": "https://www.arikonaklama.net/",
+            "career_info": "insan-kaynaklari",
+            "hiring": "insan-kaynaklari",
+            "internship": "staj-imkanlari",
+            "custom_software": "hizmetlerimiz",
+            "it_consultancy": "hizmetlerimiz",
+            "cybersecurity": "hizmetlerimiz",
+            "business_clients": "hizmetlerimiz",
+            "public_sector": "hakkimizda",
+            "products": "urunlerimiz",
+            "employees": "hakkimizda",
+            "personal_data_protection": "kisisel-verilerin-korunmasi",
+            "privacy_policy": "gizlilik-politikasi",
+            "user_agreement": "kullanici-sozlesmesi",
+            "info_security_policy": "bilgi-guvenligi-politika-ozeti",
+            "references": "referanslar",
+            "research_development": "arastirma-ve-gelistirme",
+            "sales_team": "contact",
+            "request_demo": "contact",
+            "phone_number": "contact"
+        },
+        "default": {
+            "services": "services",
+            "company_overview": "about-us",
+            "contact_info": "contact",
+            "makscyber_siem": "products",
+            "authnac_info": "products",
+            "identity_management": "products-identity-server",
+            "kiyos_features": "products-identity-server",
+            "ari_konaklama": "https://www.arikonaklama.net/",
+            "career_info": "human-resources",
+            "hiring": "human-resources",
+            "internship": "internship-opportunities",
+            "custom_software": "services",
+            "it_consultancy": "services",
+            "cybersecurity": "services",
+            "business_clients": "services",
+            "public_sector": "about-us",
+            "products": "products",
+            "employees": "about-us",
+            "personal_data_protection": "personal-data-protection",
+            "privacy_policy": "privacy-policy",
+            "user_agreement": "user-agreement",
+            "info_security_policy": "information-security-policy-summary",
+            "references": "references",
+            "research_development": "research-and-development",
+            "sales_team": "contact",
+            "request_demo": "contact",
+            "phone_number": "contact"
+        }
+    },
+    "fallback_messages": {
+        "en": "You entered an unmeaningful message, please enter a valid message.",
+        "tr": "Anlamsız bir mesaj girdiniz, lütfen geçerli bir mesaj giriniz.",
+        "ar": "لقد أدخلت رسالة غير مفهومة، يرجى إدخال رسالة صحيحة.",
+        "ru": "Вы ввели бессмысленное сообщение, пожалуйста, введите корректное сообщение."
+    }
+}

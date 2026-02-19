@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.v1.bot import ChatRequest, ChatResponse
+from api.v1.chat_router import ChatRequest, ChatResponse
 from api.v1.router import api_router
 from app.services.bot_service import bot_service
 
@@ -30,39 +30,40 @@ app.add_middleware(
 )
 
 
-@app.get("/health", tags=["health"])
+# ---------------------------------------------------------------------------
+# API Endpoints
+# ---------------------------------------------------------------------------
+
+@app.get("/health", tags=["system"])
 async def health_check() -> dict:
-    return {"status": "ok"}
+    """Basic health check endpoint."""
+    return {"status": "operational", "version": "1.0.0"}
 
 
-@app.post("/api/bot", response_model=ChatResponse, tags=["bot"])
-async def chat_bot(request: ChatRequest) -> ChatResponse:
-    """Bot endpoint at /api/bot.
-
-    Accepts a JSON body with a `message` field and returns a reply.
-    Includes basic error handling and logging.
+@app.post("/api/bot", response_model=ChatResponse, tags=["chat"])
+async def legacy_chat_bot(request: ChatRequest) -> ChatResponse:
+    """Legacy chat endpoint for backward compatibility.
+    
+    Delegates to the bot_service logic.
     """
     try:
         if not request.message.strip():
-            logger.warning("Received empty message payload")
-            raise HTTPException(status_code=400, detail="Message must not be empty.")
+            logger.warning("Received empty message")
+            raise HTTPException(status_code=400, detail="Message cannot be empty.")
 
-        logger.info("Received bot request", extra={"message": request.message})
-
-        # Delegate to service layer
+        # Logic delegated to service layer
         reply_text = bot_service.generate_reply(request.message)
-
-        logger.info("Sending bot response", extra={"reply": reply_text})
         return ChatResponse(reply=reply_text)
+
     except HTTPException:
-        # Let FastAPI handle HTTP errors we raised intentionally
         raise
-    except Exception as exc:  # noqa: BLE001
-        logger.exception("Unhandled error in /api/bot")
+    except Exception as exc:
+        logger.exception("Internal error in legacy bot endpoint")
         raise HTTPException(
             status_code=500,
-            detail="An unexpected error occurred while processing the request.",
+            detail="An internal server error occurred."
         ) from exc
 
 
+# Include versioned API routers
 app.include_router(api_router, prefix="/api/v1")

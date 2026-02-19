@@ -1,19 +1,10 @@
-"""RAG (Retrieval-Augmented Generation) engine for the Toros Yazılım chatbot.
-
-Uses cross-lingual TF-IDF with character n-grams for semantic-like search.
-100% free — no API key, no large model download. Only scikit-learn + numpy.
-
-The pipeline:
-1. Index all knowledge base entries across ALL languages on startup
-2. When a query comes in, vectorise it and find the most similar KB entries
-3. Boost entries in the user's target language
-4. Return the best-matching answer from the knowledge base
-
-Character n-grams (3-6) work across scripts (Latin, Cyrillic, Arabic)
-so that e.g. "toros" matches Turkish, English, Arabic, and Russian entries.
-"""
-
 from __future__ import annotations
+
+"""Knowledge retrieval engine for the Toros Yazılım chatbot.
+
+Uses cross-lingual TF-IDF search to find the best matching answer in the
+knowledge base. Supports Latin, Cyrillic, and Arabic scripts.
+"""
 
 import logging
 from typing import Any
@@ -24,19 +15,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# Cross-Lingual TF-IDF Knowledge Index
-# ---------------------------------------------------------------------------
-
-
 class KnowledgeIndex:
-    """Embeds and indexes all knowledge base entries for fast cross-lingual search.
-
-    Uses character n-gram TF-IDF so that it naturally handles multiple
-    scripts (Latin, Cyrillic, Arabic) without language-specific tokenisers.
-    """
+    """Indexes knowledge base entries for fast semantic search via TF-IDF."""
 
     def __init__(self, knowledge_base: dict[str, list[dict[str, Any]]]):
+        """Initialize with a dictionary of localized knowledge base entries."""
         self._kb = knowledge_base
         self._entries: list[dict[str, Any]] = []
         self._vectorizer: TfidfVectorizer | None = None
@@ -44,7 +27,7 @@ class KnowledgeIndex:
         self._built = False
 
     def build(self) -> None:
-        """Build the TF-IDF index from the knowledge base."""
+        """Construct the TF-IDF search index from all KB entries."""
         self._entries = []
         texts_to_embed: list[str] = []
 
@@ -57,7 +40,9 @@ class KnowledgeIndex:
                     "answer": item.get("answer", ""),
                 }
                 self._entries.append(entry)
-                # Boost title and keywords by repeating them in the index text
+                
+                # Create searchable text representation
+                # Repeating title and keywords gives them higher weight in search
                 embed_text = (
                     f"{entry['title']} {entry['title']} "
                     f"{' '.join(entry['keywords'])} {' '.join(entry['keywords'])} "
@@ -66,7 +51,7 @@ class KnowledgeIndex:
                 texts_to_embed.append(embed_text)
 
         if texts_to_embed:
-            # Character n-grams work across all scripts (Latin, Cyrillic, Arabic)
+            # Character n-grams (3-6) handle multilingual variability well
             self._vectorizer = TfidfVectorizer(
                 analyzer="char_wb",
                 ngram_range=(3, 6),
@@ -82,10 +67,7 @@ class KnowledgeIndex:
     def retrieve(
         self, query: str, lang: str = "en", top_k: int = 3
     ) -> list[dict[str, Any]]:
-        """Find the top-k most similar KB entries across all languages.
-
-        Matches in the user's selected language receive a 1.3× score boost.
-        """
+        """Retrieve the most relevant entries for a given query."""
         if not self._built:
             self.build()
 
@@ -95,7 +77,7 @@ class KnowledgeIndex:
         query_vec = self._vectorizer.transform([query])
         scores = cosine_similarity(query_vec, self._tfidf_matrix).flatten()
 
-        # Strongly prefer entries in the user's language
+        # Weight entries in the user's preferred language more heavily
         for i, entry in enumerate(self._entries):
             if entry["lang"] == lang:
                 scores[i] *= 2.0
@@ -112,23 +94,15 @@ class KnowledgeIndex:
 
         return results
 
-
-# ---------------------------------------------------------------------------
-# Global index (lazy-built on first query)
-# ---------------------------------------------------------------------------
+# Singleton index instance (lazy-built)
 _index: KnowledgeIndex | None = None
-
 
 async def generate_answer(
     query: str,
     knowledge_base: dict[str, list[dict[str, Any]]],
     lang: str = "en",
 ) -> str | None:
-    """Find the best answer using cross-lingual TF-IDF search over the KB.
-
-    Returns the answer text of the best-matching KB entry, or None if
-    no entry scores above the similarity threshold.
-    """
+    """High-level function to retrieve a single best answer string."""
     global _index
 
     if _index is None:
@@ -141,7 +115,7 @@ async def generate_answer(
         return None
 
     best = results[0]
-    # Only return an answer if similarity is high enough
+    # Similarity threshold to filter out noise
     if best["score"] < 0.08:
         return None
 

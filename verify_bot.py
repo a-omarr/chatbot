@@ -6,8 +6,8 @@ import asyncio
 # Add backend to path so we can import modules
 sys.path.append(os.path.join(os.getcwd(), 'backend'))
 
-from app.ml.intent_classifier import train_model, predict_intent
-from api.v1.bot import chat, ChatRequest
+from app.ml.intent_engine import train_model, predict_intent
+from api.v1.chat_router import chat, ChatRequest
 
 async def verify_bot():
     print("--- 1. Training Model ---")

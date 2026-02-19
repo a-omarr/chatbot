@@ -1,5 +1,5 @@
 import pytest
-from app.ml.intent_classifier import predict_intent
+from app.ml.intent_engine import predict_intent
 
 @pytest.mark.parametrize("text,expected_intent", [
     ("What are your services?", "services"),
