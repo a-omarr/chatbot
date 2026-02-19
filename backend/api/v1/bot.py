@@ -32,6 +32,8 @@ class ChatResponse(BaseModel):
     is_mismatch: bool = False
     # The language code that was actually detected (e.g. "tr")
     suggested_language: str | None = None
+    # Link to the official website for additional info
+    resource_url: str | None = None
 
 
 router = APIRouter()
@@ -67,6 +69,72 @@ SUGGESTIONS_BY_LANG: dict[str, list[str]] = {
         "Поддерживает ли KIYOS LDAP?",
         "Как с вами связаться?",
     ],
+}
+
+
+BASE_URL: Final = "https://www.torosyazilim.com.tr"
+
+# Mapping intents to their respective pages on the website, localized by language
+# tr uses Turkish slugs, while en, ar, ru use English-based slugs as observed on the site.
+INTENT_RESOURCE_PATHS: Final = {
+    "tr": {
+        "services": "hizmetlerimiz",
+        "company_overview": "hakkimizda",
+        "contact_info": "contact",
+        "makscyber_siem": "urunlerimiz",
+        "authnac_info": "urunlerimiz",
+        "identity_management": "urunler-kimlik-sunucusu",
+        "kiyos_features": "urunler-kimlik-sunucusu",
+        "ari_konaklama": "https://www.arikonaklama.net/",
+        "career_info": "insan-kaynaklari",
+        "hiring": "insan-kaynaklari",
+        "internship": "staj-imkanlari",
+        "custom_software": "hizmetlerimiz",
+        "it_consultancy": "hizmetlerimiz",
+        "cybersecurity": "hizmetlerimiz",
+        "business_clients": "hizmetlerimiz",
+        "public_sector": "hakkimizda",
+        "products": "urunlerimiz",
+        "employees": "hakkimizda",
+        "personal_data_protection": "kisisel-verilerin-korunmasi",
+        "privacy_policy": "gizlilik-politikasi",
+        "user_agreement": "kullanici-sozlesmesi",
+        "info_security_policy": "bilgi-guvenligi-politika-ozeti",
+        "references": "referanslar",
+        "research_development": "arastirma-ve-gelistirme",
+        "sales_team": "contact",
+        "request_demo": "contact",
+        "phone_number": "contact",
+    },
+    "default": {
+        "services": "services",
+        "company_overview": "about-us",
+        "contact_info": "contact",
+        "makscyber_siem": "products",
+        "authnac_info": "products",
+        "identity_management": "products-identity-server",
+        "kiyos_features": "products-identity-server",
+        "ari_konaklama": "https://www.arikonaklama.net/",
+        "career_info": "human-resources",
+        "hiring": "human-resources",
+        "internship": "internship-opportunities",
+        "custom_software": "services",
+        "it_consultancy": "services",
+        "cybersecurity": "services",
+        "business_clients": "services",
+        "public_sector": "about-us",
+        "products": "products",
+        "employees": "about-us",
+        "personal_data_protection": "personal-data-protection",
+        "privacy_policy": "privacy-policy",
+        "user_agreement": "user-agreement",
+        "info_security_policy": "information-security-policy-summary",
+        "references": "references",
+        "research_development": "research-and-development",
+        "sales_team": "contact",
+        "request_demo": "contact",
+        "phone_number": "contact",
+    }
 }
 
 
@@ -170,16 +238,33 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         },
         {
             "title": "contact_info",
-            "keywords": [
-                "phone", "telephone", "call you", "contact number", "address", "location", 
-                "where are you", "office", "technopark", "sales team", "hire us", "quote", 
-                "demo", "buy", "request a demo", "get started", "contact"
-            ],
+            "keywords": ["contact", "reach out", "address", "location", "where are you", "office"],
             "answer": (
-                "**Phone**: 0(324) 404 0 808\n"
-                "**Address**: Mersin University, Çiftlikköy Campus Technopark Administrative Building No:1/109 Pk:33343\n"
-                "To reach our sales team or request a demo, please use the contact form on our website or call us directly."
+                "📍 **Our Office**:\n"
+                "Mersin University Technopark Administrative Building No:1/109, Çiftlikköy Campus, Mersin, Turkey.\n"
+                "You can reach us through our contact form or by visiting our office."
             ),
+        },
+        {
+            "title": "sales_team",
+            "keywords": ["sales team", "sales department", "sales contact", "talk to sales"],
+            "answer": (
+                "💼 **Sales Team**: Our specialized sales team is ready to discuss your business needs. "
+                "You can contact them directly via **sales@torosyazilim.com.tr** or call our office extension."
+            ),
+        },
+        {
+            "title": "request_demo",
+            "keywords": ["request a demo", "get a demo", "demo version", "try"],
+            "answer": (
+                "🧪 **Request a Demo**: Interested in our products? You can request a live demo "
+                "by filling out the demo request form on our website or contacting our support team."
+            ),
+        },
+        {
+            "title": "phone_number",
+            "keywords": ["phone number", "telephone", "call", "contact number"],
+            "answer": "📞 **Phone**: You can reach us at **0(324) 404 0 808** during business hours."
         },
         {
             "title": "makscyber_siem",
@@ -214,6 +299,11 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
                 "11. **User Deduplication**: Merge multiple accounts into a single user.\n"
                 "12. **Group Management**: Unified mail group control for Google Workspace, Zimbra, etc."
             ),
+        },
+        {
+            "title": "ari_konaklama",
+            "keywords": ["ari konaklama", "bee accommodation", "accommodation point detection", "digitization automation"],
+            "answer": "🐝 **ARI KONAKLAMA** is our specialized automation project for accommodation point detection and digitization. It streamlines the process of identifying and recording accommodation locations using advanced digitization techniques.",
         },
         {
             "title": "career_info",
@@ -270,6 +360,69 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "keywords": ["hello", "hi", "hey", "good morning", "good afternoon", "welcome"],
             "answer": "👋 Hello! Welcome to Toros Yazılım. How can I assist you today?",
         },
+        {
+            "title": "personal_data_protection",
+            "keywords": ["personal data protection", "kvkk", "gdpr", "data rights", "processing purposes", "data subject rights"],
+            "answer": (
+                "🛡️ **Personal Data Protection (KVKK)**:\n"
+                "TOROS YAZILIM A.Ş. processes your personal data (identity, contact, demographic, platform usage) in compliance with Law No. 6698 (KVKK).\n"
+                "- **Purposes**: Communication management, HR processes (internship/job applications), product development, and legal obligations.\n"
+                "- **Your Rights**: You can learn if your data is processed, request information, request correction or deletion, and object to automated processing.\n"
+                "Applications are processed within 30 days."
+            ),
+        },
+        {
+            "title": "privacy_policy",
+            "keywords": ["privacy policy", "data collection", "cookies", "analytical purposes"],
+            "answer": (
+                "🔒 **Privacy Policy**:\n"
+                "We collect IP addresses and user agent info via cookies for analytical purposes to improve our services. "
+                "Data is processed based on legitimate interest and shared only with authorized partners/institutions when necessary. "
+                "Continuing to use the site implies acceptance of this policy."
+            ),
+        },
+        {
+            "title": "user_agreement",
+            "keywords": ["user agreement", "terms of use", "conditions"],
+            "answer": (
+                "📜 **User Agreement**:\n"
+                "This agreement defines the terms for using our website and services. It covers intellectual property, "
+                "user responsibilities, and limitation of liability to ensure a safe and secure experience for all users."
+            ),
+        },
+        {
+            "title": "info_security_policy",
+            "keywords": ["information security policy", "iso 27001", "security standards", "confidentiality"],
+            "answer": (
+                "✅ **Information Security Policy**:\n"
+                "In line with **ISO 27001:2022**, we commit to protecting the availability, integrity, and confidentiality "
+                "of information assets from all internal/external threats. We ensure business continuity and meet "
+                "national/international security standards."
+            ),
+        },
+        {
+            "title": "references",
+            "keywords": ["references", "customers", "partners"],
+            "answer": (
+                "🤝 **Our References** include prominent institutions such as:\n"
+                "- Ankara University\n"
+                "- Ankara Hacı Bayram Veli University\n"
+                "- Atılım University\n"
+                "- Karamanoglu Mehmetbey University\n"
+                "- Kirsehir Ahi Evran University\n"
+                "- Toros University\n"
+                "- T.C. Ministry of Agriculture and Forestry"
+            ),
+        },
+        {
+            "title": "research_development",
+            "keywords": ["r&d", "research", "development", "innovation"],
+            "answer": (
+                "🚀 **Research & Development**: We are constantly innovating in cybersecurity and identity management. "
+                "Current projects include **AuthNAC** (a combination of KIYOS and NAC features) and advanced real-time log analysis tools. "
+                "We focus on OAuth 2.0, OpenID Connect (OIDC), and LDAP standards."
+            ),
+        },
     ],
     "tr": [
         {
@@ -305,12 +458,33 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         },
         {
             "title": "contact_info",
-            "keywords": ["telefon", "iletişim", "adres", "nerede", "konum", "satış ekibi", "teklif", "fiyat", "demo", "satın al"],
+            "keywords": ["iletişim", "adres", "nerede", "konum", "ofis", "yeriniz neresi"],
             "answer": (
-                "**Telefon**: 0(324) 404 0 808\n"
-                "**Adres**: Mersin Üniversitesi Çiftlikköy Kampüsü Teknopark İdari Bina No:1/109 Pk:33343\n"
-                "Satış ekibimize ulaşmak veya demo talebinde bulunmak için lütfen web sitemizdeki iletişim formunu kullanın veya bizi doğrudan arayın."
+                "📍 **Ofisimiz**:\n"
+                "Mersin Üniversitesi Çiftlikköy Kampüsü Teknopark İdari Bina No:1/109 Pk:33343, Mersin.\n"
+                "Bize iletişim formumuz üzerinden veya ofisimizi ziyaret ederek ulaşabilirsiniz."
             ),
+        },
+        {
+            "title": "sales_team",
+            "keywords": ["satış ekibi", "satış departmanı", "satışla görüşmek", "teklif al"],
+            "answer": (
+                "💼 **Satış Ekibi**: Uzman satış ekibimiz iş ihtiyaçlarınızı görüşmek için hazır. "
+                "Bize **sales@torosyazilim.com.tr** üzerinden mail atabilir veya doğrudan arayabilirsiniz."
+            ),
+        },
+        {
+            "title": "request_demo",
+            "keywords": ["demo talebi", "demo iste", "denemek istiyorum"],
+            "answer": (
+                "🧪 **Demo Talebi**: Ürünlerimizi denemek ister misiniz? Web sitemizdeki demo talep formunu "
+                "doldurarak veya bizimle iletişime geçerek canlı demo talebinde bulunabilirsiniz."
+            ),
+        },
+        {
+            "title": "phone_number",
+            "keywords": ["telefon numarası", "telefon", "ara", "iletişim numarası"],
+            "answer": "📞 **Telefon**: Mesai saatleri içerisinde bize **0(324) 404 0 808** numarasından ulaşabilirsiniz."
         },
         {
             "title": "cybersecurity",
@@ -378,6 +552,11 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             ),
         },
         {
+            "title": "ari_konaklama",
+            "keywords": ["arı konaklama", "arıkonaklama", "konaklama noktası", "sayısallaştırma otomasyonu"],
+            "answer": "🐝 **ARI KONAKLAMA**, konaklama noktası tespiti ve sayısallaştırma otomasyonu projemizdir. Bu çözümle konaklama noktalarının belirlenmesi ve kaydedilmesi süreçlerini dijitalleştirerek hızlandırıyoruz.",
+        },
+        {
             "title": "career_info",
             "keywords": ["işe alım", "başvuru", "başvurusu", "kariyer", "cv", "insan kaynakları", "staj", "stajyer", "öğrenci"],
             "answer": (
@@ -400,6 +579,67 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
             "title": "greeting",
             "keywords": ["merhaba", "selam", "günaydın", "iyi günler", "hoş geldiniz"],
             "answer": "👋 Merhaba! Toros Yazılım'a hoş geldiniz. Size bugün nasıl yardımcı olabilirim?",
+        },
+        {
+            "title": "personal_data_protection",
+            "keywords": ["kişisel verilerin korunması", "kvkk", "veri işleme", "ilgili kişi hakları"],
+            "answer": (
+                "🛡️ **Kişisel Verilerin Korunması (KVKK)**:\n"
+                "TOROS YAZILIM A.Ş., 6698 Sayılı KVKK kapsamında verilerinizi (kimlik, iletişim, platform kullanım verileri) güvenle işlemektedir.\n"
+                "- **Amaçlar**: İletişim yönetimi, İK süreçleri, ürün geliştirme ve yasal yükümlülükler.\n"
+                "- **Haklarınız**: Verilerinizin işlenip işlenmediğini öğrenme, düzeltme veya silme talebinde bulunma ve itiraz etme hakkınız bulunmaktadır.\n"
+                "Başvurularınız en geç 30 gün içinde sonuçlandırılır."
+            ),
+        },
+        {
+            "title": "privacy_policy",
+            "keywords": ["gizlilik politikası", "çerezler", "analitik"],
+            "answer": (
+                "🔒 **Gizlilik Politikası**:\n"
+                "IP adresiniz ve kullanıcı aracısı bilgileriniz, hizmetlerimizi iyileştirmek için çerezler aracılığıyla analitik amaçlarla işlenir. "
+                "Verileriniz meşru menfaat temelinde korunur ve yasal gereklilikler dışında üçüncü taraflarla paylaşılmaz."
+            ),
+        },
+        {
+            "title": "user_agreement",
+            "keywords": ["kullanıcı sözleşmesi", "kullanım koşulları"],
+            "answer": (
+                "📜 **Kullanıcı Sözleşmesi**:\n"
+                "Web sitemizin ve hizmetlerimizin kullanım şartlarını belirler. Fikri mülkiyet hakları, kullanıcı sorumlulukları "
+                "ve sorumluluk sınırlamaları bu sözleşme kapsamında düzenlenmiştir."
+            ),
+        },
+        {
+            "title": "info_security_policy",
+            "keywords": ["bilgi güvenliği politikası", "iso 27001", "bilgi güvenliği"],
+            "answer": (
+                "✅ **Bilgi Güvenliği Politikası**:\n"
+                "**ISO 27001:2022** standardı uyarınca, bilgi varlıklarının gizliliğini, bütünlüğünü ve erişilebilirliğini "
+                "iç/dış tehditlere karşı korumayı taahhüt ediyoruz. İş sürekliliğini sağlıyor ve ulusal/uluslararası standartlara uygun hareket ediyoruz."
+            ),
+        },
+        {
+            "title": "references",
+            "keywords": ["referanslarımız", "müşteriler", "iş ortakları"],
+            "answer": (
+                "🤝 **Referanslarımız** arasında şu saygın kurumlar yer almaktadır:\n"
+                "- Ankara Üniversitesi\n"
+                "- Ankara Hacı Bayram Veli Üniversitesi\n"
+                "- Atılım Üniversitesi\n"
+                "- Karamanoğlu Mehmetbey Üniversitesi\n"
+                "- Kırşehir Ahi Evran Üniversitesi\n"
+                "- Toros Üniversitesi\n"
+                "- T.C. Tarım ve Orman Bakanlığı"
+            ),
+        },
+        {
+            "title": "research_development",
+            "keywords": ["ar-ge", "araştırma", "geliştirme", "inovasyon"],
+            "answer": (
+                "🚀 **Ar-Ge Çalışmalarımız**: Siber güvenlik ve kimlik yönetimi alanlarında sürekli yenilik yapıyoruz. "
+                "**AuthNAC** projemiz ve gelişmiş gerçek zamanlı günlük analiz araçları üzerinde çalışmaktayız. "
+                "OAuth 2.0, OpenID Connect (OIDC) ve LDAP standartlarını temel alıyoruz."
+            ),
         },
         {
             "title": "employees",
@@ -435,12 +675,33 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         },
         {
             "title": "contact_info",
-            "keywords": ["телефон", "адрес", "связаться", "контакты", "демо"],
+            "keywords": ["адрес", "где вы", "офис", "местоположение"],
             "answer": (
-                "**Телефон**: 0(324) 404 0 808\n"
-                "**Адрес**: Университет Мерсина, Административное здание Технопарка кампуса Чифтликкёй №1/109 Pk:33343\n"
-                "Чтобы связаться с нашим отделом продаж или запросить демо-версию, пожалуйста, используйте форму обратной связи на нашем сайте или позвоните нам напрямую."
+                "📍 **Наш офис**:\n"
+                "Университет Мерсина, Административное здание Технопарка кампуса Чифтликкёй №1/109 Pk:33343.\n"
+                "Вы можете связаться с нами через форму обратной связи или посетив наш офис."
             ),
+        },
+        {
+            "title": "sales_team",
+            "keywords": ["отдел продаж", "команда продаж", "связаться с продажами"],
+            "answer": (
+                "💼 **Отдел продаж**: Наша команда готова обсудить ваши потребности. "
+                "Пишите нам на **sales@torosyazilim.com.tr**."
+            ),
+        },
+        {
+            "title": "request_demo",
+            "keywords": ["запросить демо", "демо-версия", "попробовать"],
+            "answer": (
+                "🧪 **Запросить демо**: Хотите увидеть наши продукты в действии? "
+                "Заполните форму на сайте для получения демо-версии."
+            ),
+        },
+        {
+            "title": "phone_number",
+            "keywords": ["номер телефона", "телефон", "позвонить"],
+            "answer": "📞 **Телефон**: Вы можете позвонить нам по номеру **0(324) 404 0 808**."
         },
         {
             "title": "career_info",
@@ -490,12 +751,33 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
         },
         {
             "title": "contact_info",
-            "keywords": ["هاتف", "اتصال", "عنوان", "موقع", "تجريبي", "مبيعات"],
+            "keywords": ["عنوان", "موقع", "اين انتم", "مكتب"],
             "answer": (
-                "**الهاتف**: 0(324) 404 0 808\n"
-                "**العنوان**: جامعة مرسين، مبنى إدارة التكنوبارك في حرم تشيفتليك كوي رقم 1/109 Pk:33343\n"
-                "للتواصل مع فريق المبيعات لدينا أو طلب عرض تجريبي، يرجى استخدام نموذج الاتصال على موقعنا الإلكتروني أو الاتصال بنا مباشرة."
+                "📍 **مكتبنا**:\n"
+                "جامعة مرسين، مبنى إدارة التكنوبارك في حرم تشيفتليك كوي رقم 1/109 Pk:33343.\n"
+                "يمكنكم التواصل معنا عبر نموذج الاتصال أو زيارة مكتبنا."
             ),
+        },
+        {
+            "title": "sales_team",
+            "keywords": ["فريق المبيعات", "قسم المبيعات", "اتصال بالمبيعات"],
+            "answer": (
+                "💼 **فريق المبيعات**: فريقنا جاهز لمناقشة احتياجاتكم البرمجية. "
+                "يمكنكم مراسلتنا عبر **sales@torosyazilim.com.tr**."
+            ),
+        },
+        {
+            "title": "request_demo",
+            "keywords": ["طلب عرض تجريبي", "نسخة تجريبية", "تجربة"],
+            "answer": (
+                "🧪 **طلب عرض تجريبي**: هل ترغب في تجربة منتجاتنا؟ "
+                "يمكنك طلب عرض مباشر عبر ملء النموذج على موقعنا."
+            ),
+        },
+        {
+            "title": "phone_number",
+            "keywords": ["رقم الهاتف", "تلفون", "اتصال"],
+            "answer": "📞 **الهاتف**: يمكنكم الاتصال بنا على الرقم **0(324) 404 0 808**."
         },
         {
             "title": "cybersecurity",
@@ -549,8 +831,8 @@ KNOWLEDGE_BASE: dict[str, list[dict[str, Any]]] = {
 _kb_index: KnowledgeIndex | None = None
 
 
-def _answer_from_knowledge_base(message: str, language: str) -> str | None:
-    """Return the best‑matching knowledge‑base answer using cross-lingual TF-IDF."""
+def _answer_from_knowledge_base(message: str, language: str) -> tuple[str | None, str | None]:
+    """Return the (answer, intent_title) from the knowledge base using cross-lingual TF-IDF."""
     global _kb_index
     if _kb_index is None:
         _kb_index = KnowledgeIndex(KNOWLEDGE_BASE)
@@ -558,19 +840,18 @@ def _answer_from_knowledge_base(message: str, language: str) -> str | None:
 
     results = _kb_index.retrieve(message, lang=language, top_k=1)
     if not results:
-        return None
+        return None, None
 
     best = results[0]
     # Similarity threshold: avoid low-quality matches
     if best["score"] < 0.08:
-        return None
+        return None, None
 
-    # Strict language enforcement: Ensure the RAG answer matches the requested session language.
-    # This prevents Turkish KB results from showing up in English sessions if detection fails.
+    # Strict language enforcement
     if best.get("lang") != language:
-        return None
+        return None, None
 
-    return best["answer"]
+    return best["answer"], best.get("title")
 
 
 def _detect_language_from_text(text: str) -> str:
@@ -606,18 +887,20 @@ def _detect_language_from_text(text: str) -> str:
     # Expanded list including common typos and greeting variants
     tr_words = {
         "merhaba", "merahaba", "merhablar", "selam", "selamlar", "nasıl", 
-        "kimdir", "nedir", "hakkında", "neler", "sunuyorsunuz", "hizmetleri", 
+        "kimdir", "nedir", "nediri", "nerde", "nerdedir", "nerede", "neresidir",
+        "hakkında", "neler", "sunuyorsunuz", "hizmetleri", "hizmet",
         "projesi", "evet", "hayır", "günaydın", "iyi", "günler", "teklif", "fiyat",
-        "neresi", "nerede", "ulaşım", "iletişim", "başvuru", "çalışan",
-        "talep", "edebilir", "miyim", "misiniz", "musunuz", "yapabilir",
-        "istiyorum", "yapıyor", "bilgi", "lütfen", "teşekkür", "ederim",
-        "var", "yok", "için", "veya", "nasıl", "hangi", "kaç",
-        "özellikleri", "çözüm", "çözümleri", "hizmet", "ürün",
+        "ulaşım", "iletişim", "başvuru", "çalışan", "eleman", "sayısı", "kim",
+        "talep", "edebilir", "miyim", "misiniz", "musunuz", "yapabilir", "edebilir",
+        "istiyorum", "yapıyor", "bilgi", "lütfen", "teşekkür", "ederim", "sağol",
+        "var", "yok", "için", "veya", "nasıl", "hangi", "kaç", "ne", "zaman",
+        "özellikleri", "çözüm", "çözümleri", "hizmet", "ürün", "ürünler",
+        "kuruldu", "kuruluş", "adresi", "yeri", "neresi", "nerede",
     }
     en_words = {
-        "hello", "hi", "hey", "how", "who", "what", "about", "which", 
+        "hello", "hi", "hey", "how", "who", "what", "about", "which", "where",
         "services", "offer", "provide", "thanks", "thank", "good", "morning",
-        "price", "quote", "cost", "hiring", "apply", "contact"
+        "price", "quote", "cost", "hiring", "apply", "contact", "career", "jobs"
     }
     
     words = set(re.findall(r"\w+", clean_text))
@@ -686,25 +969,37 @@ async def chat(request: ChatRequest) -> ChatResponse:
     language_warning = _get_language_mismatch_warning(detected_lang, lang) if is_mismatch else None
     
     # helper for mismatch responses
-    def mismatch_response(reply: str = "") -> ChatResponse:
+    def mismatch_response(reply: str = "", intent: str | None = None) -> ChatResponse:
         # Allow the reply even if there's a language mismatch, 
         # as the answer itself will be in the 'lang' (UI) language.
         final_reply = reply
         
+        lang_paths = INTENT_RESOURCE_PATHS.get(lang, INTENT_RESOURCE_PATHS["default"])
+        resource_path = lang_paths.get(intent) if intent else None
+        
+        if resource_path:
+            if resource_path.startswith("http"):
+                resource_url = resource_path
+            else:
+                resource_url = f"{BASE_URL}/{lang}/{resource_path}"
+        else:
+            resource_url = None
+
         return ChatResponse(
             reply=final_reply,
             language=lang,
             suggestions=suggestions,
             language_warning=language_warning,
             is_mismatch=is_mismatch,
-            suggested_language=detected_lang
+            suggested_language=detected_lang,
+            resource_url=resource_url
         )
 
     # 1) Specialized check for basic "Who is Toros Yazilim?" variations
     # (Checking normalized versions and Arabic script)
     if "toros yazilim" in normalized or "toros yazılım" in normalized or \
        (lang == "ar" and "توروس" in raw_message and "يازليم" in raw_message):
-        return mismatch_response(_answer_about_toros(lang))
+        return mismatch_response(_answer_about_toros(lang), intent="company_overview")
 
     # 2) Intent classification using ML model
     intent_label, confidence = predict_intent(raw_message)
@@ -715,12 +1010,12 @@ async def chat(request: ChatRequest) -> ChatResponse:
         kb_items = KNOWLEDGE_BASE.get(lang, [])
         for item in kb_items:
             if item.get("title") == intent_label:
-                return mismatch_response(item["answer"])
+                return mismatch_response(item["answer"], intent=str(intent_label))
 
     # 4) Cross-lingual RAG search (fallback)
-    kb_answer = _answer_from_knowledge_base(raw_message, lang)
+    kb_answer, kb_intent = _answer_from_knowledge_base(raw_message, lang)
     if kb_answer:
-        return mismatch_response(kb_answer)
+        return mismatch_response(kb_answer, intent=kb_intent)
 
     # 5) Fallback for unrecognized messages
     # If there's a mismatch and no specific answer found, we suppress the response.
