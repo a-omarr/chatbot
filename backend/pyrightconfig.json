@@ -1,0 +1,13 @@
+{
+    "pythonVersion": "3.12",
+    "venvPath": ".",
+    "venv": ".venv",
+    "include": [
+        "."
+    ],
+    "extraPaths": [
+        "."
+    ],
+    "reportMissingImports": true,
+    "reportMissingModuleSource": false
+}

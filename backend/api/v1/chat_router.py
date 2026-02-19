@@ -228,4 +228,3 @@ async def chat(request: ChatRequest) -> ChatResponse:
         ))
 
     return create_response(reply_text)
-```
