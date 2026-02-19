@@ -12,6 +12,7 @@ from app.ml.intent_classifier import predict_intent
     ("KIYOS özellikleri nelerdir?", "kiyos_features"),
     ("كيف يمكنني الاتصال بكم؟", "contact_info"),
     ("Кто такая Toros Yazilim?", "company_overview"),
+    ("Arı konaklama nedir?", "ari_konaklama"),
 ])
 def test_core_intents(text, expected_intent):
     intent, confidence = predict_intent(text)
