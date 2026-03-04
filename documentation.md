@@ -20,19 +20,22 @@ The project is organized into two main directories: **backend** and **frontend**
 
 ```
 chatbot/
-├── backend/                # Python/FastAPI Backend
-│   ├── api/v1/             # API Routes and Schemas
-│   │   ├── bot.py          # Bot logic, request/response models
+├── backend/                # Python/FastAPI backend
+│   ├── api/v1/             # API routes and schemas
+│   │   ├── chat_router.py  # Chat logic, request/response models
 │   │   └── router.py       # Router configuration
 │   ├── app/
-│   │   ├── ml/             # Machine Learning components
-│   │   │   └── intent_classifier.py # TF-IDF + Logistic Regression model
+│   │   ├── ml/             # Machine learning components
+│   │   │   ├── intent_engine.py     # TF-IDF + Logistic Regression model
+│   │   │   ├── knowledge_engine.py  # Cross-lingual KB search
+│   │   │   ├── data_collector.py    # Active learning logging
+│   │   │   └── model_evaluator.py   # Model evaluation tools
 │   │   └── services/       # Business logic services
 │   │       └── bot_service.py
 │   ├── main.py             # Application entry point
 │   └── requirements.txt    # Python dependencies
 │
-└── frontend/               # React/Vite Frontend
+└── frontend/               # React/Vite frontend
     ├── src/
     │   ├── components/
     │   │   └── Chat.tsx    # Main Chat Interface
@@ -54,11 +57,11 @@ chatbot/
 ### Key Components
 
 1.  **API Layer (`backend/api/v1`)**:
-    -   **`bot.py`**: Defines the `ChatRequest` and `ChatResponse` Pydantic models. It handles the core request flow, including language detection and response generation.
+    -   **`chat_router.py`**: Defines the `ChatRequest` and `ChatResponse` Pydantic models. It handles the core request flow, including language detection, intent resolution, and response generation.
     -   **endpoints**:
         -   `POST /api/v1/bot/chat`: The main endpoint receiving user messages.
 
-2.  **Machine Learning Layer (`backend/app/ml/intent_classifier.py`)**:
+2.  **Machine Learning Layer (`backend/app/ml/intent_engine.py`)**:
     -   Uses a **Pipeline** of `TfidfVectorizer` (character n-grams, `ngram_range=(2, 5)`) and `LogisticRegression` (with `class_weight="balanced"` and `multi_class="ovr"`).
     -   **Consolidated and Granular Intents**:
         -   `company_overview`, `services`, `products`, `contact_info`
@@ -68,11 +71,11 @@ chatbot/
     -   **Data**: Enhanced training set with more categorized examples in 4 languages, specifically refined for `public_sector` and `authnac_info` distinction.
     -   **`predict_intent(text)`**: Returns the predicted intent and confidence score.
 
-3.  **Knowledge Base**:
-    -   Located in `backend/api/v1/bot.py`.
-    -   A dictionary structure `KNOWLEDGE_BASE` mapping languages to lists of topics.
+3.  **Knowledge Base & Retrieval**:
+    -   Data lives in JSON files under `backend/app/data/` and is loaded via `app.core.loader`.
+    -   A dictionary structure `KNOWLEDGE_BASE` maps languages to lists of topics.
     -   **Optimized Answers**: Consolidated contact details into `contact_info` and jobs/internships into `career_info` with rich formatting and multi-line responses.
-    -   Used for fallback keyword matching and cross-lingual RAG search.
+    -   Cross-lingual semantic search is implemented in `backend/app/ml/knowledge_engine.py` using TF-IDF + cosine similarity.
 
 ---
 

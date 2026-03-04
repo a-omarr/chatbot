@@ -109,19 +109,26 @@ For detailed testing documentation, see [TESTING_WORKFLOW.md](./TESTING_WORKFLOW
 ```
 chatbot/
 ├── backend/
-│   ├── api/v1/bot.py           # Chat endpoint & knowledge base
+│   ├── api/v1/
+│   │   ├── chat_router.py        # Chat endpoint & knowledge base wiring
+│   │   └── router.py             # API router configuration
 │   ├── app/ml/
-│   │   ├── intent_classifier.py # TF-IDF + LogisticRegression model
-│   │   ├── active_learning.py   # Active learning utilities
-│   │   └── evaluate_intents.py  # Model evaluation tools
+│   │   ├── intent_engine.py      # TF-IDF + LogisticRegression intent model
+│   │   ├── knowledge_engine.py   # Cross-lingual knowledge-base retrieval
+│   │   ├── data_collector.py     # Active learning logging utilities
+│   │   └── model_evaluator.py    # Model evaluation tools
 │   ├── tests/
-│   │   └── test_bot_scenarios.py # Automated test suite
-│   ├── main.py                  # FastAPI app entry point
-│   └── requirements.txt
+│   │   ├── test_bot_scenarios.py # Core ML intent tests
+│   │   └── system_test.py        # Exhaustive multilingual system checks
+│   ├── main.py                   # FastAPI app entry point
+│   ├── requirements.txt
+│   └── AGENT_ARCHITECTURE.md     # Detailed backend agent flow
 ├── frontend/
-│   └── src/components/Chat.tsx  # Main chat UI component
-├── start.sh                     # One-command launcher
-├── documentation.md             # Detailed architecture docs
+│   ├── src/components/Chat.tsx   # Main chat UI component
+│   └── README.md
+├── start.sh                      # One-command launcher
+├── TESTING_WORKFLOW.md           # Testing and QA documentation
+├── documentation.md              # High-level architecture docs
 └── README.md
 ```
 

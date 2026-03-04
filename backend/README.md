@@ -21,7 +21,7 @@ Then open `http://localhost:8000/docs` for the interactive API docs.
 - `main.py`: FastAPI app entrypoint
 - `api/v1/`: Versioned API routers
   - `router.py`: Root API router for v1
-  - `bot.py`: Basic chatbot endpoint (`POST /api/v1/bot/chat`)
+  - `chat_router.py`: Chatbot endpoint (`POST /api/v1/bot/chat`)
 - `requirements.txt`: Python dependencies
 - `.env.example`: Example environment variables
 - `.gitignore`: Backend-specific ignores
