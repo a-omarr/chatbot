@@ -28,8 +28,14 @@ PYTHONPATH=$PROJECT_ROOT $VENV_PATH/bin/python $BACKEND_DIR/tests/system_test.py
 
 SYSTEM_TEST_STATUS=$?
 
+# 4. Run Manual Verification Script (Smoke Test)
+echo -e "\n\033[1m[3/3] Running Manual Verification Smoke Test...\033[0m"
+PYTHONPATH=$PROJECT_ROOT:$BACKEND_DIR $VENV_PATH/bin/python $BACKEND_DIR/tests/manual_verify.py
+
+VERIFY_STATUS=$?
+
 echo -e "\n===================================================="
-if [ $PYTEST_STATUS -eq 0 ] && [ $SYSTEM_TEST_STATUS -eq 0 ]; then
+if [ $PYTEST_STATUS -eq 0 ] && [ $SYSTEM_TEST_STATUS -eq 0 ] && [ $VERIFY_STATUS -eq 0 ]; then
     echo -e "✅ \033[92mALL TESTS PASSED SUCCESSFULLY!\033[0m"
     exit 0
 else

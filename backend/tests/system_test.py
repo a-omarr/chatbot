@@ -7,7 +7,8 @@ import re
 sys.path.append(os.getcwd())
 sys.path.append(os.path.join(os.getcwd(), "backend"))
 
-from backend.api.v1.chat_router import chat, ChatRequest
+from backend.api.v1.schemas import ChatRequest
+from backend.api.v1.chat_router import chat
 
 def normalize_for_test(text: str) -> str:
     """Normalize text for comparison: lowercase and replace Turkish/special chars."""
@@ -43,7 +44,7 @@ async def run_exhaustive_tests():
             ("What are KIYOS features?", "Single Sign-On (SSO)"),
         ],
         "tr": [
-            ("Toros Yazılım kimdir?", "2008 yilinda mersin'de kurulan"),
+            ("Toros Yazılım kimdir?", "2008 yilinda mersin'de kurulmustur"),
             ("Hangi hizmetleri sunuyorsunuz?", "Servis Entegrasyonlari"),
             ("KIYOS nedir?", "KIYOS"),
             ("Sales ekibine nasıl ulaşabilirim?", "Satis Ekibi"),
