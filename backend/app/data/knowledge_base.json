@@ -9,7 +9,7 @@
                 "headcount",
                 "workforce"
             ],
-            "answer": "Our website does not specify an exact number of employees. Toros Yazilim was founded in 2008 and is composed of a growing team of specialized experts working in the Mersin Technopark."
+            "answer": "Our website does not specify an exact number of employees."
         },
         {
             "title": "services",
@@ -215,7 +215,8 @@
                 "hey",
                 "good morning",
                 "good afternoon",
-                "welcome"
+                "welcome",
+                "how are you"
             ],
             "answer": "👋 Hello! Welcome to Toros Yazılım. How can I assist you today?"
         },
@@ -278,6 +279,31 @@
                 "innovation"
             ],
             "answer": "🚀 **Research & Development**: We are constantly innovating in cybersecurity and identity management. Current projects include **AuthNAC** (a combination of KIYOS and NAC features) and advanced real-time log analysis tools. We focus on OAuth 2.0, OpenID Connect (OIDC), and LDAP standards."
+        },
+        {
+            "title": "founding_year",
+            "keywords": ["founded", "established", "when", "since", "year", "2008"],
+            "answer": "Toros Yazılım was founded in 2008 in Mersin by young entrepreneurs."
+        },
+        {
+            "title": "location",
+            "keywords": ["where", "located", "city", "mersin", "address", "office"],
+            "answer": "📍 **Our Office**: Mersin University Technopark Administrative Building No:1/109, Çiftlikköy Campus, Mersin, Turkey."
+        },
+        {
+            "title": "mission",
+            "keywords": ["mission", "goal", "objective"],
+            "answer": "**Mission**: To maximize customer satisfaction through high-quality solutions using up-to-date technology."
+        },
+        {
+            "title": "vision",
+            "keywords": ["vision", "future", "target"],
+            "answer": "**Vision**: To become an international brand and one of Turkey’s leading software companies."
+        },
+        {
+            "title": "working_hours",
+            "keywords": ["working hours", "open", "hours", "schedule", "time"],
+            "answer": "Our office is open Monday to Friday, from 09:00 to 18:00 (GMT+3)."
         }
     ],
     "tr": [
@@ -558,6 +584,31 @@
                 "çalışan sayısı"
             ],
             "answer": "Web sitemizde kesin bir çalışan sayısı belirtilmemiştir. Toros Yazılım, 2008 yılından bu yana büyüyen uzman bir kadroya sahiptir."
+        },
+        {
+            "title": "founding_year",
+            "keywords": ["kurulus", "ne zaman", "kuruldu", "hangi yil", "2008"],
+            "answer": "Toros Yazılım, 2008 yılında Mersin'de genç girişimciler tarafından kurulmuştur."
+        },
+        {
+            "title": "location",
+            "keywords": ["nerede", "konum", "adres", "ofis", "mersin"],
+            "answer": "📍 **Ofisimiz**: Mersin Üniversitesi Teknopark İdari Bina No:1/109, Çiftlikköy Kampüsü, Mersin, Türkiye."
+        },
+        {
+            "title": "mission",
+            "keywords": ["misyon", "amac", "hedef"],
+            "answer": "**Misyonumuz**: Güncel teknolojiyi kullanarak yüksek kaliteli çözümler sunmak ve müşteri memnuniyetini maksimize etmektir."
+        },
+        {
+            "title": "vision",
+            "keywords": ["vizyon", "gelecek", "hedef"],
+            "answer": "**Vizyonumuz**: Uluslararası bir marka olmak ve Türkiye'nin önde gelen yazılım şirketlerinden biri haline gelmektir."
+        },
+        {
+            "title": "working_hours",
+            "keywords": ["calisma saatleri", "mesai", "saat", "acik", "kacta"],
+            "answer": "Ofisimiz Pazartesi'den Cuma'ya 09:00 - 18:00 saatleri arasında hizmet vermektedir."
         }
     ],
     "ru": [
@@ -670,6 +721,31 @@
                 "функционал kiyos"
             ],
             "answer": "🔑 **Функции KIYOS** (Местная платформа идентификации Турции):\n1. **Интеграция Yetkim & EduGain**: Готовая интеграция между университетами и учреждениями.\n2. **Единый вход (SSO)**: Доступ к сотням приложений через одну точку входа.\n3. **Управление пользователями**: Автоматическое создание учётных записей.\n4. **Управление жизненным циклом**: Автоматизация доступа от создания до удаления.\n5. **Универсальная интеграция каталогов**: Active Directory, Azure AD, OpenLDAP.\n6. **Расширенное управление API**: Политики авторизации API на основе контекста.\n7. **Многофакторная аутентификация (MFA)**: Защита с помощью различных факторов MFA.\n8. **Управление идентификацией**: Обеспечение доступа нужных людей к нужным ресурсам."
+        },
+        {
+            "title": "founding_year",
+            "keywords": ["основана", "когда", "год", "2008"],
+            "answer": "Компания Toros Yazılım была основана в 2008 году в Мерсине молодыми предпринимателями."
+        },
+        {
+            "title": "location",
+            "keywords": ["где", "адрес", "офис", "мерсин"],
+            "answer": "📍 **Наш офис**: Административное здание Технопарка Университета Мерсина №1/109, кампус Чифтликкёй, Мерсин, Турция."
+        },
+        {
+            "title": "mission",
+            "keywords": ["миссия", "цель"],
+            "answer": "**Миссия**: Максимально удовлетворять потребности клиентов с помощью высококачественных решений, использующих современные технологии."
+        },
+        {
+            "title": "vision",
+            "keywords": ["видение", "будущее"],
+            "answer": "**Видение**: Стать международным брендом и одной из ведущих софтверных компаний Турции."
+        },
+        {
+            "title": "working_hours",
+            "keywords": ["часы работы", "открыто", "время"],
+            "answer": "Наш офис открыт с понедельника по пятницу с 09:00 до 18:00 (GMT+3)."
         }
     ],
     "ar": [
@@ -794,6 +870,31 @@
                 "وظائف kiyos"
             ],
             "answer": "🔑 **ميزات KIYOS** (منصة الهوية المحلية في تركيا):\n1. **تكامل Yetkim & EduGain**: بنية تحتية جاهزة للتكامل بين الجامعات والمؤسسات.\n2. **تسجيل الدخول الموحد (SSO)**: الوصول إلى مئات التطبيقات من نقطة دخول واحدة.\n3. **إدارة المستخدمين**: إنشاء وإدارة الحسابات تلقائيًا من مصادر خارجية.\n4. **إدارة دورة الحياة**: أتمتة الوصول من الإنشاء إلى الحذف.\n5. **تكامل الدليل الشامل**: Active Directory، Azure AD، OpenLDAP.\n6. **إدارة API المتقدمة**: سياسات تفويض API بناءً على السياق.\n7. **المصادقة متعددة العوامل (MFA)**: حماية بعوامل MFA متنوعة.\n8. **إدارة الهوية**: ضمان وصول الأشخاص المناسبين إلى الموارد المناسبة."
+        },
+        {
+            "title": "founding_year",
+            "keywords": ["تأسست", "متى", "سنة", "2008"],
+            "answer": "تأسست شركة توروس يازليم في عام 2008 في مرسين من قبل رواد أعمال شباب."
+        },
+        {
+            "title": "location",
+            "keywords": ["أين", "موقع", "عنوان", "مكتب", "مرسين"],
+            "answer": "📍 **مكتبنا**: مبنى إدارة تكنوبارك جامعة مرسين رقم 1/109، حرم تشيفتليك كوي، مرسين، تركيا."
+        },
+        {
+            "title": "mission",
+            "keywords": ["مهمة", "هدف"],
+            "answer": "**المهمة**: تحقيق أقصى قدر من رضا العملاء من خلال حلول عالية الجودة باستخدام أحدث التقنيات."
+        },
+        {
+            "title": "vision",
+            "keywords": ["رؤية", "مستقبل"],
+            "answer": "**الرؤية**: أن نصبح علامة تجارية دولية واحدة من الشركات الرائدة في مجال البرمجيات في تركيا."
+        },
+        {
+            "title": "working_hours",
+            "keywords": ["ساعات العمل", "مفتوح", "وقت"],
+            "answer": "مكتبنا مفتوح من الاثنين إلى الجمعة، من الساعة 09:00 إلى 18:00 (GMT+3)."
         }
     ]
 }

@@ -24,3 +24,117 @@
 {"text": "مرحبا", "predicted_intent": "other", "language": "ar", "model_confidence": 0.28070131846848434}
 {"text": "Merhaba", "predicted_intent": "other", "language": "tr", "model_confidence": 0.3668598486041783}
 {"text": "مرحبا", "predicted_intent": "other", "language": "ar", "model_confidence": 0.36681187209970345}
+{"text": "What are your working hours?", "predicted_intent": "working_hours", "language": "en", "model_confidence": 0.13706013879674608, "timestamp": "2026-03-24T07:33:48.494908"}
+{"text": "When was it founded?", "predicted_intent": "founding_year", "language": "en", "model_confidence": 0.11093323756263573, "timestamp": "2026-03-24T07:43:34.186212"}
+{"text": "Tell me more", "predicted_intent": "products", "language": "en", "model_confidence": 0.057767675315630644, "timestamp": "2026-03-24T07:43:58.656719"}
+{"text": "Tell me more", "predicted_intent": "products", "language": "en", "model_confidence": 0.057767675315630644, "timestamp": "2026-03-24T07:44:37.508387"}
+{"text": "I am on a mission to eat pizza", "predicted_intent": "mission", "language": "en", "model_confidence": 0.1530350470369678, "timestamp": "2026-03-24T07:44:37.510518"}
+{"text": "Tell me more", "predicted_intent": "products", "language": "en", "model_confidence": 0.057767675315630644, "timestamp": "2026-03-24T07:44:49.436105"}
+{"text": "I am on a mission to eat pizza", "predicted_intent": "mission", "language": "en", "model_confidence": 0.1530350470369678, "timestamp": "2026-03-24T07:44:49.438088"}
+{"text": "give me a reciepe to make cookies", "predicted_intent": "makscyber_siem", "language": "en", "model_confidence": 0.04279772882786554, "timestamp": "2026-03-24T07:44:49.439966"}
+{"text": "what do you think about the current state of the middle east ?", "predicted_intent": "company_overview", "language": "en", "model_confidence": 0.05897601902649441, "timestamp": "2026-03-24T07:44:49.442652"}
+{"text": "so what about iran?", "predicted_intent": "products", "language": "en", "model_confidence": 0.0795394154568863, "timestamp": "2026-03-24T07:46:11.786998"}
+{"text": "can you tell me about omar?", "predicted_intent": "products", "language": "en", "model_confidence": 0.07946375916773281, "timestamp": "2026-03-24T07:46:20.115304"}
+{"text": "give me the current situation in the middleast?", "predicted_intent": "public_sector", "language": "en", "model_confidence": 0.04570289209512342, "timestamp": "2026-03-24T07:46:44.775619"}
+{"text": "give me a recipe to make and bake cookies", "predicted_intent": "identity_management", "language": "en", "model_confidence": 0.04052113106612708, "timestamp": "2026-03-24T07:46:53.661902"}
+{"text": "who is the current number one on the forbes list", "predicted_intent": "phone_number", "language": "en", "model_confidence": 0.07102261753094044, "timestamp": "2026-03-24T07:47:08.657569"}
+{"text": "who is the number one celeberity on the internet", "predicted_intent": "phone_number", "language": "en", "model_confidence": 0.07427668303697532, "timestamp": "2026-03-24T07:47:27.149098"}
+{"text": "Can I get a project quote?", "predicted_intent": "research_development", "language": "en", "model_confidence": 0.09224216648722405, "timestamp": "2026-03-24T07:47:35.438677"}
+{"text": "Can I get a project quote?", "predicted_intent": "research_development", "language": "en", "model_confidence": 0.09224216648722405, "timestamp": "2026-03-24T07:49:13.344735"}
+{"text": "Tell me more", "predicted_intent": "products", "language": "en", "model_confidence": 0.057767675315630644, "timestamp": "2026-03-24T07:56:40.095792"}
+{"text": "I am on a mission to eat pizza", "predicted_intent": "mission", "language": "en", "model_confidence": 0.1530350470369678, "timestamp": "2026-03-24T07:56:40.097844"}
+{"text": "Can I get a project quote?", "predicted_intent": "research_development", "language": "en", "model_confidence": 0.09224216648722405, "timestamp": "2026-03-24T07:56:40.099626"}
+{"text": "Tell me more", "predicted_intent": "products", "language": "en", "model_confidence": 0.057767675315630644, "timestamp": "2026-03-24T07:57:42.263385"}
+{"text": "I am on a mission to eat pizza", "predicted_intent": "mission", "language": "en", "model_confidence": 0.1530350470369678, "timestamp": "2026-03-24T07:57:42.265841"}
+{"text": "Can I get a project quote?", "predicted_intent": "research_development", "language": "en", "model_confidence": 0.09224216648722405, "timestamp": "2026-03-24T07:57:42.267919"}
+{"text": "Tell me more", "predicted_intent": "products", "language": "en", "model_confidence": 0.05782609895413055, "timestamp": "2026-03-24T08:00:03.999691"}
+{"text": "I am on a mission to eat pizza", "predicted_intent": "mission", "language": "en", "model_confidence": 0.1553561889764195, "timestamp": "2026-03-24T08:00:04.001766"}
+{"text": "How can I contact your sales team?", "predicted_intent": "sales_team", "language": "en", "model_confidence": 0.17531495649637951, "timestamp": "2026-03-24T08:00:31.083152"}
+{"text": "Sales ekibine nasıl ulaşabilirim?", "predicted_intent": "sales_team", "language": "tr", "model_confidence": 0.0763399477772978, "timestamp": "2026-03-24T08:00:31.130646"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:00:31.138237"}
+{"text": "Mobil uygulama geliştiriyor musunuz?", "predicted_intent": "custom_software", "language": "tr", "model_confidence": 0.059167325747118374, "timestamp": "2026-03-24T08:00:31.139997"}
+{"text": "Kaç çalışanınız var?", "predicted_intent": "employees", "language": "tr", "model_confidence": 0.1452760546695139, "timestamp": "2026-03-24T08:00:31.145050"}
+{"text": "Kurumsal çözümleriniz neler?", "predicted_intent": "business_clients", "language": "tr", "model_confidence": 0.0691612362552347, "timestamp": "2026-03-24T08:00:31.146938"}
+{"text": "İş başvurusu nasıl yapabilirim?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.09248975586495005, "timestamp": "2026-03-24T08:00:31.150439"}
+{"text": "İletişim bilgileriniz?", "predicted_intent": "contact_info", "language": "tr", "model_confidence": 0.08328555942540641, "timestamp": "2026-03-24T08:00:31.152667"}
+{"text": "كيف أتصل بالمبيعات؟", "predicted_intent": "sales_team", "language": "ar", "model_confidence": 0.07501816093827798, "timestamp": "2026-03-24T08:00:31.162045"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:00:31.164065"}
+{"text": "أين يقع مكتبكم؟", "predicted_intent": "location", "language": "ar", "model_confidence": 0.08926065840276666, "timestamp": "2026-03-24T08:00:31.168998"}
+{"text": "الأمن السيبراني", "predicted_intent": "cybersecurity", "language": "ar", "model_confidence": 0.2638545040689594, "timestamp": "2026-03-24T08:00:31.173199"}
+{"text": "مرحبا", "predicted_intent": "greeting", "language": "ar", "model_confidence": 0.09879521376976401, "timestamp": "2026-03-24T08:00:31.175415"}
+{"text": "Как связаться с отделом продаж?", "predicted_intent": "sales_team", "language": "ru", "model_confidence": 0.10509843225619603, "timestamp": "2026-03-24T08:00:31.182549"}
+{"text": "У вас есть вакансии?", "predicted_intent": "career_info", "language": "ru", "model_confidence": 0.05238942853407016, "timestamp": "2026-03-24T08:00:31.190111"}
+{"text": "Привет", "predicted_intent": "greeting", "language": "ru", "model_confidence": 0.09151271007180174, "timestamp": "2026-03-24T08:00:31.192027"}
+{"text": "How can I contact your sales team?", "predicted_intent": "sales_team", "language": "en", "model_confidence": 0.17531495649637951, "timestamp": "2026-03-24T08:00:51.113398"}
+{"text": "Sales ekibine nasıl ulaşabilirim?", "predicted_intent": "sales_team", "language": "tr", "model_confidence": 0.0763399477772978, "timestamp": "2026-03-24T08:00:51.162771"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:00:51.169477"}
+{"text": "Mobil uygulama geliştiriyor musunuz?", "predicted_intent": "custom_software", "language": "tr", "model_confidence": 0.059167325747118374, "timestamp": "2026-03-24T08:00:51.171494"}
+{"text": "Kaç çalışanınız var?", "predicted_intent": "employees", "language": "tr", "model_confidence": 0.1452760546695139, "timestamp": "2026-03-24T08:00:51.176233"}
+{"text": "Kurumsal çözümleriniz neler?", "predicted_intent": "business_clients", "language": "tr", "model_confidence": 0.0691612362552347, "timestamp": "2026-03-24T08:00:51.178146"}
+{"text": "İş başvurusu nasıl yapabilirim?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.09248975586495005, "timestamp": "2026-03-24T08:00:51.183461"}
+{"text": "İletişim bilgileriniz?", "predicted_intent": "contact_info", "language": "tr", "model_confidence": 0.08328555942540641, "timestamp": "2026-03-24T08:00:51.187311"}
+{"text": "كيف أتصل بالمبيعات؟", "predicted_intent": "sales_team", "language": "ar", "model_confidence": 0.07501816093827798, "timestamp": "2026-03-24T08:00:51.197961"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:00:51.199758"}
+{"text": "أين يقع مكتبكم؟", "predicted_intent": "location", "language": "ar", "model_confidence": 0.08926065840276666, "timestamp": "2026-03-24T08:00:51.203607"}
+{"text": "الأمن السيبراني", "predicted_intent": "cybersecurity", "language": "ar", "model_confidence": 0.2638545040689594, "timestamp": "2026-03-24T08:00:51.207617"}
+{"text": "مرحبا", "predicted_intent": "greeting", "language": "ar", "model_confidence": 0.09879521376976401, "timestamp": "2026-03-24T08:00:51.209692"}
+{"text": "Как связаться с отделом продаж?", "predicted_intent": "sales_team", "language": "ru", "model_confidence": 0.10509843225619603, "timestamp": "2026-03-24T08:00:51.216642"}
+{"text": "У вас есть вакансии?", "predicted_intent": "career_info", "language": "ru", "model_confidence": 0.05238942853407016, "timestamp": "2026-03-24T08:00:51.223331"}
+{"text": "Привет", "predicted_intent": "greeting", "language": "ru", "model_confidence": 0.09151271007180174, "timestamp": "2026-03-24T08:00:51.225027"}
+{"text": "How can I contact your sales team?", "predicted_intent": "sales_team", "language": "en", "model_confidence": 0.17531495649637951, "timestamp": "2026-03-24T08:01:24.959213"}
+{"text": "Sales ekibine nasıl ulaşabilirim?", "predicted_intent": "sales_team", "language": "tr", "model_confidence": 0.0763399477772978, "timestamp": "2026-03-24T08:01:24.988993"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:01:24.998821"}
+{"text": "Mobil uygulama geliştiriyor musunuz?", "predicted_intent": "custom_software", "language": "tr", "model_confidence": 0.059167325747118374, "timestamp": "2026-03-24T08:01:25.003375"}
+{"text": "Kaç çalışanınız var?", "predicted_intent": "employees", "language": "tr", "model_confidence": 0.1452760546695139, "timestamp": "2026-03-24T08:01:25.012606"}
+{"text": "Kurumsal çözümleriniz neler?", "predicted_intent": "business_clients", "language": "tr", "model_confidence": 0.0691612362552347, "timestamp": "2026-03-24T08:01:25.014938"}
+{"text": "İş başvurusu nasıl yapabilirim?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.09248975586495005, "timestamp": "2026-03-24T08:01:25.018378"}
+{"text": "İletişim bilgileriniz?", "predicted_intent": "contact_info", "language": "tr", "model_confidence": 0.08328555942540641, "timestamp": "2026-03-24T08:01:25.020154"}
+{"text": "كيف أتصل بالمبيعات؟", "predicted_intent": "sales_team", "language": "ar", "model_confidence": 0.07501816093827798, "timestamp": "2026-03-24T08:01:25.028237"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:01:25.029877"}
+{"text": "أين يقع مكتبكم؟", "predicted_intent": "location", "language": "ar", "model_confidence": 0.08926065840276666, "timestamp": "2026-03-24T08:01:25.033261"}
+{"text": "الأمن السيبراني", "predicted_intent": "cybersecurity", "language": "ar", "model_confidence": 0.2638545040689594, "timestamp": "2026-03-24T08:01:25.036674"}
+{"text": "مرحبا", "predicted_intent": "greeting", "language": "ar", "model_confidence": 0.09879521376976401, "timestamp": "2026-03-24T08:01:25.039072"}
+{"text": "Как связаться с отделом продаж?", "predicted_intent": "sales_team", "language": "ru", "model_confidence": 0.10509843225619603, "timestamp": "2026-03-24T08:01:25.047266"}
+{"text": "У вас есть вакансии?", "predicted_intent": "career_info", "language": "ru", "model_confidence": 0.05238942853407016, "timestamp": "2026-03-24T08:01:25.054736"}
+{"text": "Привет", "predicted_intent": "greeting", "language": "ru", "model_confidence": 0.09151271007180174, "timestamp": "2026-03-24T08:01:25.056587"}
+{"text": "How can I contact your sales team?", "predicted_intent": "sales_team", "language": "en", "model_confidence": 0.17531495649637951, "timestamp": "2026-03-24T08:01:46.343609"}
+{"text": "Sales ekibine nasıl ulaşabilirim?", "predicted_intent": "sales_team", "language": "tr", "model_confidence": 0.0763399477772978, "timestamp": "2026-03-24T08:01:46.383969"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:01:46.393664"}
+{"text": "Mobil uygulama geliştiriyor musunuz?", "predicted_intent": "custom_software", "language": "tr", "model_confidence": 0.059167325747118374, "timestamp": "2026-03-24T08:01:46.396135"}
+{"text": "Kaç çalışanınız var?", "predicted_intent": "employees", "language": "tr", "model_confidence": 0.1452760546695139, "timestamp": "2026-03-24T08:01:46.403663"}
+{"text": "Kurumsal çözümleriniz neler?", "predicted_intent": "business_clients", "language": "tr", "model_confidence": 0.0691612362552347, "timestamp": "2026-03-24T08:01:46.405879"}
+{"text": "İş başvurusu nasıl yapabilirim?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.09248975586495005, "timestamp": "2026-03-24T08:01:46.410055"}
+{"text": "İletişim bilgileriniz?", "predicted_intent": "contact_info", "language": "tr", "model_confidence": 0.08328555942540641, "timestamp": "2026-03-24T08:01:46.412238"}
+{"text": "كيف أتصل بالمبيعات؟", "predicted_intent": "sales_team", "language": "ar", "model_confidence": 0.07501816093827798, "timestamp": "2026-03-24T08:01:46.422632"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:01:46.424911"}
+{"text": "أين يقع مكتبكم؟", "predicted_intent": "location", "language": "ar", "model_confidence": 0.08926065840276666, "timestamp": "2026-03-24T08:01:46.429068"}
+{"text": "الأمن السيبراني", "predicted_intent": "cybersecurity", "language": "ar", "model_confidence": 0.2638545040689594, "timestamp": "2026-03-24T08:01:46.433592"}
+{"text": "مرحبا", "predicted_intent": "greeting", "language": "ar", "model_confidence": 0.09879521376976401, "timestamp": "2026-03-24T08:01:46.436158"}
+{"text": "Как связаться с отделом продаж?", "predicted_intent": "sales_team", "language": "ru", "model_confidence": 0.10509843225619603, "timestamp": "2026-03-24T08:01:46.445219"}
+{"text": "У вас есть вакансии?", "predicted_intent": "career_info", "language": "ru", "model_confidence": 0.05238942853407016, "timestamp": "2026-03-24T08:01:46.453505"}
+{"text": "Привет", "predicted_intent": "greeting", "language": "ru", "model_confidence": 0.09151271007180174, "timestamp": "2026-03-24T08:01:46.455343"}
+{"text": "sales ekibine nasıl ulaşabilirim", "predicted_intent": "sales_team", "language": "tr", "model_confidence": 0.0767572337087712, "timestamp": "2026-03-24T08:02:13.516101"}
+{"text": "işe alım yapıyor mususnuz", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08772255984450178, "timestamp": "2026-03-24T08:02:37.006238"}
+{"text": "neded?", "predicted_intent": "location", "language": "tr", "model_confidence": 0.04411581180207485, "timestamp": "2026-03-24T08:02:41.224990"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:02:50.564960"}
+{"text": "Kaç çalışanınız var?", "predicted_intent": "employees", "language": "tr", "model_confidence": 0.1452760546695139, "timestamp": "2026-03-24T08:02:50.576903"}
+{"text": "كيف أتصل بالمبيعات؟", "predicted_intent": "sales_team", "language": "ar", "model_confidence": 0.07501816093827798, "timestamp": "2026-03-24T08:02:50.604295"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:02:50.606271"}
+{"text": "أين يقع مكتبكم؟", "predicted_intent": "location", "language": "ar", "model_confidence": 0.08926065840276666, "timestamp": "2026-03-24T08:02:50.611386"}
+{"text": "مرحبا", "predicted_intent": "greeting", "language": "ar", "model_confidence": 0.09879521376976401, "timestamp": "2026-03-24T08:02:50.617486"}
+{"text": "У вас есть вакансии?", "predicted_intent": "career_info", "language": "ru", "model_confidence": 0.05238942853407016, "timestamp": "2026-03-24T08:02:50.633977"}
+{"text": "neden", "predicted_intent": "mission", "language": "tr", "model_confidence": 0.04682624285158973, "timestamp": "2026-03-24T08:02:56.430222"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:03:17.824692"}
+{"text": "Kaç çalışanınız var?", "predicted_intent": "employees", "language": "tr", "model_confidence": 0.1452760546695139, "timestamp": "2026-03-24T08:03:17.833596"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:03:17.851783"}
+{"text": "مرحبا", "predicted_intent": "greeting", "language": "ar", "model_confidence": 0.09879521376976401, "timestamp": "2026-03-24T08:03:17.859808"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:03:36.472379"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:03:36.497737"}
+{"text": "İşe alım yapıyor musunuz?", "predicted_intent": "career_info", "language": "tr", "model_confidence": 0.08039415425765345, "timestamp": "2026-03-24T08:04:12.132527"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:04:12.159510"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08897969646193643, "timestamp": "2026-03-24T08:05:37.204425"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08795516483101831, "timestamp": "2026-03-24T08:06:01.212336"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08795516483101831, "timestamp": "2026-03-24T08:09:56.411216"}
+{"text": "ما هو رقم تليفونكم؟", "predicted_intent": "phone_number", "language": "ar", "model_confidence": 0.08743588487539981, "timestamp": "2026-03-24T08:11:33.145763"}
+{"text": "mesut mesut", "predicted_intent": "working_hours", "language": "en", "model_confidence": 0.04280537806491118, "timestamp": "2026-03-24T08:32:34.445889"}
+{"text": "why you giving the same answer", "predicted_intent": "founding_year", "language": "en", "model_confidence": 0.048322701715649, "timestamp": "2026-03-24T08:33:10.806709"}
