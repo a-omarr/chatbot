@@ -10,6 +10,7 @@ interface CategoryPillsProps {
   sendMessage: (text: string) => void;
   containerVariants: any;
   itemVariants: any;
+  isBanned: boolean;
 }
 
 const CategoryPills: React.FC<CategoryPillsProps> = ({
@@ -19,7 +20,11 @@ const CategoryPills: React.FC<CategoryPillsProps> = ({
   sendMessage,
   containerVariants,
   itemVariants,
+  isBanned,
 }) => {
+  // When banned, render nothing (pills are hidden entirely)
+  if (isBanned) return null;
+
   return (
     <div className="flex flex-wrap gap-2 text-xs">
       <AnimatePresence mode="wait">

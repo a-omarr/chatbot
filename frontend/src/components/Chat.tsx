@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LocaleCode, 
@@ -7,6 +7,28 @@ import {
   COMPANY_LOGO_URL, 
   DEFAULT_API_URL 
 } from '../config/chatConfig';
+
+const BAN_DURATION_MS = 5 * 60 * 1000; // 5 minutes
+const BAN_STORAGE_KEY = 'chat_ban_expires_at';
+
+function getStoredBanExpiry(): number | null {
+  try {
+    const val = localStorage.getItem(BAN_STORAGE_KEY);
+    if (!val) return null;
+    const ts = parseInt(val, 10);
+    return ts > Date.now() ? ts : null;
+  } catch {
+    return null;
+  }
+}
+
+function storeBanExpiry(expiry: number): void {
+  try { localStorage.setItem(BAN_STORAGE_KEY, String(expiry)); } catch {}
+}
+
+function clearBanExpiry(): void {
+  try { localStorage.removeItem(BAN_STORAGE_KEY); } catch {}
+}
 
 import TypingIndicator from './Chat/components/TypingIndicator';
 import WelcomeScreen from './Chat/components/WelcomeScreen';
@@ -30,6 +52,7 @@ interface ChatApiResponse {
   is_mismatch?: boolean;
   suggested_language?: LocaleCode | null;
   resource_url?: string;
+  is_banned?: boolean;
 }
 
 interface ChatProps {
@@ -92,6 +115,15 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
   const [suggestedLanguage, setSuggestedLanguage] = useState<LocaleCode | null>(null);
   const [inputFocused, setInputFocused] = useState(false);
 
+  // Ban state — initialised from localStorage so it survives page refresh
+  const [banExpiresAt, setBanExpiresAt] = useState<number | null>(() => getStoredBanExpiry());
+  const isBanned = banExpiresAt !== null && banExpiresAt > Date.now();
+
+  const handleBanExpired = useCallback(() => {
+    setBanExpiresAt(null);
+    clearBanExpiry();
+  }, []);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLElement>(null);
 
@@ -102,7 +134,7 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
 
   const sendMessage = async (text: string) => {
     const trimmed = text.trim();
-    if (!trimmed || loading) return;
+    if (!trimmed || loading || isBanned) return;
 
     setError(null);
     const userMessage: Message = { id: Date.now(), role: 'user', text: trimmed };
@@ -145,6 +177,13 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
           resourceUrl: data.resource_url || undefined,
         };
         setMessages((prev) => [...prev, botMessage]);
+      }
+
+      // Handle ban — persist expiry in localStorage for 5 minutes
+      if (data.is_banned) {
+        const expiry = Date.now() + BAN_DURATION_MS;
+        setBanExpiresAt(expiry);
+        storeBanExpiry(expiry);
       }
 
       if (data.language_warning) {
@@ -282,6 +321,7 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
           sendMessage={sendMessage}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
+          isBanned={isBanned}
         />
 
         <AnimatePresence>
@@ -354,6 +394,9 @@ const Chat: React.FC<ChatProps> = ({ apiUrl = DEFAULT_API_URL }) => {
           activeLocale={activeLocale}
           inputFocused={inputFocused}
           setInputFocused={setInputFocused}
+          isBanned={isBanned}
+          banExpiresAt={banExpiresAt}
+          onBanExpired={handleBanExpired}
         />
 
         <p className="text-[10px] text-slate-600 text-center">
