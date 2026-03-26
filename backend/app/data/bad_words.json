@@ -1,0 +1,53 @@
+{
+  "_comment": "Multilingual bad words knowledge base. Detection uses normalized substring matching (lowercase, stripped spaces/punctuation).",
+
+  "common": [
+    "fuck", "shit", "bitch", "asshole", "bastard", "damn", "cunt", "dick",
+    "pussy", "whore", "slut", "faggot", "nigger", "nigga", "retard",
+    "idiot", "moron", "imbecile", "stupid", "sex", "porn", "rape", "nazi"
+  ],
+
+  "en": [
+    "motherfucker", "cocksucker", "son of a bitch", "son of bitch",
+    "go to hell", "screw you", "piss off", "dumbass", "jackass",
+    "piece of shit", "shithead", "bullshit", "horseshit", "wanker",
+    "tosser", "twat", "arsehole", "bollocks", "bloody hell",
+    "fag", "dyke", "spastic", "mong", "numbnuts", "douchebag",
+    "prick", "jerk", "dipshit", "shitface", "scumbag", "lowlife",
+    "pervert", "creep", "freak", "loser", "deadbeat", "degenerate",
+    "shut up", "get lost", "go away", "drop dead", "kiss my ass"
+  ],
+
+  "tr": [
+    "siktir", "orospu", "piç", "amk", "amına koyayım", "amcık",
+    "oç", "göt", "götveren", "ibne", "kahpe", "orospuçocuğu",
+    "salak", "gerizekalı", "aptal", "mal", "gerzek", "dangalak",
+    "eşek", "serefsiz", "şerefsiz", "alçak", "haysiyetsiz",
+    "it", "köpek", "domuz", "pezevenk", "sürtük", "fahişe",
+    "bok", "boktan", "sikeyim", "sik", "am", "yarrak",
+    "götveren", "ibne", "ezik", "pizde", "gavat", "puşt",
+    "çük", "kaltaklar", "kaltak", "namussuz", "serseri",
+    "defol", "cehennem ol", "rezil", "kepaze"
+  ],
+
+  "ar": [
+    "كس", "عرص", "خول", "زب", "كلب", "حمار", "غبي", "أحمق",
+    "لعنة", "لعنتك", "يلعن", "ابن الكلب", "ابن القحبة",
+    "منيوك", "شرموطة", "قحبة", "زانية", "عاهرة", "خنزير",
+    "نيك", "منيك", "سكسي", "اللعنة", "كسمك", "طيزك",
+    "متناك", "ابن حرام", "حل عني", "روح من هنا", "اخرس",
+    "يخرب بيتك", "تبا لك", "فاسق", "مجنون", "معتوه",
+    "بليد", "نذل", "وقح", "دنيء", "مذموم"
+  ],
+
+  "ru": [
+    "хуй", "пизда", "блядь", "ебать", "сука", "мудак", "пиздец",
+    "ёбаный", "ёб", "ёбать", "блядина", "шлюха", "собака", "дура",
+    "дурак", "идиот", "кретин", "урод", "тупой", "придурок",
+    "пошёл нахуй", "иди нахуй", "нахуй", "залупа", "ублюдок",
+    "козёл", "мразь", "сволочь", "подонок", "гнида",
+    "заткнись", "проваливай", "отстань", "пошёл вон",
+    "дебил", "дегенерат", "скотина", "животное", "тварь",
+    "шакал", "крыса", "свинья", "жопа", "задница"
+  ]
+}
