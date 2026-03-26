@@ -87,10 +87,24 @@ def get_model() -> Pipeline:
 
 def predict_intent(text: str) -> Tuple[str, float]:
     """Predict the intent and confidence score for a given user message."""
+    results = predict_top_k(text, k=1)
+    return results[0]
+
+def predict_top_k(text: str, k: int = 2) -> List[Tuple[str, float]]:
+    """Predict the top K intents and their confidence scores."""
     model = get_model()
     proba = model.predict_proba([text])[0]
-    label_idx = proba.argmax()
-    return model.classes_[label_idx], float(proba[label_idx])
+    
+    # Get indices of top K probabilities
+    top_indices = proba.argsort()[-k:][::-1]
+    
+    results = []
+    for idx in top_indices:
+        label = str(model.classes_[idx])
+        score = float(proba[idx])
+        results.append((label, score))
+        
+    return results
 
 def debug_intent(text: str) -> None:
     """Print detailed prediction probabilities for debugging purposes."""

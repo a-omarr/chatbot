@@ -5,28 +5,32 @@
             "Tell me about KIYOS",
             "What services do you offer?",
             "Does KIYOS support LDAP?",
-            "How can I contact you?"
+            "How can I contact you?",
+            "Can I get a project quote?"
         ],
         "tr": [
             "Toros Yazilim kimdir?",
             "KIYOS nedir?",
             "Hizmetleriniz neler?",
             "KIYOS LDAP destekliyor mu?",
-            "Size nasıl ulaşabilirim?"
+            "Size nasıl ulaşabilirim?",
+            "Proje teklifi alabilir miyim?"
         ],
         "ar": [
             "من هي توروس يازليم؟",
             "أخبرني عن KIYOS",
             "ما هي خدماتكم؟",
             "هل يدعم KIYOS نظام LDAP؟",
-            "كيف يمكنني الاتصال بكم؟"
+            "كيف يمكنني الاتصال بكم؟",
+            "هل يمكنني الحصول على عرض سعر للمشروع؟"
         ],
         "ru": [
             "Кто такая Toros Yazilim?",
             "Расскажите о KIYOS",
             "Какие услуги вы предлагаете?",
             "Поддерживает ли KIYOS LDAP?",
-            "Как с вами связаться?"
+            "Как с вами связаться?",
+            "Могу ли я получить предложение по проекту?"
         ]
     },
     "base_url": "https://www.torosyazilim.com.tr",
@@ -58,7 +62,12 @@
             "research_development": "arastirma-ve-gelistirme",
             "sales_team": "contact",
             "request_demo": "contact",
-            "phone_number": "contact"
+            "phone_number": "contact",
+            "founding_year": "hakkimizda",
+            "location": "contact",
+            "mission": "hakkimizda",
+            "vision": "hakkimizda",
+            "working_hours": "contact"
         },
         "default": {
             "services": "services",
@@ -87,7 +96,12 @@
             "research_development": "research-and-development",
             "sales_team": "contact",
             "request_demo": "contact",
-            "phone_number": "contact"
+            "phone_number": "contact",
+            "founding_year": "about-us",
+            "location": "contact",
+            "mission": "about-us",
+            "vision": "about-us",
+            "working_hours": "contact"
         }
     },
     "fallback_messages": {

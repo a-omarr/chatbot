@@ -1438,5 +1438,249 @@
     {
         "text": "أهلاً",
         "label": "greeting"
+    },
+    {
+        "text": "when was the company founded",
+        "label": "founding_year"
+    },
+    {
+        "text": "founding year",
+        "label": "founding_year"
+    },
+    {
+        "text": "establishment date",
+        "label": "founding_year"
+    },
+    {
+        "text": "when did Toros start",
+        "label": "founding_year"
+    },
+    {
+        "text": "since when are you operating",
+        "label": "founding_year"
+    },
+    {
+        "text": "kurulus yili",
+        "label": "founding_year"
+    },
+    {
+        "text": "ne zaman kuruldu",
+        "label": "founding_year"
+    },
+    {
+        "text": "kac yilinda kuruldu",
+        "label": "founding_year"
+    },
+    {
+        "text": "متى تأسست الشركة",
+        "label": "founding_year"
+    },
+    {
+        "text": "где находится ваш офис",
+        "label": "location"
+    },
+    {
+        "text": "where is your office",
+        "label": "location"
+    },
+    {
+        "text": "office address",
+        "label": "location"
+    },
+    {
+        "text": "where are you located",
+        "label": "location"
+    },
+    {
+        "text": "mersin office",
+        "label": "location"
+    },
+    {
+        "text": "ofisiniz nerede",
+        "label": "location"
+    },
+    {
+        "text": "adresiniz nedir",
+        "label": "location"
+    },
+    {
+        "text": "konum bilgisi",
+        "label": "location"
+    },
+    {
+        "text": "أين يقع مكتبكم",
+        "label": "location"
+    },
+    {
+        "text": "what is your mission",
+        "label": "mission"
+    },
+    {
+        "text": "company mission",
+        "label": "mission"
+    },
+    {
+        "text": "your goals",
+        "label": "mission"
+    },
+    {
+        "text": "misyonunuz nedir",
+        "label": "mission"
+    },
+    {
+        "text": "amaciniz nedir",
+        "label": "mission"
+    },
+    {
+        "text": "ما هي مهمتكم",
+        "label": "mission"
+    },
+    {
+        "text": "what is your vision",
+        "label": "vision"
+    },
+    {
+        "text": "company vision",
+        "label": "vision"
+    },
+    {
+        "text": "future targets",
+        "label": "vision"
+    },
+    {
+        "text": "vizyonunuz nedir",
+        "label": "vision"
+    },
+    {
+        "text": "gelecek hedefleriniz",
+        "label": "vision"
+    },
+    {
+        "text": "ما هي رؤيتكم",
+        "label": "vision"
+    },
+    {
+        "text": "what are your working hours",
+        "label": "working_hours"
+    },
+    {
+        "text": "office hours",
+        "label": "working_hours"
+    },
+    {
+        "text": "when do you open",
+        "label": "working_hours"
+    },
+    {
+        "text": "closing time",
+        "label": "working_hours"
+    },
+    {
+        "text": "mesai saatleri",
+        "label": "working_hours"
+    },
+    {
+        "text": "kacta aciliyorsunuz",
+        "label": "working_hours"
+    },
+    {
+        "text": "kac kadar acik",
+        "label": "working_hours"
+    },
+    {
+        "text": "ما هي ساعات العمل",
+        "label": "working_hours"
+    },
+    {
+        "text": "Can I get a project quote?",
+        "label": "request_demo"
+    },
+    {
+        "text": "How much does a software project cost?",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "I need a price estimate",
+        "label": "request_demo"
+    },
+    {
+        "text": "Proje teklifi almak istiyorum",
+        "label": "request_demo"
+    },
+    {
+        "text": "Danışmanlık hizmeti veriyor musunuz?",
+        "label": "it_consultancy"
+    },
+    {
+        "text": "İşe alım yapıyor musunuz?",
+        "label": "career_info"
+    },
+    {
+        "text": "ما هي خدماتكم؟",
+        "label": "services"
+    },
+    {
+        "text": "ما هو رقم تليفونكم؟",
+        "label": "contact_info"
+    },
+    {
+        "text": "فرص عمل",
+        "label": "career_info"
+    },
+    {
+        "text": "Kaç çalışanınız var?",
+        "label": "employees"
+    },
+    {
+        "text": "رقم الهاتف؟",
+        "label": "contact_info"
+    },
+    {
+        "text": "how are you?",
+        "label": "greeting"
+    },
+    {
+        "text": "nasılsın?",
+        "label": "greeting"
+    },
+    {
+        "text": "как дела?",
+        "label": "greeting"
+    },
+    {
+        "text": "كيف حالك؟",
+        "label": "greeting"
+    },
+    {
+        "text": "how are you",
+        "label": "greeting"
+    },
+    {
+        "text": "Are you hiring right now?",
+        "label": "career_info"
+    },
+    {
+        "text": "I want a job at Toros",
+        "label": "career_info"
+    },
+    {
+        "text": "How to apply for a position?",
+        "label": "career_info"
+    },
+    {
+        "text": "Are you hiring?",
+        "label": "career_info"
+    },
+    {
+        "text": "Are you looking for new employees?",
+        "label": "career_info"
+    },
+    {
+        "text": "işe alım var mı?",
+        "label": "career_info"
+    },
+    {
+        "text": "هل تطلبون موظفين؟",
+        "label": "career_info"
     }
 ]
