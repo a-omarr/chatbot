@@ -64,7 +64,7 @@ log "Starting frontend (Vite on :5173)…"
 
 (
   cd "$FRONTEND_DIR"
-  npm run dev
+  npm run dev -- --host
 ) &
 FRONTEND_PID=$!
 
